@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Resize Image for Pinterest — Free Online Tool | Pixaroid</title>
+  <meta name="description" content="Resize photos to all Pinterest image dimensions: Standard Pin (1000×1500), Square Pin (1000×1000), Infographic (1000×3000) and more. Free, browser-based, no acc" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pixaroid.vercel.app/tools/resize/resize-image-for-pinterest/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Pixaroid" />
+  <meta property="og:title"       content="Pinterest Image Resizer — All Pinterest Sizes, Free | Pixaroid" />
+  <meta property="og:description" content="Resize images to perfect Pinterest dimensions. 4 preset sizes. Free, instant, no upload." />
+  <meta property="og:url"         content="https://pixaroid.vercel.app/tools/resize/resize-image-for-pinterest/" />
+  <meta property="og:image"       content="https://pixaroid.vercel.app/assets/images/og-default.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height"content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@pixaroidapp" />
+  <meta name="twitter:title"       content="Pinterest Image Resizer — All Pinterest Sizes, Free" />
+  <meta name="twitter:description" content="Resize images to perfect Pinterest dimensions. 4 preset sizes. Free, instant, no upload." />
+  <meta name="twitter:image"       content="https://pixaroid.vercel.app/assets/images/og-default.png" />
+
+  <!-- Favicon & PWA -->
+  <link rel="icon"     href="/assets/svg/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#4F46E5" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/output.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+
+  <!-- JSON-LD: SoftwareApplication -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Resize Image for Pinterest",
+  "description": "Resize photos to all Pinterest image dimensions: Standard Pin (1000×1500), Square Pin (1000×1000), Infographic (1000×3000) and more. Free, browser-based, no account required.",
+  "url": "https://pixaroid.vercel.app/tools/resize/resize-image-for-pinterest/",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Pixaroid",
+    "url": "https://pixaroid.vercel.app"
+  },
+  "inLanguage": "en",
+  "dateModified": "2026-03-17"
+}
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best image size for Pinterest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most commonly used Pinterest image size is Standard Pin: 1000×1500 pixels. Vertical pins (2:3 ratio) perform best on Pinterest and take up more visual space in the feed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Cover and Contain fit modes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cover scales and crops the image to fill the exact target dimensions — good when you want no blank space. Contain scales the image to fit within the target while preserving the full image, adding neutral padding if needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will resizing affect image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Downscaling (making images smaller) has no visible quality loss. Upscaling (making images larger) reduces sharpness — for AI-powered upscaling without quality loss, use the AI Upscaler tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Pinterest recompress my images after upload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — most social platforms apply their own compression. Starting with a high-quality original at the correct dimensions ensures the best result after platform processing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I process multiple images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — use the Bulk Image Resize tool to resize up to 100 images to Pinterest dimensions simultaneously and download all results as a ZIP file."
+      }
+    }
+  ]
+}
+  </script>
+
+  <!-- JSON-LD: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pixaroid.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Resize",
+      "item": "https://pixaroid.vercel.app/tools/resize/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Resize Image for Pinterest",
+      "item": "https://pixaroid.vercel.app/tools/resize/resize-image-for-pinterest/"
+    }
+  ]
+}
+  </script>
+
+  <style>
+    :root{--brand:#4F46E5;--brand2:#06B6D4;--accent:#8B5CF6;--bg:#F9FAFB;--surface:#fff;--text:#111827;--muted:#6B7280;--border:#E5E7EB;}
+    .dark{--bg:#0B0E1A;--surface:#131726;--text:#F3F4F6;--muted:#9CA3AF;--border:#1F2533;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;transition:background .25s,color .25s;}
+    h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.25;}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+
+    /* Navbar */
+    .navbar{position:sticky;top:0;z-index:100;background:rgba(249,250,251,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .dark .navbar{background:rgba(11,14,26,.88);}
+    .navbar-inner{display:flex;align-items:center;gap:1.25rem;height:60px;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.125rem;text-decoration:none;color:var(--text);}
+    .nav-logo-text{background:linear-gradient(135deg,#4F46E5,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-spacer{flex:1;}
+    .nav-back{display:inline-flex;align-items:center;gap:.375rem;font-size:.875rem;color:var(--muted);transition:color .2s;}
+    .nav-back:hover{color:var(--brand);}
+    #theme-toggle{width:36px;height:36px;border-radius:.625rem;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+    /* Hero */
+    .hero{padding:2.5rem 1.5rem 1.75rem;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(16,185,129,0.05),transparent);}
+    .hero-badge{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .75rem;border-radius:999px;font-size:.75rem;font-weight:600;background:rgba(79,70,229,.1);color:#10B981;border:1px solid #10B98130;margin-bottom:.875rem;}
+    .hero h1{font-size:clamp(1.625rem,3vw,2.25rem);font-weight:800;margin-bottom:.625rem;}
+    .hero-desc{font-size:1rem;color:var(--muted);max-width:640px;line-height:1.7;}
+
+    /* Layout */
+    .page-grid{display:grid;grid-template-columns:1fr 280px;gap:2rem;padding:2rem 0 5rem;}
+    @media(max-width:900px){.page-grid{grid-template-columns:1fr;}}
+
+    /* Tool card */
+    .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:1.25rem;overflow:hidden;box-shadow:0 4px 24px rgba(79,70,229,.07);}
+
+    /* Dropzone */
+    .dropzone{padding:3rem 1.5rem;text-align:center;cursor:pointer;border:2px dashed rgba(79,70,229,.25);border-radius:1rem;margin:1.25rem;background:rgba(79,70,229,.02);transition:border-color .2s,background .2s;}
+    .dropzone:hover,.dropzone.drag-over{border-color:#10B981;background:rgba(79,70,229,.04);}
+    .dz-icon{width:52px;height:52px;border-radius:1rem;margin:0 auto .875rem;background:rgba(79,70,229,.1);display:flex;align-items:center;justify-content:center;}
+    .dz-icon svg{width:26px;height:26px;color:#10B981;}
+    .dropzone h3{font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.375rem;}
+    .dropzone p{font-size:.875rem;color:var(--muted);}
+    .dz-browse{color:#10B981;cursor:pointer;}
+    .dz-browse:hover{text-decoration:underline;}
+    .dz-formats{margin-top:.625rem;font-size:.75rem;color:var(--muted);}
+
+    /* Controls */
+    .controls-panel{padding:1.25rem 1.5rem;border-top:1px solid var(--border);display:none;}
+    .controls-panel.visible{display:block;}
+    .controls-title{font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:1rem;}
+    .control-group{margin-bottom:1rem;}
+    .control-label{display:flex;align-items:center;justify-content:space-between;font-size:.875rem;font-weight:500;margin-bottom:.5rem;}
+    .control-label span{color:var(--muted);font-size:.8rem;}
+    input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:999px;background:var(--border);outline:none;cursor:pointer;}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#10B981;cursor:pointer;}
+    select,input[type=number],input[type=text]{width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.625rem;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:.875rem;outline:none;}
+    select:focus,input:focus{border-color:#10B981;box-shadow:0 0 0 3px #10B98118;}
+    .checkbox-row{display:flex;align-items:center;gap:.625rem;cursor:pointer;}
+    .checkbox-row input{width:18px;height:18px;accent-color:#10B981;cursor:pointer;}
+    input[type=color]{width:44px;height:36px;padding:2px;border:1px solid var(--border);border-radius:.5rem;cursor:pointer;background:var(--bg);}
+
+    /* Action bar */
+    .action-bar{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;display:none;}
+    .btn-process{padding:.75rem 1.75rem;border-radius:.875rem;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;font-size:.9375rem;background:linear-gradient(135deg,#10B981,#10B981cc);color:#fff;box-shadow:0 4px 16px #10B98140;transition:transform .2s,box-shadow .2s;}
+    .btn-process:hover{transform:translateY(-1px);box-shadow:0 6px 20px #10B98155;}
+    .btn-process:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .btn-download{padding:.75rem 1.75rem;border-radius:.875rem;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;font-size:.9375rem;background:#10B981;color:#fff;display:none;align-items:center;gap:.5rem;}
+    .btn-download.visible{display:inline-flex;}
+    .btn-reset{padding:.75rem 1.25rem;border-radius:.875rem;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;font-size:.875rem;font-family:'Inter',sans-serif;}
+
+    /* Progress */
+    .progress-wrap{display:none;padding:.875rem 1.5rem;border-top:1px solid var(--border);}
+    .progress-wrap.visible{display:block;}
+    .progress-label{font-size:.875rem;color:var(--muted);margin-bottom:.5rem;}
+    .progress-bar{height:5px;border-radius:999px;background:var(--border);overflow:hidden;}
+    .progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#10B981,#10B981aa);transition:width .3s;}
+
+    /* Preview */
+    .preview-panel{padding:1.25rem 1.5rem;border-top:1px solid var(--border);display:none;}
+    .preview-panel.visible{display:block;}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:600px){.preview-grid{grid-template-columns:1fr;}}
+    .preview-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.5rem;text-align:center;}
+    .preview-img-wrap{border:1px solid var(--border);border-radius:.75rem;overflow:hidden;background:repeating-conic-gradient(#e5e7eb 0% 25%,transparent 0% 50%) 0 0/20px 20px;min-height:150px;display:flex;align-items:center;justify-content:center;}
+    .preview-img-wrap img{max-width:100%;max-height:220px;object-fit:contain;display:block;}
+    .preview-stats{margin-top:.5rem;display:flex;justify-content:center;gap:.625rem;}
+    .stat-chip{padding:.2rem .625rem;border-radius:999px;background:var(--bg);border:1px solid var(--border);font-size:.75rem;}
+    .stat-chip.green{background:rgba(16,185,129,.1);color:#10B981;border-color:transparent;}
+
+    /* Sidebar */
+    .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;margin-bottom:1rem;}
+    .sidebar-title{font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.875rem;}
+    .related-list{list-style:none;display:flex;flex-direction:column;gap:.375rem;}
+    .related-list a{display:flex;align-items:center;gap:.5rem;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--text);transition:background .15s,color .15s;}
+    .related-list a:hover{background:rgba(79,70,229,.06);color:#10B981;}
+    .related-list a::before{content:'';width:5px;height:5px;border-radius:50%;background:#10B981;flex-shrink:0;}
+
+    /* How-to */
+    .how-list{list-style:none;counter-reset:step;}
+    .how-list li{counter-increment:step;display:flex;gap:.75rem;padding:.625rem 0;font-size:.9rem;color:var(--muted);border-bottom:1px solid var(--border);}
+    .how-list li:last-child{border-bottom:none;}
+    .how-list li::before{content:counter(step);min-width:26px;height:26px;border-radius:50%;background:rgba(79,70,229,.1);color:#10B981;font-family:'Poppins',sans-serif;font-weight:700;font-size:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+    /* FAQ */
+    .faq-section{padding:3rem 1.5rem 5rem;}
+    .faq-section h2{font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;}
+    .faq-list{display:flex;flex-direction:column;gap:.625rem;max-width:780px;}
+    .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:.875rem;overflow:hidden;}
+    .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:none;border:none;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.9375rem;font-weight:600;color:var(--text);text-align:left;}
+    .faq-q svg{width:18px;height:18px;color:var(--muted);flex-shrink:0;transition:transform .3s;}
+    .faq-item.open .faq-q svg{transform:rotate(180deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:.9375rem;color:var(--muted);line-height:1.7;}
+    .faq-a-inner{padding:0 1.25rem 1rem;}
+    .faq-item.open .faq-a{max-height:300px;}
+
+    /* Toast */
+    .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;padding:.875rem 1.25rem;border-radius:.875rem;background:#111827;color:#fff;font-size:.875rem;box-shadow:0 8px 32px rgba(0,0,0,.3);transform:translateY(8px);opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;}
+    .toast.show{opacity:1;transform:none;}
+    .toast.success{background:#10B981;}
+    .toast.error{background:#DC2626;}
+
+    /* Breadcrumb */
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8125rem;color:var(--muted);padding:.875rem 0 0;}
+    .breadcrumb a:hover{color:var(--brand);}
+
+    /* Savings badge */
+    @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+    .savings-badge{animation:popIn .3s ease;display:inline-block;padding:.25rem .75rem;border-radius:999px;background:rgba(16,185,129,.15);color:#059669;font-weight:700;font-size:.875rem;}
+
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.8125rem;color:var(--muted);}
+    footer a{color:var(--brand);}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="nav-logo">
+      <svg width="26" height="26" viewBox="0 0 32 32"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#ng)"/><rect x="5" y="5" width="9" height="9" rx="2" fill="white" opacity=".95"/><rect x="18" y="5" width="9" height="9" rx="2" fill="white" opacity=".6"/><rect x="5" y="18" width="9" height="9" rx="2" fill="white" opacity=".6"/><rect x="18" y="18" width="9" height="9" rx="2" fill="white" opacity=".3"/></svg>
+      <span class="nav-logo-text">Pixaroid</span>
+    </a>
+    <div class="nav-spacer"></div>
+    <a href="/tools/resize/" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Resize Tools
+    </a>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <a href="/tools/resize/">Resize</a><span>›</span>
+      <span>Resize Image for Pinterest</span>
+    </nav>
+    <div style="margin-top:1.5rem;">
+      <span class="hero-badge">Resize</span>
+      <h1>Resize Images for Pinterest 📌 — Free Online Tool</h1>
+      <p class="hero-desc">Resize photos to all Pinterest image dimensions: Standard Pin (1000×1500), Square Pin (1000×1000), Infographic (1000×3000) and more. Free, browser-based, no account required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+<main class="container">
+  <div class="page-grid">
+
+    <!-- Tool interface -->
+    <div>
+      <div class="tool-card" id="tool-card">
+
+        <!-- Dropzone -->
+        <div class="dropzone" id="dropzone" role="button" tabindex="0">
+          <div class="dz-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          </div>
+          <h3>Drop your image here</h3>
+          <p>or <span class="dz-browse" id="browse-btn">browse to upload</span></p>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" style="display:none;" />
+          <p class="dz-formats">JPEG, PNG, WEBP — up to 20 MB</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-panel" id="controls-panel">
+          <div class="controls-title">Settings</div>
+          <div id="controls-body">
+            <div class="control-group"><div class="control-label">Pinterest Format</div><select data-control="preset"><option value="Standard Pin 1000×1500" selected>Standard Pin 1000×1500</option><option value="Square Pin 1000×1000">Square Pin 1000×1000</option><option value="Infographic 1000×3000">Infographic 1000×3000</option><option value="Profile Photo 165×165">Profile Photo 165×165</option></select></div>
+<div class="control-group"><div class="control-label">Fit Mode</div><select data-control="fit"><option value="cover" selected>cover</option><option value="contain">contain</option><option value="stretch">stretch</option></select></div>
+<div class="control-group"><div class="control-label">Output Format</div><select data-control="format"><option value="jpeg" selected>jpeg</option><option value="png">png</option></select></div>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-wrap" id="progress-wrap">
+          <div class="progress-label" id="progress-label">Processing…</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        </div>
+
+        <!-- Action bar -->
+        <div class="action-bar" id="action-bar">
+          <button class="btn-process" id="btn-process" disabled>Resize Image</button>
+          <button class="btn-download" id="btn-download">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+            Download
+          </button>
+          <button class="btn-reset" id="btn-reset">Reset</button>
+        </div>
+
+        <!-- Preview -->
+        <div class="preview-panel" id="preview-panel">
+          <div class="preview-grid">
+            <div>
+              <div class="preview-label">Original</div>
+              <div class="preview-img-wrap"><img id="preview-original" alt="Original" /></div>
+              <div class="preview-stats" id="stats-original"></div>
+            </div>
+            <div>
+              <div class="preview-label">Result</div>
+              <div class="preview-img-wrap"><img id="preview-result" alt="Result" /></div>
+              <div class="preview-stats" id="stats-result"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tool-card -->
+
+      
+      <!-- Platform size reference -->
+      <div class="sidebar-card" style="margin-top:1.5rem;">
+        <div class="sidebar-title">Pinterest Image Sizes</div>
+        <table style="width:100%;border-collapse:collapse;font-size:.875rem;margin:1.25rem 0;">
+    <thead><tr style="background:rgba(79,70,229,.06);">
+      <th style="padding:.625rem .875rem;text-align:left;font-family:'Poppins',sans-serif;font-weight:600;">Format</th>
+      <th style="padding:.625rem .875rem;text-align:right;font-family:'Poppins',sans-serif;font-weight:600;">Width</th>
+      <th style="padding:.625rem .875rem;text-align:right;font-family:'Poppins',sans-serif;font-weight:600;">Height</th>
+    </tr></thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border);font-weight:600;color:#4F46E5;">
+        <td style="padding:.625rem .875rem;">Standard Pin</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">1000</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">1500</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:.625rem .875rem;">Square Pin</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">1000</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">1000</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:.625rem .875rem;">Infographic</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">1000</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">3000</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:.625rem .875rem;">Profile Photo</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">165</td>
+        <td style="padding:.625rem .875rem;text-align:right;font-family:monospace;">165</td>
+      </tr>
+    </tbody>
+  </table>
+        <p style="font-size:.8125rem;color:var(--muted);margin-top:.625rem;line-height:1.6;"><strong>Pro tip:</strong> Vertical pins (2:3 ratio) perform best on Pinterest and take up more visual space in the feed.</p>
+      </div>
+
+      <!-- How to use -->
+      <div class="sidebar-card" style="margin-top:1.5rem;">
+        <div class="sidebar-title">How to Use</div>
+        <ol class="how-list">
+          <li>Upload your photo by dragging it onto the drop zone or clicking Browse.</li>
+          <li>Select the Pinterest format you need from the dropdown — Standard Pin (1000×1500) is the most common.</li>
+          <li>Choose a Fit Mode: Cover fills the frame completely (may crop edges); Contain fits the entire image (may add letterbox).</li>
+          <li>Click Resize to apply the selected dimensions.</li>
+          <li>Download your resized image — ready to upload directly to Pinterest.</li>
+        </ol>
+      </div>
+    </div><!-- /left -->
+
+    <!-- Sidebar -->
+    <aside>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Related Tools</div>
+        <ul class="related-list">
+          <li><a href="/tools/resize/resize-image-for-instagram/">Resize Image for Instagram</a></li>
+<li><a href="/tools/resize/resize-image-for-youtube/">Resize Image for YouTube</a></li>
+<li><a href="/tools/resize/resize-image/">Resize Image</a></li>
+<li><a href="/tools/bulk-tools/bulk-image-resize/">Bulk Resize</a></li>
+<li><a href="/tools/compression/compress-image/">Compress Image</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card" style="background:rgba(79,70,229,.04);border-color:rgba(79,70,229,.18);">
+        <div style="display:flex;gap:.625rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.875rem;color:#10B981;margin-bottom:.25rem;">100% Private</div>
+            <p style="font-size:.8rem;color:var(--muted);line-height:1.6;">All processing runs in your browser. No files are uploaded to any server.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div style="display:flex;gap:.625rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.875rem;color:#10B981;margin-bottom:.25rem;">Instant Processing</div>
+            <p style="font-size:.8rem;color:var(--muted);line-height:1.6;">Powered by the Canvas API and Web Workers for non-blocking, instant results.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /page-grid -->
+</main>
+
+<!-- FAQ Section -->
+<section class="faq-section container" id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    
+  <div class="faq-item open">
+    <button class="faq-q">What is the best image size for Pinterest?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></svg></button>
+    <div class="faq-a" style="max-height:300px"><div class="faq-a-inner">The most commonly used Pinterest image size is Standard Pin: 1000×1500 pixels. Vertical pins (2:3 ratio) perform best on Pinterest and take up more visual space in the feed.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">What is the difference between Cover and Contain fit modes?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></svg></button>
+    <div class="faq-a" style=""><div class="faq-a-inner">Cover scales and crops the image to fill the exact target dimensions — good when you want no blank space. Contain scales the image to fit within the target while preserving the full image, adding neutral padding if needed.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Will resizing affect image quality?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></svg></button>
+    <div class="faq-a" style=""><div class="faq-a-inner">Downscaling (making images smaller) has no visible quality loss. Upscaling (making images larger) reduces sharpness — for AI-powered upscaling without quality loss, use the AI Upscaler tool.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Does Pinterest recompress my images after upload?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></svg></button>
+    <div class="faq-a" style=""><div class="faq-a-inner">Yes — most social platforms apply their own compression. Starting with a high-quality original at the correct dimensions ensures the best result after platform processing.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Can I process multiple images at once?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></svg></button>
+    <div class="faq-a" style=""><div class="faq-a-inner">Yes — use the Bulk Image Resize tool to resize up to 100 images to Pinterest dimensions simultaneously and download all results as a ZIP file.</div></div>
+  </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 <a href="/">Pixaroid</a> &nbsp;·&nbsp; <a href="/privacy-policy.html">Privacy</a> &nbsp;·&nbsp; <a href="/terms-of-service.html">Terms</a> &nbsp;·&nbsp; <a href="/disclaimer.html">Disclaimer</a> &nbsp;·&nbsp; <a href="/contact.html">Contact</a></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="/js/app.js"></script>
+<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/pages/tool-runner.js" data-tool="resize-image-for-pinterest" data-category="resize"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  // Theme
+  const root = document.documentElement;
+  const btn  = document.getElementById('theme-toggle');
+  const s    = localStorage.getItem('pxn-theme');
+  if (s === 'dark' || (!s && matchMedia('(prefers-color-scheme:dark)').matches)) root.classList.add('dark');
+  btn.addEventListener('click', () => {
+    const d = !root.classList.contains('dark');
+    root.classList.toggle('dark', d);
+    localStorage.setItem('pxn-theme', d ? 'dark' : 'light');
+  });
+
+  function fmtBytes(n) {
+    if (!n) return '—';
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n/1024).toFixed(1) + ' KB';
+    return (n/1048576).toFixed(2) + ' MB';
+  }
+  function toast(msg, type='default') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + type + ' show';
+    setTimeout(() => t.className = 'toast', 3200);
+  }
+
+  // File handling
+  const dropzone  = document.getElementById('dropzone');
+  const fileInput = document.getElementById('file-input');
+  const browseBtn = document.getElementById('browse-btn');
+  const actionBar = document.getElementById('action-bar');
+  const btnProcess= document.getElementById('btn-process');
+  const btnDl     = document.getElementById('btn-download');
+  const btnReset  = document.getElementById('btn-reset');
+
+  let currentFile = null, resultBlob = null;
+
+  browseBtn.addEventListener('click', e => { e.stopPropagation(); fileInput.click(); });
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') fileInput.click(); });
+  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault(); dropzone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+  function handleFile(file) {
+    currentFile = file; resultBlob = null;
+    document.getElementById('controls-panel').classList.add('visible');
+    actionBar.style.display = 'flex';
+    btnProcess.disabled = false;
+    btnDl.classList.remove('visible');
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.getElementById('preview-original');
+      img.src = e.target.result;
+      document.getElementById('preview-panel').classList.add('visible');
+      document.getElementById('stats-original').innerHTML =
+        '<span class="stat-chip">' + fmtBytes(file.size) + '</span>' +
+        '<span class="stat-chip">' + file.name.split('.').pop().toUpperCase() + '</span>';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  btnReset.addEventListener('click', () => {
+    currentFile = resultBlob = null;
+    fileInput.value = '';
+    ['preview-original','preview-result'].forEach(id => document.getElementById(id).src='');
+    ['stats-original','stats-result'].forEach(id => document.getElementById(id).innerHTML='');
+    document.getElementById('preview-panel').classList.remove('visible');
+    document.getElementById('controls-panel').classList.remove('visible');
+    document.getElementById('progress-wrap').classList.remove('visible');
+    actionBar.style.display = 'none';
+    btnDl.classList.remove('visible');
+  });
+
+  btnDl.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const url = URL.createObjectURL(resultBlob);
+    const ext = resultBlob.type.split('/')[1]?.replace('jpeg','jpg') || 'jpg';
+    const a   = Object.assign(document.createElement('a'), {
+      href: url,
+      download: 'pixaroid-' + 'resize-image-for-pinterest' + '.' + ext
+    });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  });
+
+  btnProcess.addEventListener('click', () => {
+    if (!currentFile) return;
+    btnProcess.disabled = true;
+    const pw = document.getElementById('progress-wrap');
+    const pf = document.getElementById('progress-fill');
+    const pl = document.getElementById('progress-label');
+    pw.classList.add('visible');
+    pf.style.width = '0%';
+    pl.textContent = 'Processing…';
+
+    let p = 0;
+    const tick = setInterval(() => {
+      p = Math.min(p + Math.random() * 14, 88);
+      pf.style.width = p + '%';
+    }, 180);
+
+    document.dispatchEvent(new CustomEvent('pxn:process', {
+      detail: { file: currentFile, controls: getControlValues() }
+    }));
+
+    function onResult(e) {
+      clearInterval(tick);
+      pf.style.width = '100%';
+      pl.textContent = 'Done!';
+      resultBlob = e.detail.blob;
+      const url = URL.createObjectURL(e.detail.blob);
+      document.getElementById('preview-result').src = url;
+      const stats = e.detail.stats || {};
+      let statsHTML = '<span class="stat-chip green">' + fmtBytes(e.detail.blob.size) + '</span>';
+      if (stats.savings) statsHTML += '<span class="stat-chip green savings-badge">↓ ' + stats.savings + '%</span>';
+      document.getElementById('stats-result').innerHTML = statsHTML;
+      btnDl.classList.add('visible');
+      btnProcess.disabled = false;
+      toast('Done! Click Download to save your file.', 'success');
+    }
+    function onError(e) {
+      clearInterval(tick);
+      pw.classList.remove('visible');
+      btnProcess.disabled = false;
+      toast('Error: ' + (e.detail?.message || 'Processing failed'), 'error');
+    }
+
+    document.addEventListener('pxn:result', onResult, { once: true });
+    document.addEventListener('pxn:error',  onError,  { once: true });
+  });
+
+  function getControlValues() {
+    const vals = {};
+    document.querySelectorAll('#controls-body [data-control]').forEach(el => {
+      vals[el.dataset.control] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    
+    return vals;
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = this.closest('.faq-item');
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  // SW registration
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>

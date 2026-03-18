@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Compress PNG to 20KB — Free Online | Pixaroid</title>
+<meta name="description" content="Compress PNG images to exactly 20KB. Binary-search quality optimization. No upload needed — 100% browser-based."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://pixaroid.vercel.app/tools/compression/compress-png-to-20kb/"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="Pixaroid"/>
+<meta property="og:title" content="Compress PNG to 20KB | Pixaroid"/>
+<meta property="og:description" content="Compress PNG images to exactly 20KB. Binary-search quality optimization. No upload needed — 100% browser-based."/>
+<meta property="og:url" content="https://pixaroid.vercel.app/tools/compression/compress-png-to-20kb/"/>
+<meta property="og:image" content="https://pixaroid.vercel.app/assets/images/og-default.png"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:site" content="@pixaroidapp"/>
+<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/output.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress PNG to 20KB","url":"https://pixaroid.vercel.app/tools/compression/compress-png-to-20kb/","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Pixaroid","url":"https://pixaroid.vercel.app"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I compress a PNG to 20KB?","acceptedAnswer":{"@type":"Answer","text":"This tool uses binary search across quality levels to find the exact setting needed to reach 20KB while preserving maximum image quality."}},{"@type":"Question","name":"Will image quality be affected?","acceptedAnswer":{"@type":"Answer","text":"Minimal. The tool finds the highest quality setting that still produces a file ≤ 20KB."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pixaroid.vercel.app/"},{"@type":"ListItem","position":2,"name":"Compression","item":"https://pixaroid.vercel.app/tools/compression/"},{"@type":"ListItem","position":3,"name":"Compress PNG to 20KB","item":"https://pixaroid.vercel.app/tools/compression/compress-png-to-20kb/"}]}</script>
+<style>
+:root{--bg:#0A0A0F;--surface:#111118;--surf2:#18181f;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--text:#F0F0F5;--muted:#777788;--subtle:#333345;--accent:#6C63FF;--accent2:#8B83FF;--glow:rgba(108,99,255,.22);--green:#22C55E;--f-d:'Space Grotesk',sans-serif;--f-b:'DM Sans',sans-serif;}
+.light{--bg:#F4F4F9;--surface:#fff;--surf2:#EEEEFD;--border:rgba(0,0,0,.07);--border2:rgba(0,0,0,.12);--text:#0A0A0F;--muted:#5566AA;--subtle:#CCCCE0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-b);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 50% at 50% -5%,rgba(108,99,255,.12),transparent 60%);}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:var(--f-d);line-height:1.2;}
+button{cursor:pointer;font-family:var(--f-b);}
+.wrap{max-width:1140px;margin:0 auto;padding:0 1.25rem;position:relative;z-index:1;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.light .nav{background:rgba(244,244,249,.85);}
+.nav-inner{display:flex;align-items:center;gap:1rem;height:56px;max-width:1140px;margin:0 auto;padding:0 1.25rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:var(--f-d);font-weight:800;font-size:1.125rem;}
+.logo-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6C63FF,#06B6D4);display:flex;align-items:center;justify-content:center;}
+.nav-bc{display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--muted);}
+.nav-bc a:hover{color:var(--text);}
+.nav-spacer{flex:1;}
+.btn-t{width:34px;height:34px;border-radius:7px;border:1px solid var(--border2);background:var(--surf2);color:var(--muted);display:flex;align-items:center;justify-content:center;}
+.tool-hero{padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);}
+.hero-inner{display:flex;align-items:flex-start;gap:1.25rem;}
+.hero-icon{width:52px;height:52px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#06B6D4);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--glow);}
+.hero-icon svg{width:24px;height:24px;color:#fff;}
+.hero-cat{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;}
+.hero h1{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;letter-spacing:-.04em;margin-bottom:.5rem;}
+.hero-desc{font-size:1rem;color:var(--muted);max-width:580px;line-height:1.65;}
+.badges{display:flex;gap:.5rem;margin-top:.875rem;flex-wrap:wrap;}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .625rem;border-radius:999px;font-size:.725rem;font-weight:600;border:1px solid transparent;}
+.b-free{background:rgba(34,197,94,.1);color:#22C55E;border-color:rgba(34,197,94,.2);}
+.b-fast{background:rgba(6,182,212,.1);color:#06B6D4;border-color:rgba(6,182,212,.2);}
+.b-priv{background:rgba(108,99,255,.1);color:var(--accent2);border-color:rgba(108,99,255,.2);}
+.grid{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;padding:1.75rem 0 5rem;align-items:start;}
+@media(max-width:900px){.grid{grid-template-columns:1fr;}}
+.tool-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 4px 24px rgba(0,0,0,.35);}
+.dropzone{padding:3.5rem 2rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(108,99,255,.05),transparent);transition:background .25s;}
+.dropzone:hover,.dropzone.drag-over{background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(108,99,255,.09),transparent);}
+.dz-ring{width:80px;height:80px;border-radius:50%;border:2px dashed rgba(108,99,255,.3);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;background:radial-gradient(circle,rgba(108,99,255,.08),transparent);transition:border-color .25s,transform .25s;}
+.dropzone:hover .dz-ring{border-color:var(--accent);transform:scale(1.05);}
+.dz-ring svg{width:32px;height:32px;color:var(--accent);}
+.dz-t{font-family:var(--f-d);font-weight:600;font-size:1.0625rem;margin-bottom:.375rem;}
+.dz-s{font-size:.875rem;color:var(--muted);}
+.dz-br{color:var(--accent2);font-weight:500;}
+.ctrl-panel{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:none;}
+.ctrl-panel.visible{display:block;}
+.ctrl-title{font-family:var(--f-d);font-weight:600;font-size:.8125rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:600px){.ctrl-grid{grid-template-columns:1fr;}}
+.cg{display:flex;flex-direction:column;gap:.5rem;}
+.cl{display:flex;align-items:center;justify-content:space-between;font-size:.8125rem;font-weight:500;color:var(--muted);}
+.cl span{font-family:var(--f-d);font-size:.8rem;color:var(--accent2);font-weight:600;background:rgba(108,99,255,.1);padding:.1rem .45rem;border-radius:5px;}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:999px;background:var(--border2);outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 2px 8px var(--glow);}
+select,input[type=number],input[type=text]{width:100%;padding:.625rem .875rem;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);color:var(--text);font-family:var(--f-b);font-size:.875rem;outline:none;transition:border-color .2s;}
+select:focus,input:focus{border-color:var(--accent);}
+input[type=color]{width:44px;height:36px;padding:2px 3px;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);}
+.checkbox-row{display:flex;align-items:center;gap:.625rem;cursor:pointer;font-size:.875rem;color:var(--muted);}
+.pw{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:none;}
+.pw.visible{display:block;}
+.pt{height:4px;border-radius:999px;background:var(--border2);overflow:hidden;}
+.pf{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#06B6D4);transition:width .3s ease;box-shadow:0 0 8px var(--glow);}
+.pl{font-size:.8125rem;color:var(--muted);margin-bottom:.5rem;display:flex;justify-content:space-between;}
+.pp{color:var(--accent2);font-weight:600;font-family:var(--f-d);}
+.ab{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:none;gap:.75rem;flex-wrap:wrap;align-items:center;}
+.btn-p{padding:.75rem 1.75rem;border-radius:10px;border:none;font-family:var(--f-d);font-weight:700;font-size:.9375rem;background:linear-gradient(135deg,var(--accent),#8B5CF6);color:#fff;box-shadow:0 4px 18px var(--glow);transition:transform .15s;}
+.btn-p:hover:not(:disabled){transform:translateY(-1px);}
+.btn-p:disabled{opacity:.4;cursor:not-allowed;}
+.btn-d{padding:.75rem 1.5rem;border-radius:10px;border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.1);color:#22C55E;font-family:var(--f-d);font-weight:700;display:none;align-items:center;gap:.5rem;transition:background .2s;}
+.btn-d.visible{display:inline-flex;}
+.btn-d:hover{background:rgba(34,197,94,.2);}
+.btn-r{padding:.75rem 1rem;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.875rem;transition:color .2s;}
+.btn-r:hover{color:var(--text);}
+.sav{display:none;padding:.75rem 1.5rem;background:rgba(34,197,94,.05);border-bottom:1px solid rgba(34,197,94,.12);align-items:center;gap:.875rem;}
+.sav.visible{display:flex;}
+.sav-n{font-family:var(--f-d);font-size:1.75rem;font-weight:700;color:#22C55E;line-height:1;}
+.sav-l{font-size:.8125rem;color:var(--muted);}
+.sav-tr{flex:1;height:6px;border-radius:999px;background:var(--border2);overflow:hidden;}
+.sav-tf{height:100%;border-radius:999px;background:linear-gradient(90deg,#22C55E,#06B6D4);transition:width 1s cubic-bezier(.4,0,.2,1);}
+.prev{display:none;border-bottom:1px solid var(--border);}
+.prev.visible{display:block;}
+.prev-h{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.5rem .625rem;font-size:.8125rem;color:var(--muted);}
+.prev-g{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:600px){.prev-g{grid-template-columns:1fr;}}
+.prev-c{padding:.875rem 1.25rem;}
+.prev-c:first-child{border-right:1px solid var(--border);}
+.prev-l{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle);margin-bottom:.625rem;display:flex;align-items:center;gap:.375rem;}
+.dot{width:6px;height:6px;border-radius:50%;}
+.img-box{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:repeating-conic-gradient(rgba(255,255,255,.03) 0% 25%,transparent 0% 50%) 0 0/16px 16px;min-height:120px;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;cursor:zoom-in;}
+.img-box img{max-width:100%;max-height:100%;object-fit:contain;}
+.pstats{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem;}
+.sc{padding:.175rem .5rem;border-radius:6px;font-size:.7125rem;font-weight:600;}
+.sc-d{background:var(--surf2);border:1px solid var(--border2);color:var(--muted);}
+.sc-g{background:rgba(34,197,94,.1);color:#22C55E;border:1px solid rgba(34,197,94,.2);}
+.sc-a{background:rgba(108,99,255,.1);color:var(--accent2);border:1px solid rgba(108,99,255,.2);}
+.sb{display:flex;flex-direction:column;gap:1rem;}
+.sb-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.3);}
+.sb-sec{padding:1.125rem 1.25rem;}
+.sb-sec+.sb-sec{border-top:1px solid var(--border);}
+.sb-t{font-family:var(--f-d);font-weight:600;font-size:.8125rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.875rem;}
+.stats-r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.625rem;}
+.stat-b{text-align:center;padding:.625rem .5rem;background:var(--surf2);border-radius:8px;border:1px solid var(--border);}
+.stat-n{font-family:var(--f-d);font-size:1.0625rem;font-weight:700;color:var(--accent2);line-height:1.2;}
+.stat-l{font-size:.65rem;color:var(--muted);margin-top:.15rem;}
+.trust{display:flex;flex-direction:column;gap:.625rem;}
+.ti{display:flex;align-items:flex-start;gap:.625rem;}
+.ti-ic{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ti-t h4{font-size:.8125rem;font-weight:600;margin-bottom:.15rem;}
+.ti-t p{font-size:.75rem;color:var(--muted);line-height:1.5;}
+.related-list{display:flex;flex-direction:column;gap:.25rem;}
+.related-item{display:flex;align-items:center;gap:.625rem;padding:.5rem .625rem;border-radius:8px;font-size:.8125rem;color:var(--muted);transition:background .15s,color .15s;}
+.related-item:hover{background:rgba(108,99,255,.07);color:var(--text);}
+.related-item-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.related-item-arrow{margin-left:auto;opacity:0;transition:opacity .15s,transform .15s;}
+.related-item:hover .related-item-arrow{opacity:1;transform:translateX(2px);}
+.how-sec{padding:2.5rem 0 0;}
+.how-sec h2{font-size:1.375rem;letter-spacing:-.03em;font-weight:700;margin-bottom:1.5rem;}
+.how-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;}
+.how-step{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.25rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+.how-step::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#06B6D4);opacity:0;transition:opacity .2s;}
+.how-step:hover{border-color:rgba(108,99,255,.3);transform:translateY(-2px);}
+.how-step:hover::after{opacity:1;}
+.how-step-num{font-family:var(--f-d);font-size:1.75rem;font-weight:800;color:rgba(108,99,255,.2);line-height:1;margin-bottom:.625rem;letter-spacing:-.04em;}
+.how-step-text{font-size:.875rem;color:var(--muted);line-height:1.6;}
+.faq-sec{padding:2.5rem 0 4rem;}
+.faq-sec h2{font-size:1.375rem;letter-spacing:-.03em;font-weight:700;margin-bottom:1.5rem;}
+.faq-list{display:flex;flex-direction:column;gap:.5rem;max-width:780px;}
+.faq-item{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;transition:border-color .2s;}
+.faq-item.open{border-color:rgba(108,99,255,.25);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:none;border:none;font-family:var(--f-d);font-size:.9375rem;font-weight:600;color:var(--text);text-align:left;cursor:pointer;}
+.faq-q-icon{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:var(--surf2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .2s;color:var(--muted);}
+.faq-item.open .faq-q-icon{transform:rotate(45deg);background:rgba(108,99,255,.12);color:var(--accent2);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-a-inner{padding:0 1.25rem 1.125rem;font-size:.9375rem;color:var(--muted);line-height:1.7;}
+.faq-item.open .faq-a{max-height:400px;}
+#ocr-panel{display:none;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);}
+#ocr-panel h3{font-size:.9375rem;font-weight:600;margin-bottom:.75rem;}
+#ocr-output{width:100%;min-height:140px;padding:.875rem 1rem;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);color:var(--text);font-family:'Courier New',monospace;font-size:.8125rem;resize:vertical;}
+.ocr-acts{display:flex;gap:.625rem;margin-top:.75rem;}
+.btn-ocr{padding:.5rem 1.1rem;border-radius:10px;font-size:.8125rem;font-weight:600;font-family:var(--f-d);border:1px solid var(--border2);background:var(--surf2);color:var(--muted);transition:all .2s;}
+.btn-ocr:hover{border-color:var(--accent);color:var(--accent2);}
+.footer{border-top:1px solid var(--border);padding:2rem 0;text-align:center;font-size:.8125rem;color:var(--subtle);}
+.footer a{color:var(--muted);transition:color .15s;}
+.footer a:hover{color:var(--accent2);}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
+.zoom-ov{position:fixed;inset:0;background:rgba(5,5,8,.93);backdrop-filter:blur(12px);z-index:9998;display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;pointer-events:none;transition:opacity .2s;}
+.zoom-ov.show{opacity:1;pointer-events:all;}
+.zoom-ov img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:10px;}
+.zoom-cl{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;}
+.toast-c{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;}
+.toast{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:9px;font-size:.875rem;font-weight:500;border:1px solid var(--border2);background:var(--surface);box-shadow:0 8px 32px rgba(0,0,0,.3);opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;}
+.toast.show{opacity:1;transform:none;}
+.t-success{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.07);color:#22C55E;}
+.t-error{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.07);color:#EF4444;}
+.t-info{border-color:rgba(108,99,255,.3);background:rgba(108,99,255,.07);color:var(--accent2);}
+</style>
+</head>
+<body>
+<div class="zoom-ov" id="zo"><button class="zoom-cl" id="zc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><img id="zi" src="" alt=""/></div>
+<header class="nav"><div class="nav-inner">
+  <a href="/" class="logo"><div class="logo-mark"><svg viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="white"/><rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/><rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".25"/></svg></div>Pixaroid</a>
+  <nav class="nav-bc"><a href="/">Home</a><span>›</span><a href="/tools/compression/">Compression</a><span>›</span><span>Compress PNG to 20KB</span></nav>
+  <div class="nav-spacer"></div>
+  <button id="tt" class="btn-t" aria-label="Toggle theme"><svg id="im" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg id="is" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></button>
+</div></header>
+<div class="wrap">
+<section class="tool-hero">
+  <div class="hero-inner">
+    <div class="hero-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+    <div>
+      <div class="hero-cat">Compression</div>
+      <h1>Compress PNG Image to 20KB — Free Online</h1>
+      <p class="hero-desc">Compress PNG images to exactly 20KB. Binary-search quality optimization. No upload needed — 100% browser-based.</p>
+      <div class="badges"><span class="badge b-free">✓ Free</span><span class="badge b-fast">⚡ Instant</span><span class="badge b-priv">🔒 No Upload</span></div>
+    </div>
+  </div>
+</section>
+<div class="grid">
+  <div>
+    <div class="tool-card">
+      <div class="dropzone" id="dz" role="button" tabindex="0">
+        <div class="dz-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+        <p class="dz-t">Drop your image here</p>
+        <p class="dz-s">or <span class="dz-br" id="bb">browse to upload</span></p>
+        <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic" style="display:none"/>
+        <p style="margin-top:.75rem;font-size:.75rem;color:var(--subtle);">Max 20 MB · Files stay on your device</p>
+      </div>
+      <div class="ctrl-panel" id="cp"><div class="ctrl-title">Settings</div>
+        <div class="ctrl-grid" id="controls-body"></div>
+      </div>
+      <div class="pw" id="pw"><div class="pl"><span id="pl">Processing…</span><span class="pp" id="pp">0%</span></div><div class="pt"><div class="pf" id="pf" style="width:0%"></div></div></div>
+      <div class="ab" id="ab">
+        <button class="btn-p" id="bp" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Process</button>
+        <button class="btn-d" id="bd"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg><span id="bdl">Download</span></button>
+        <button class="btn-r" id="br">Reset</button>
+      </div>
+      <div class="sav" id="sv"><div><div class="sav-n" id="sn">0%</div><div class="sav-l">smaller</div></div><div class="sav-tr"><div class="sav-tf" id="sf" style="width:0%"></div></div><div style="font-size:.8125rem;color:var(--muted)"><span id="so">—</span> → <span id="sr" style="color:#22C55E;font-weight:600">—</span></div></div>
+      <div id="ocr-panel"><h3>Extracted Text</h3><textarea id="ocr-output" readonly placeholder="OCR results will appear here…"></textarea><div class="ocr-acts"><button class="btn-ocr" id="boc">Copy Text</button><button class="btn-ocr" id="bod" style="display:none">Download .txt</button></div></div>
+      <div class="prev" id="pv"><div class="prev-h"><span style="font-family:var(--f-d);font-weight:600;font-size:.875rem;">Preview</span><span style="font-size:.75rem;color:var(--subtle)">Click to zoom</span></div>
+        <div class="prev-g">
+          <div class="prev-c"><div class="prev-l"><span class="dot" style="background:#6B7280"></span>Original</div><div class="img-box" id="zot"><img id="po" alt="Original"/></div><div class="pstats" id="so2"></div></div>
+          <div class="prev-c"><div class="prev-l"><span class="dot" style="background:#22C55E"></span>Result</div><div class="img-box" id="zrt"><img id="pr" alt="Result"/></div><div class="pstats" id="sr2"></div></div>
+        </div>
+      </div>
+    </div>
+    <section class="how-sec"><h2>How to Use</h2><div class="how-g">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <div class="how-step-text">Upload your PNG image.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <div class="how-step-text">Quality is auto-adjusted to hit 20KB.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <div class="how-step-text">Download the compressed PNG.</div>
+    </div></div></section>
+  </div>
+  <aside class="sb">
+    <div class="sb-card"><div class="sb-sec"><div class="sb-t">About</div><div class="stats-r"><div class="stat-b"><div class="stat-n">Free</div><div class="stat-l">Always</div></div><div class="stat-b"><div class="stat-n">0s</div><div class="stat-l">Upload</div></div><div class="stat-b"><div class="stat-n">20MB</div><div class="stat-l">Max</div></div></div></div>
+    <div class="sb-sec"><div class="trust"><div class="ti"><div class="ti-ic" style="background:rgba(108,99,255,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ti-t"><h4>100% Private</h4><p>Browser-only processing. Zero uploads.</p></div></div><div class="ti"><div class="ti-ic" style="background:rgba(34,197,94,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="ti-t"><h4>Instant Results</h4><p>Web Worker powered. No server queues.</p></div></div></div></div>
+    </div>
+    <div class="sb-card"><div class="sb-sec"><div class="sb-t">Related Tools</div><nav class="related-list" id="rl"><a href="/tools/compression/compress-image-to-20kb/" class="related-item"><span class="related-item-dot"></span>Compress Any Image to 20KB<svg class="related-item-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a><a href="/tools/compression/compress-image/" class="related-item"><span class="related-item-dot"></span>Compress Image<svg class="related-item-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a></nav><a href="/tools/compression/" style="display:block;margin-top:.75rem;text-align:center;font-size:.8125rem;color:var(--accent2);font-weight:600;padding:.5rem;border-radius:8px;background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.12)">All Compression tools →</a></div></div>
+  </aside>
+</div>
+<section class="faq-sec"><h2>Frequently Asked Questions</h2><div class="faq-list">
+    <div class="faq-item open">
+      <button class="faq-q">How do I compress a PNG to 20KB?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a" style="max-height:400px"><div class="faq-a-inner">This tool uses binary search across quality levels to find the exact setting needed to reach 20KB while preserving maximum image quality.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Will image quality be affected?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Minimal. The tool finds the highest quality setting that still produces a file ≤ 20KB.</div></div>
+    </div></div></section>
+</div>
+<footer class="footer"><p>© 2026 <a href="/">Pixaroid</a></p><div class="footer-links"><a href="/privacy-policy.html">Privacy</a><a href="/terms-of-service.html">Terms</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></footer>
+<div class="toast-c" id="tc"></div>
+<script type="module" src="/js/app.js"></script>
+<script type="module" src="/js/pages/tool-runner.js" data-tool="compress-png-to-20kb" data-category="compression"></script>
+<script>
+(function(){
+  const r=document.documentElement,tt=document.getElementById('tt'),im=document.getElementById('im'),is=document.getElementById('is');
+  function at(l){r.classList.toggle('light',l);if(im)im.style.display=l?'none':'';if(is)is.style.display=l?'':'none';}
+  const s=localStorage.getItem('pxr-theme');at(s==='light'||(!s&&!matchMedia('(prefers-color-scheme:dark)').matches));
+  tt&&tt.addEventListener('click',()=>{const l=!r.classList.contains('light');at(l);localStorage.setItem('pxr-theme',l?'light':'dark');});
+  function fmt(n){if(!n)return'—';if(n<1024)return n+' B';if(n<1048576)return(n/1024).toFixed(1)+' KB';return(n/1048576).toFixed(2)+' MB';}
+  function chip(t,c='sc-d'){return '<span class="sc '+c+'">'+t+'</span>';}
+  function toast(m,t='info',d=3500){const c=document.getElementById('tc'),el=document.createElement('div');el.className='toast t-'+t;el.innerHTML='<span>'+m+'</span>';c.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},d);}
+  const dz=document.getElementById('dz'),fi=document.getElementById('fi'),bb=document.getElementById('bb');
+  const ab=document.getElementById('ab'),bp=document.getElementById('bp'),bd=document.getElementById('bd'),br=document.getElementById('br');
+  const pw=document.getElementById('pw'),pf=document.getElementById('pf'),pl=document.getElementById('pl'),pp=document.getElementById('pp');
+  const pv=document.getElementById('pv'),po=document.getElementById('po'),pr=document.getElementById('pr');
+  const so2=document.getElementById('so2'),sr2=document.getElementById('sr2');
+  let curFile=null,resBlob=null,origURL=null,pInt=null;
+  function hFile(f){if(!f)return;if(f.size>20*1024*1024){toast('File too large (max 20MB)','error');return;}
+    curFile=f;resBlob=null;if(origURL)URL.revokeObjectURL(origURL);origURL=URL.createObjectURL(f);
+    po.src=origURL;pv.classList.add('visible');bd.classList.remove('visible');pr.src='';
+    if(so2)so2.innerHTML=chip(fmt(f.size))+chip(f.name.split('.').pop().toUpperCase(),'sc-a');
+    if(sr2)sr2.innerHTML='';ab.style.display='flex';bp.disabled=false;
+    const cp=document.getElementById('cp');if(cp)cp.classList.add('visible');
+    toast('Image loaded','info',2000);}
+  bb&&bb.addEventListener('click',e=>{e.stopPropagation();fi.click();});
+  dz&&dz.addEventListener('click',()=>fi.click());
+  dz&&dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over');});
+  dz&&dz.addEventListener('dragleave',e=>{if(!dz.contains(e.relatedTarget))dz.classList.remove('drag-over');});
+  dz&&dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');const f=e.dataTransfer.files?.[0];if(f)hFile(f);});
+  fi&&fi.addEventListener('change',e=>{const f=e.target.files?.[0];if(f)hFile(f);e.target.value='';});
+  document.addEventListener('paste',e=>{const img=Array.from(e.clipboardData?.items||[]).find(it=>it.type.startsWith('image/'));if(img){e.preventDefault();hFile(img.getAsFile());}});
+  bp&&bp.addEventListener('click',()=>{if(!curFile){toast('Select an image first','info');return;}
+    bp.disabled=true;bd.classList.remove('visible');pw.classList.add('visible');
+    // Indeterminate stripe — no 88% stuck
+    if(pf){pf.style.width='100%';pf.style.backgroundImage='linear-gradient(90deg,#6C63FF 25%,#06B6D4 50%,#6C63FF 75%)';pf.style.backgroundSize='200% 100%';pf.style.animation='pb-stripe 1.4s linear infinite';}
+    if(pp)pp.textContent='';if(pl)pl.textContent='Processing…';
+    if(!document.getElementById('pb-s')){var ps=document.createElement('style');ps.id='pb-s';ps.textContent='@keyframes pb-stripe{0%{background-position:200% 0}100%{background-position:0 0}}';document.head.appendChild(ps);}
+    var safeT=setTimeout(()=>{done();pw.classList.remove('visible');toast('Timed out. Try a smaller image.','error',8000);},45000);
+    document.dispatchEvent(new CustomEvent('pxn:process',{detail:{file:curFile,controls:getCtrl()}}));
+    function done(){clearInterval(pInt);clearTimeout(safeT);if(pf){pf.style.animation='';pf.style.backgroundImage='';pf.style.width='100%';}if(pp)pp.textContent='';if(pl)pl.textContent='Done!';bp.disabled=false;}
+    document.addEventListener('pxn:result',function oR(ev){done();
+      const r=ev.detail;resBlob=r.blob;
+      const u=URL.createObjectURL(r.blob);if(pr)pr.src=u;
+      const sz=r.blob.size,orig=curFile.size,sav=orig>0?Math.max(0,Math.round((1-sz/orig)*100)):0;
+      if(sr2)sr2.innerHTML=chip(fmt(sz),'sc-g')+(sav>0?chip('↓ '+sav+'%','sc-g'):'')+(r.width?chip(r.width+'×'+r.height,'sc-a'):'');
+      const sv=document.getElementById('sv');
+      if(sv&&sav>0){sv.classList.add('visible');const sn=document.getElementById('sn'),sf=document.getElementById('sf'),so=document.getElementById('so'),sr=document.getElementById('sr');
+        if(sn)sn.textContent=sav+'%';if(so)so.textContent=fmt(orig);if(sr)sr.textContent=fmt(sz);setTimeout(()=>{if(sf)sf.style.width=sav+'%';},50);}
+      if(r.text!==undefined){const op=document.getElementById('ocr-panel'),oo=document.getElementById('ocr-output'),od=document.getElementById('bod');if(op)op.style.display='block';if(oo)oo.value=r.text||'(No text detected)';if(od)od.style.display='inline-flex';}
+      bd.classList.add('visible');const bdl=document.getElementById('bdl');if(bdl)bdl.textContent=r.isZip?'Download ZIP':'Download';
+      toast('Done! Ready to download','success');},{ once:true });
+    document.addEventListener('pxn:error',function oE(ev){done();pw.classList.remove('visible');toast('Error: '+(ev.detail?.message||'Failed'),'error',6000);},{once:true});
+  });
+  bd&&bd.addEventListener('click',()=>{if(!resBlob)return;const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','text/plain':'txt','application/zip':'zip'}[resBlob.type]||'jpg';const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(resBlob),download:'pixaroid-compress-png-to-20kb.'+ext});document.body.appendChild(a);a.click();a.remove();toast('Downloading…','info',2000);});
+  br&&br.addEventListener('click',()=>{curFile=resBlob=null;if(fi)fi.value='';if(po)po.src='';if(pr)pr.src='';if(so2)so2.innerHTML='';if(sr2)sr2.innerHTML='';if(pv)pv.classList.remove('visible');if(pw)pw.classList.remove('visible');if(pf)pf.style.width='0%';ab.style.display='none';bd.classList.remove('visible');const sv=document.getElementById('sv');if(sv)sv.classList.remove('visible');const op=document.getElementById('ocr-panel');if(op)op.style.display='none';const cp=document.getElementById('cp');if(cp)cp.classList.remove('visible');if(origURL){URL.revokeObjectURL(origURL);origURL=null;}});
+  function getCtrl(){const v={};document.querySelectorAll('#controls-body [data-control]').forEach(el=>{v[el.dataset.control]=el.type==='checkbox'?el.checked:el.value;});return v;}
+  const zo=document.getElementById('zo'),zi=document.getElementById('zi'),zc=document.getElementById('zc'),zot=document.getElementById('zot'),zrt=document.getElementById('zrt');
+  zot&&zot.addEventListener('click',()=>{if(po?.src){zi.src=po.src;zo.classList.add('show');}});
+  zrt&&zrt.addEventListener('click',()=>{if(pr?.src){zi.src=pr.src;zo.classList.add('show');}});
+  zc&&zc.addEventListener('click',()=>zo.classList.remove('show'));
+  zo&&zo.addEventListener('click',e=>{if(e.target===zo)zo.classList.remove('show');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')zo?.classList.remove('show');});
+  document.querySelectorAll('.faq-q').forEach(b=>{b.addEventListener('click',function(){const it=this.closest('.faq-item'),op=it.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!op)it.classList.add('open');});});
+  document.addEventListener('pxn:ai-progress',e=>{const p=e.detail?.percent??0;if(pf)pf.style.width=p+'%';if(pp)pp.textContent=p+'%';if(pl)pl.textContent=p<40?'Loading AI…':p<80?'Analysing…':'Finalising…';});
+  document.addEventListener('pxn:bulk-progress',e=>{const{current,total,filename}=e.detail;const p=Math.round((current/total)*100);if(pf)pf.style.width=p+'%';if(pp)pp.textContent=p+'%';if(pl)pl.textContent=current+'/'+total+': '+filename;});
+  const boc=document.getElementById('boc'),bod=document.getElementById('bod'),oo=document.getElementById('ocr-output');
+  boc&&boc.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(oo?.value||'');toast('Copied!','success',2000);}catch{toast('Copy failed','error');}});
+  bod&&bod.addEventListener('click',()=>{if(!resBlob)return;const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(resBlob),download:'pixaroid-ocr.txt'});document.body.appendChild(a);a.click();a.remove();});
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+})();
+</script></body></html>

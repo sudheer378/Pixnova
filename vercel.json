@@ -1,0 +1,54 @@
+{
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": null,
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/workers/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Opener-Policy",  "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy","value": "require-corp" },
+        { "key": "Cache-Control",               "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control",         "value": "no-cache, no-store" },
+        { "key": "Service-Worker-Allowed","value": "/" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ],
+  "rewrites": [
+    { "source": "/compress",   "destination": "/tools/compression/index.html" },
+    { "source": "/convert",    "destination": "/tools/conversion/index.html" },
+    { "source": "/resize",     "destination": "/tools/resize/index.html" },
+    { "source": "/editor",     "destination": "/tools/editor/index.html" },
+    { "source": "/ai",         "destination": "/tools/ai-tools/index.html" },
+    { "source": "/social",     "destination": "/tools/social-tools/index.html" },
+    { "source": "/utilities",  "destination": "/tools/utilities/index.html" },
+    { "source": "/bulk",       "destination": "/tools/bulk-tools/index.html" }
+  ]
+}

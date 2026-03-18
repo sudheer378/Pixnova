@@ -1,0 +1,34 @@
+{
+  "compress": [
+    { "slug": "image-compressor",    "title": "Image Compressor",        "desc": "Compress any image format." },
+    { "slug": "jpeg-compressor",     "title": "JPEG Compressor",         "desc": "Compress JPG/JPEG files." },
+    { "slug": "png-compressor",      "title": "PNG Compressor",          "desc": "Compress PNG with transparency." },
+    { "slug": "webp-compressor",     "title": "WebP Compressor",         "desc": "Compress WebP images." },
+    { "slug": "gif-compressor",      "title": "GIF Compressor",          "desc": "Reduce animated GIF size." },
+    { "slug": "bulk-compressor",     "title": "Bulk Image Compressor",   "desc": "Compress multiple images at once." },
+    { "slug": "svg-compressor",      "title": "SVG Compressor",          "desc": "Minify SVG files." },
+    { "slug": "tiff-compressor",     "title": "TIFF Compressor",         "desc": "Compress TIFF images." },
+    { "slug": "avif-compressor",     "title": "AVIF Compressor",         "desc": "Compress AVIF images." },
+    { "slug": "lossy-compressor",    "title": "Lossy Compressor",        "desc": "Maximum compression." },
+    { "slug": "lossless-compressor", "title": "Lossless Compressor",     "desc": "Zero quality loss compression." }
+  ],
+  "convert": [
+    { "slug": "jpg-to-png",  "title": "JPG to PNG",  "desc": "Convert JPG images to PNG." },
+    { "slug": "png-to-jpg",  "title": "PNG to JPG",  "desc": "Convert PNG images to JPG." },
+    { "slug": "webp-to-jpg", "title": "WebP to JPG", "desc": "Convert WebP to JPG." },
+    { "slug": "jpg-to-webp", "title": "JPG to WebP", "desc": "Convert JPG to WebP." },
+    { "slug": "png-to-webp", "title": "PNG to WebP", "desc": "Convert PNG to WebP." },
+    { "slug": "heic-to-jpg", "title": "HEIC to JPG", "desc": "Convert iPhone HEIC to JPG." },
+    { "slug": "svg-to-png",  "title": "SVG to PNG",  "desc": "Rasterise SVG to PNG." },
+    { "slug": "jpg-to-pdf",  "title": "JPG to PDF",  "desc": "Wrap JPG in a PDF." },
+    { "slug": "png-to-pdf",  "title": "PNG to PDF",  "desc": "Wrap PNG in a PDF." },
+    { "slug": "pdf-to-jpg",  "title": "PDF to JPG",  "desc": "Extract pages as JPG." },
+    { "slug": "gif-to-mp4",  "title": "GIF to MP4",  "desc": "Convert animated GIF to MP4." },
+    { "slug": "bmp-to-jpg",  "title": "BMP to JPG",  "desc": "Convert BMP to JPG." },
+    { "slug": "tiff-to-jpg", "title": "TIFF to JPG", "desc": "Convert TIFF to JPG." },
+    { "slug": "ico-to-png",  "title": "ICO to PNG",  "desc": "Convert ICO to PNG." },
+    { "slug": "jpg-to-ico",  "title": "JPG to ICO",  "desc": "Create favicon from JPG." },
+    { "slug": "avif-to-jpg", "title": "AVIF to JPG", "desc": "Convert AVIF to JPG." },
+    { "slug": "jpg-to-avif", "title": "JPG to AVIF", "desc": "Convert JPG to AVIF." }
+  ]
+}

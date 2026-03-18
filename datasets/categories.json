@@ -1,0 +1,9 @@
+[
+  { "slug": "compress", "label": "Compress",    "icon": "compress",  "color": "blue",   "toolCount": 11, "description": "Reduce image file size without visible quality loss." },
+  { "slug": "convert",  "label": "Convert",     "icon": "convert",   "color": "violet", "toolCount": 17, "description": "Convert between JPG, PNG, WEBP, AVIF, GIF, BMP, TIFF, ICO and more." },
+  { "slug": "resize",   "label": "Resize",      "icon": "resize",    "color": "green",  "toolCount": 11, "description": "Resize, crop, rotate, and scale images to any dimension." },
+  { "slug": "editor",   "label": "Editor",      "icon": "editor",    "color": "orange", "toolCount": 14, "description": "Adjust brightness, contrast, filters, watermarks, and text overlays." },
+  { "slug": "ai",       "label": "AI Tools",    "icon": "ai",        "color": "rose",   "toolCount": 8,  "description": "AI-powered background removal, upscaling, denoising, and enhancement." },
+  { "slug": "bulk",     "label": "Bulk",        "icon": "bulk",      "color": "teal",   "toolCount": 6,  "description": "Process multiple images at once — bulk resize, convert, compress." },
+  { "slug": "social",   "label": "Social",      "icon": "social",    "color": "pink",   "toolCount": 8,  "description": "Create social media images: Instagram, Twitter, YouTube, LinkedIn." }
+]

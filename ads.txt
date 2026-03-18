@@ -1,0 +1,30 @@
+# ============================================================
+#  Pixaroid — ads.txt
+#  Domain: https://pixaroid.vercel.app
+#  IAB Tech Lab Authorized Digital Sellers
+#  https://iabtechlab.com/ads-txt/
+# ============================================================
+
+# ── Google AdSense ──────────────────────────────────────────
+# Replace pub-XXXXXXXXXXXXXXXX with your real AdSense publisher ID
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+# ── Google Ad Manager (if used) ─────────────────────────────
+# google.com, pub-XXXXXXXXXXXXXXXX, RESELLER, f08c47fec0942fa0
+
+# ── Ezoic ──────────────────────────────────────────────────
+# ezoic.com, XXXX, DIRECT
+# ezoic.com, XXXX, RESELLER
+
+# ── Media.net ───────────────────────────────────────────────
+# media.net, XXXXXXXX, DIRECT
+
+# ── Amazon Publisher Services ───────────────────────────────
+# amazon.com, XXXXXXXXXXXXXXXX, DIRECT
+
+# ── Playwire ────────────────────────────────────────────────
+# playwire.com, XXXXX, DIRECT
+
+# NOTE: Pixaroid does not currently serve ads.
+# This file is a placeholder for future monetisation.
+# Update all XXXXXXXX values before enabling ads.
