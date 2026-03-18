@@ -8,7 +8,7 @@ self.onmessage = async function(e) {
   var d = e.data;
   try {
     var r = (d.op === 'compress-target') ? await targetCompress(d) : await fixedCompress(d);
-    self.postMessage({jobId:d.jobId, blob:r.blob, width:r.w, height:r.h, format:r.fmt});
+    var _b=r.blob,_ab=await _b.arrayBuffer();self.postMessage({jobId:jobId:d.jobId,buffer:_ab,mime:_b.type,width:r.w,height:r.h,format:r.fmt});
   } catch(err) {
     self.postMessage({jobId:d.jobId, error: String(err.message||err)});
   }

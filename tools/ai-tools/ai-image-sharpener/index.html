@@ -345,7 +345,8 @@ footer a:hover{color:var(--ac2);}
       <!-- SETTINGS -->
       <div class="sp" id="sp">
         <div class="stit">Settings</div>
-        <div class="cg2" id="controls-body">{{TOOL_CONTROLS_HTML}}</div>
+        <div class="cg2" id="controls-body"><div class="cg"><div class="cl"><span>Blur Type</span></div><select data-control="blurType"><option value="Out-of-focus">Out-of-focus</option><option value="Motion Blur">Motion Blur</option><option value="Compression Artefacts">Compression Artefacts</option><option value="General" selected>General</option></select></div>
+<div class="cg"><div class="cl"><span>Sharpening Strength</span><span class="cv" id="v-strength">60%</span></div><input type="range" data-control="strength" min="10" max="100" value="60" oninput="(function(el){var v=document.getElementById('v-strength');if(v)v.textContent=el.value+'%'})(this)"/></div></div>
       </div>
 
       <!-- PROGRESS -->
@@ -748,7 +749,16 @@ function runWorker(path,payload){
       clearTimeout(t);w.terminate();
       if(e.data.error)fail(new Error(e.data.error));
       else{
-        var blob=e.data.blob,origSz=payload.origSize||0;
+        // Reconstruct Blob from ArrayBuffer (workers send buffer to avoid postMessage transfer errors)
+        var blob;
+        if(e.data.buffer){
+          blob=new Blob([e.data.buffer],{type:e.data.mime||'image/jpeg'});
+        } else if(e.data.blob){
+          blob=e.data.blob; // fallback
+        } else {
+          fail(new Error('Worker returned no data'));return;
+        }
+        var origSz=payload.origSize||0;
         ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
             fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
             savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
@@ -863,7 +873,14 @@ function runAI(itype,buf,mime,origSize,ctrl){
       if(!e.data||e.data.jobId!==jid)return;
       clearTimeout(t);w.terminate();
       if(e.data.error){fail(new Error(e.data.error));return;}
-      var blob=e.data.blob||new Blob([e.data.text||''],{type:'text/plain'});
+      var blob;
+      if(e.data.buffer){
+        blob=new Blob([e.data.buffer],{type:e.data.mime||'image/png'});
+      } else if(e.data.blob){
+        blob=e.data.blob;
+      } else {
+        blob=new Blob([e.data.text||''],{type:'text/plain'});
+      }
       ok({blob:blob,w:e.data.width,h:e.data.height,fmt:e.data.format||'png',
           text:e.data.text,confidence:e.data.confidence});
     };

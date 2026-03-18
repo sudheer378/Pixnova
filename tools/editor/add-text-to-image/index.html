@@ -353,7 +353,14 @@ footer a:hover{color:var(--ac2);}
       <!-- SETTINGS -->
       <div class="sp" id="sp">
         <div class="stit">Settings</div>
-        <div class="cg2" id="controls-body">{{TOOL_CONTROLS_HTML}}</div>
+        <div class="cg2" id="controls-body"><div class="cg"><div class="cl"><span>Text</span></div><input type="textarea" data-control="text" value="Your text here"   /></div>
+<div class="cg"><div class="cl"><span>Font Size</span></div><input type="range" data-control="fontSize" min="10" max="300" value="48" oninput="(function(el){var v=document.getElementById('v-fontSize');if(v)v.textContent=el.value+''})(this)"/></div>
+<div class="cg"><div class="cl"><span>Font</span></div><select data-control="fontFamily"><option value="Arial" selected>Arial</option><option value="Georgia">Georgia</option><option value="Impact">Impact</option><option value="Courier New">Courier New</option><option value="Verdana">Verdana</option></select></div>
+<div class="cg"><div class="cl"><span>Text Colour</span></div><input type="color" data-control="color" value="#ffffff"/></div>
+<div class="cg"><label class="cr"><input type="checkbox" data-control="stroke" checked/><span>Add Outline</span></label></div>
+<div class="cg"><div class="cl"><span>Outline Colour</span></div><input type="color" data-control="strokeColor" value="#000000"/></div>
+<div class="cg"><div class="cl"><span>X Position (px)</span></div><input type="number" data-control="x" value=""   /></div>
+<div class="cg"><div class="cl"><span>Y Position (px)</span></div><input type="number" data-control="y" value=""   /></div></div>
       </div>
 
       <!-- PROGRESS -->
@@ -763,7 +770,16 @@ function runWorker(path,payload){
       clearTimeout(t);w.terminate();
       if(e.data.error)fail(new Error(e.data.error));
       else{
-        var blob=e.data.blob,origSz=payload.origSize||0;
+        // Reconstruct Blob from ArrayBuffer (workers send buffer to avoid postMessage transfer errors)
+        var blob;
+        if(e.data.buffer){
+          blob=new Blob([e.data.buffer],{type:e.data.mime||'image/jpeg'});
+        } else if(e.data.blob){
+          blob=e.data.blob; // fallback
+        } else {
+          fail(new Error('Worker returned no data'));return;
+        }
+        var origSz=payload.origSize||0;
         ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
             fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
             savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
@@ -878,7 +894,14 @@ function runAI(itype,buf,mime,origSize,ctrl){
       if(!e.data||e.data.jobId!==jid)return;
       clearTimeout(t);w.terminate();
       if(e.data.error){fail(new Error(e.data.error));return;}
-      var blob=e.data.blob||new Blob([e.data.text||''],{type:'text/plain'});
+      var blob;
+      if(e.data.buffer){
+        blob=new Blob([e.data.buffer],{type:e.data.mime||'image/png'});
+      } else if(e.data.blob){
+        blob=e.data.blob;
+      } else {
+        blob=new Blob([e.data.text||''],{type:'text/plain'});
+      }
       ok({blob:blob,w:e.data.width,h:e.data.height,fmt:e.data.format||'png',
           text:e.data.text,confidence:e.data.confidence});
     };

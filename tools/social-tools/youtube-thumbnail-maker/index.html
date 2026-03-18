@@ -353,7 +353,10 @@ footer a:hover{color:var(--ac2);}
       <!-- SETTINGS -->
       <div class="sp" id="sp">
         <div class="stit">Settings</div>
-        <div class="cg2" id="controls-body">{{TOOL_CONTROLS_HTML}}</div>
+        <div class="cg2" id="controls-body"><div class="cg"><div class="cl"><span>Video Title</span></div><input type="text" data-control="title" value=""   /></div>
+<div class="cg"><div class="cl"><span>Title Size</span></div><input type="range" data-control="fontSize" min="20" max="200" value="80" oninput="(function(el){var v=document.getElementById('v-fontSize');if(v)v.textContent=el.value+''})(this)"/></div>
+<div class="cg"><div class="cl"><span>Title Position</span></div><select data-control="titlePos"><option value="bottom-left" selected>bottom-left</option><option value="bottom-center">bottom-center</option><option value="top-left">top-left</option><option value="top-center">top-center</option><option value="center">center</option></select></div>
+<div class="cg"><div class="cl"><span>Colour Overlay</span></div><select data-control="overlay"><option value="None" selected>None</option><option value="Dark">Dark</option><option value="Red">Red</option><option value="Blue">Blue</option><option value="Green">Green</option><option value="Gradient">Gradient</option></select></div></div>
       </div>
 
       <!-- PROGRESS -->
@@ -763,7 +766,16 @@ function runWorker(path,payload){
       clearTimeout(t);w.terminate();
       if(e.data.error)fail(new Error(e.data.error));
       else{
-        var blob=e.data.blob,origSz=payload.origSize||0;
+        // Reconstruct Blob from ArrayBuffer (workers send buffer to avoid postMessage transfer errors)
+        var blob;
+        if(e.data.buffer){
+          blob=new Blob([e.data.buffer],{type:e.data.mime||'image/jpeg'});
+        } else if(e.data.blob){
+          blob=e.data.blob; // fallback
+        } else {
+          fail(new Error('Worker returned no data'));return;
+        }
+        var origSz=payload.origSize||0;
         ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
             fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
             savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
@@ -878,7 +890,14 @@ function runAI(itype,buf,mime,origSize,ctrl){
       if(!e.data||e.data.jobId!==jid)return;
       clearTimeout(t);w.terminate();
       if(e.data.error){fail(new Error(e.data.error));return;}
-      var blob=e.data.blob||new Blob([e.data.text||''],{type:'text/plain'});
+      var blob;
+      if(e.data.buffer){
+        blob=new Blob([e.data.buffer],{type:e.data.mime||'image/png'});
+      } else if(e.data.blob){
+        blob=e.data.blob;
+      } else {
+        blob=new Blob([e.data.text||''],{type:'text/plain'});
+      }
       ok({blob:blob,w:e.data.width,h:e.data.height,fmt:e.data.format||'png',
           text:e.data.text,confidence:e.data.confidence});
     };

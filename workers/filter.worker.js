@@ -17,7 +17,7 @@ self.onmessage=async function(e){
     var q=Math.max(1,Math.min(100,parseFloat(d.quality)||90))/100;
     var opts=(mime==='image/png')?{type:mime}:{type:mime,quality:q};
     var blob=await c.convertToBlob(opts);
-    self.postMessage({jobId:d.jobId,blob:blob,width:c.width,height:c.height,format:fmt});
+    var _b=blob,_ab=await _b.arrayBuffer();self.postMessage({jobId:jobId:d.jobId,buffer:_ab,mime:_b.type,width:c.width,height:c.height,format:fmt});
   }catch(err){self.postMessage({jobId:d.jobId,error:String(err.message||err)});}
 };
 

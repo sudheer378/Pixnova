@@ -12,7 +12,7 @@ self.onmessage = async function(e) {
     else if (op==='ai-colorize')  r=await colorize(d);
     else if (op==='ai-ocr')       r=await ocr(d);
     else throw new Error('Unknown AI op: '+op);
-    self.postMessage({jobId:jobId, blob:r.blob, width:r.w, height:r.h, format:r.fmt, text:r.text, confidence:r.conf});
+    var _b=r.blob,_ab=_b?await _b.arrayBuffer():null;self.postMessage({jobId:jobId:jobId,buffer:_ab,mime:_b?_b.type:'text/plain',width:r.w,height:r.h,format:r.fmt,text:r.text,confidence:r.conf});
   } catch(err) {
     self.postMessage({jobId:jobId, error:String(err.message||err)});
   }

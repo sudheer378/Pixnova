@@ -9,7 +9,8 @@ self.onmessage=async function(e){
     var t=tasks[i];
     try{
       var blob=await process(t,type,opts);
-      results.push({filename:t.filename,blob:blob});
+      var _ab=await blob.arrayBuffer();
+      results.push({filename:t.filename,buffer:_ab,mime:blob.type});
       self.postMessage({jobId:jobId,type:'progress',current:i+1,total:total,filename:t.filename});
     }catch(err){
       errors.push({filename:t.filename,error:String(err.message||err)});

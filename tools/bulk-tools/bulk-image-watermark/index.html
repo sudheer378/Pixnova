@@ -345,7 +345,11 @@ footer a:hover{color:var(--ac2);}
       <!-- SETTINGS -->
       <div class="sp" id="sp">
         <div class="stit">Settings</div>
-        <div class="cg2" id="controls-body">{{TOOL_CONTROLS_HTML}}</div>
+        <div class="cg2" id="controls-body"><div class="cg"><div class="cl"><span>Watermark Type</span></div><select data-control="watermarkType"><option value="Text" selected>Text</option><option value="Image">Image</option></select></div>
+<div class="cg"><div class="cl"><span>Watermark Text</span></div><input type="text" data-control="text" value="© Your Name"   /></div>
+<div class="cg"><div class="cl"><span>Opacity</span><span class="cv" id="v-opacity">50%</span></div><input type="range" data-control="opacity" min="5" max="100" value="50" oninput="(function(el){var v=document.getElementById('v-opacity');if(v)v.textContent=el.value+'%'})(this)"/></div>
+<div class="cg"><div class="cl"><span>Position</span></div><select data-control="position"><option value="bottom-right" selected>bottom-right</option><option value="bottom-left">bottom-left</option><option value="top-right">top-right</option><option value="top-center">top-center</option><option value="center">center</option><option value="tile">tile</option></select></div>
+<div class="cg"><div class="cl"><span>Font Size</span></div><input type="range" data-control="fontSize" min="10" max="200" value="36" oninput="(function(el){var v=document.getElementById('v-fontSize');if(v)v.textContent=el.value+''})(this)"/></div></div>
       </div>
 
       <!-- PROGRESS -->
@@ -748,7 +752,16 @@ function runWorker(path,payload){
       clearTimeout(t);w.terminate();
       if(e.data.error)fail(new Error(e.data.error));
       else{
-        var blob=e.data.blob,origSz=payload.origSize||0;
+        // Reconstruct Blob from ArrayBuffer (workers send buffer to avoid postMessage transfer errors)
+        var blob;
+        if(e.data.buffer){
+          blob=new Blob([e.data.buffer],{type:e.data.mime||'image/jpeg'});
+        } else if(e.data.blob){
+          blob=e.data.blob; // fallback
+        } else {
+          fail(new Error('Worker returned no data'));return;
+        }
+        var origSz=payload.origSize||0;
         ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
             fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
             savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
@@ -863,7 +876,14 @@ function runAI(itype,buf,mime,origSize,ctrl){
       if(!e.data||e.data.jobId!==jid)return;
       clearTimeout(t);w.terminate();
       if(e.data.error){fail(new Error(e.data.error));return;}
-      var blob=e.data.blob||new Blob([e.data.text||''],{type:'text/plain'});
+      var blob;
+      if(e.data.buffer){
+        blob=new Blob([e.data.buffer],{type:e.data.mime||'image/png'});
+      } else if(e.data.blob){
+        blob=e.data.blob;
+      } else {
+        blob=new Blob([e.data.text||''],{type:'text/plain'});
+      }
       ok({blob:blob,w:e.data.width,h:e.data.height,fmt:e.data.format||'png',
           text:e.data.text,confidence:e.data.confidence});
     };

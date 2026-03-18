@@ -208,6 +208,30 @@ ${verif.bing   ? `<meta name="msvalidate.01"            content="${esc(verif.bin
 ${schemaLines.join('\n')}`;
 }
 
+function buildControlsHTML(controls) {
+  if (!controls || !controls.length) {
+    // Default controls based on interfaceType derived from slug - return empty, controls injected by JS
+    return '';
+  }
+  return controls.filter(c => c.type !== 'hidden').map(c => {
+    const lbl = `<div class="cl"><span>${esc(c.label||'')}</span>${c.unit ? `<span class="cv" id="v-${c.id}">${c.default??''}${c.unit}</span>` : ''}</div>`;
+    let inp = '';
+    if (c.type === 'range') {
+      inp = `<input type="range" data-control="${c.id}" min="${c.min??0}" max="${c.max??100}" value="${c.default??80}" oninput="(function(el){var v=document.getElementById('v-${c.id}');if(v)v.textContent=el.value+'${c.unit||''}'})(this)"/>`;
+    } else if (c.type === 'select') {
+      const opts = (c.options||[]).map(o => `<option value="${esc(String(o))}"${String(o)===String(c.default)?' selected':''}>${esc(String(o))}</option>`).join('');
+      inp = `<select data-control="${c.id}">${opts}</select>`;
+    } else if (c.type === 'checkbox') {
+      return `<div class="cg"><label class="cr"><input type="checkbox" data-control="${c.id}"${c.default?' checked':''}/><span>${esc(c.label||'')}</span></label></div>`;
+    } else if (c.type === 'color') {
+      inp = `<input type="color" data-control="${c.id}" value="${c.default||'#ffffff'}"/>`;
+    } else {
+      inp = `<input type="${c.type||'text'}" data-control="${c.id}" value="${c.default??''}" ${c.min!=null?`min="${c.min}"`:''}  ${c.max!=null?`max="${c.max}"`:''}/>`;
+    }
+    return `<div class="cg">${lbl}${inp}</div>`;
+  }).join('\n');
+}
+
 function buildHowSteps(instructions) {
   return (instructions||[]).map((s,i) => `
   <div class="hst">
@@ -300,6 +324,7 @@ for (const tool of TOOLS) {
     HOW_TO_STEPS:           buildHowSteps(tool.instructions),
     RELATED_TOOLS_HTML:     buildRelatedHTML(tool),
     FAQ_HTML:               buildFAQHTML(tool.faqs),
+    TOOL_CONTROLS_HTML:     buildControlsHTML(tool.controls || []),
     INJECT_FAQ_SCHEMA:      injectSchemas,
   });
 
