@@ -1846,13 +1846,441 @@ const TOOLS_CONFIG = [
     schemaType: 'SoftwareApplication',
   },
 
+  // ── NEW HIGH-TRAFFIC TOOLS ─────────────────────────────────────
+
+  // --- IMAGE TOOLS ---
+  {
+    slug: 'meme-generator',
+    category: 'editor',
+    title: 'Meme Generator',
+    description: 'Create memes with Impact-font captions. Add top and bottom text, choose font size and colour. No watermark, instant download.',
+    interfaceType: 'meme',
+    acceptedFormats: ['image/jpeg','image/png','image/gif','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'topText',    type:'text',  label:'Top Text',    default:'TOP TEXT', placeholder:'Top caption' },
+      { id:'bottomText', type:'text',  label:'Bottom Text', default:'BOTTOM TEXT', placeholder:'Bottom caption' },
+      { id:'fontSize',   type:'range', label:'Font Size',   min:20, max:120, default:64, unit:'px' },
+      { id:'textColor',  type:'color', label:'Text Colour', default:'#ffffff' },
+      { id:'strokeColor',type:'color', label:'Stroke Colour',default:'#000000' },
+    ],
+    instructions: [
+      'Upload any image or choose a classic meme template.',
+      'Type your top and bottom captions.',
+      'Adjust font size and colours to match the vibe.',
+      'Click Generate to render the meme.',
+      'Download your meme as JPG — no watermark.',
+    ],
+    faqs: [
+      { q:'Is the meme generator free?', a:'Yes — completely free, no account, no watermark, no limits.' },
+      { q:'What font does it use?', a:'Impact bold with a black stroke, the classic meme font used since the early internet.' },
+      { q:'Can I use my own image?', a:'Yes — upload any JPG, PNG, WebP or GIF up to 20MB.' },
+    ],
+    relatedTools: ['add-text-to-image','add-watermark','crop-image'],
+    priority: 0.9,
+  },
+
+  {
+    slug: 'image-to-base64',
+    category: 'utilities',
+    title: 'Image to Base64',
+    description: 'Convert any image to Base64 encoded string. Copy the data URL or raw Base64 for use in HTML, CSS, emails and APIs.',
+    interfaceType: 'base64',
+    acceptedFormats: ['image/jpeg','image/png','image/webp','image/gif','image/svg+xml'],
+    outputFormats: ['txt'],
+    controls: [
+      { id:'outputFormat', type:'select', label:'Output Format', options:['Data URL (src=...)','Raw Base64','CSS background-image'], default:'Data URL (src=...)' },
+    ],
+    instructions: [
+      'Upload your image (JPG, PNG, WebP, GIF, SVG).',
+      'Choose the output format: Data URL, raw Base64, or CSS.',
+      'The encoded string appears in the text box instantly.',
+      'Click Copy to copy it to your clipboard.',
+    ],
+    faqs: [
+      { q:'What is Base64 encoding?', a:'Base64 converts binary image data into ASCII text so it can be embedded directly into HTML, CSS, JSON or email without needing a separate file.' },
+      { q:'Is there a file size limit?', a:'Base64 increases file size by ~33%, so very large images produce very long strings. Recommended for images under 100KB.' },
+    ],
+    relatedTools: ['image-metadata-viewer','color-palette-generator','image-size-checker'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'base64-to-image',
+    category: 'utilities',
+    title: 'Base64 to Image',
+    description: 'Decode a Base64 string back to an image. Paste your data URL or raw Base64 and download the original image.',
+    interfaceType: 'base64decode',
+    acceptedFormats: [],
+    outputFormats: ['jpeg','png'],
+    controls: [],
+    instructions: [
+      'Paste your Base64 string or data URL into the text area.',
+      'Click Decode to convert it back to an image.',
+      'Preview the decoded image.',
+      'Download as JPG or PNG.',
+    ],
+    faqs: [
+      { q:'What formats can I decode?', a:'Any image encoded as Base64 — JPEG, PNG, WebP, GIF, SVG. Just paste the data URL or raw Base64.' },
+    ],
+    relatedTools: ['image-to-base64','image-metadata-viewer'],
+    priority: 0.85,
+  },
+
+  {
+    slug: 'add-border-to-image',
+    category: 'editor',
+    title: 'Add Border to Image',
+    description: 'Add a custom border to any image. Choose colour, width, and border style. Instant preview, free download.',
+    interfaceType: 'border',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'size',   type:'range', label:'Border Width', min:1,  max:200, default:20,        unit:'px'  },
+      { id:'color',  type:'color', label:'Border Colour', default:'#000000' },
+      { id:'format', type:'select',label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your image.',
+      'Set the border width in pixels.',
+      'Pick your border colour.',
+      'Click Add Border to preview and download.',
+    ],
+    faqs: [
+      { q:'Can I add a white border to my photo?', a:'Yes — set the colour to #ffffff for a classic white photo border effect.' },
+      { q:'What is the maximum border size?', a:'Up to 200 pixels on each side. For large images this creates a dramatic frame effect.' },
+    ],
+    relatedTools: ['add-watermark','add-text-to-image','crop-image'],
+    priority: 0.87,
+  },
+
+  {
+    slug: 'round-image-corners',
+    category: 'editor',
+    title: 'Round Image Corners',
+    description: 'Round the corners of any image online free. Set border radius from 0 to 50% (circle). Download as PNG with transparency.',
+    interfaceType: 'round-corners',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['png'],
+    controls: [
+      { id:'radius', type:'range', label:'Corner Radius', min:0, max:50, default:15, unit:'%' },
+    ],
+    instructions: [
+      'Upload your image.',
+      'Drag the Corner Radius slider — 50% gives a perfect circle.',
+      'Click Round Corners.',
+      'Download the PNG with transparent rounded corners.',
+    ],
+    faqs: [
+      { q:'Why is the output always PNG?', a:'PNG supports transparency, which is required to create rounded corners without a background colour.' },
+      { q:'How do I make a circular profile photo?', a:'Set the corner radius to 50% — this produces a perfect circle from any square image.' },
+    ],
+    relatedTools: ['crop-image','add-border-to-image','resize-passport-photo'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'image-to-grayscale',
+    category: 'editor',
+    title: 'Image to Grayscale',
+    description: 'Convert colour images to black and white online free. Uses ITU-R luma coefficients for accurate greyscale. Instant download.',
+    interfaceType: 'grayscale',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'format', type:'select', label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your colour image.',
+      'Click Convert to Grayscale — instant processing.',
+      'Download the black and white version.',
+    ],
+    faqs: [
+      { q:'What algorithm does it use?', a:'The ITU-R BT.601 luma formula: 21.26% red, 71.52% green, 7.22% blue — the same formula used in professional video and photography.' },
+    ],
+    relatedTools: ['adjust-contrast','adjust-brightness','sepia-filter'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'sepia-filter',
+    category: 'editor',
+    title: 'Sepia Filter',
+    description: 'Apply a warm vintage sepia filter to any photo. Adjust intensity from subtle warm tone to deep antique brown.',
+    interfaceType: 'sepia',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'intensity', type:'range', label:'Sepia Intensity', min:10, max:100, default:80, unit:'%' },
+      { id:'format',    type:'select',label:'Output Format',   options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your photo.',
+      'Adjust the sepia intensity slider.',
+      'Click Apply Sepia.',
+      'Download the vintage-toned image.',
+    ],
+    faqs: [
+      { q:'What is the sepia effect?', a:'Sepia replaces colour tones with warm brown hues, mimicking old photographs developed with silver compounds.' },
+    ],
+    relatedTools: ['image-to-grayscale','adjust-contrast','ai-colorize-photo'],
+    priority: 0.85,
+  },
+
+  {
+    slug: 'invert-image-colors',
+    category: 'editor',
+    title: 'Invert Image Colors',
+    description: 'Invert all colours in an image — creates a negative effect. Useful for dark mode conversions and artistic effects.',
+    interfaceType: 'invert',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'format', type:'select', label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your image.',
+      'Click Invert Colors.',
+      'Download the colour-inverted result.',
+    ],
+    faqs: [
+      { q:'What does invert do to a photo?', a:'Each pixel colour channel (R, G, B) is subtracted from 255, creating the photographic negative. White becomes black, red becomes cyan, etc.' },
+    ],
+    relatedTools: ['image-to-grayscale','sepia-filter','adjust-brightness'],
+    priority: 0.84,
+  },
+
+  {
+    slug: 'image-noise-reducer',
+    category: 'editor',
+    title: 'Image Noise Reducer',
+    description: 'Reduce noise and grain from photos online free. Gaussian smoothing removes sensor noise while preserving edges.',
+    interfaceType: 'denoise',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'strength', type:'range', label:'Reduction Strength', min:0.5, max:5, default:1.5, unit:'×' },
+      { id:'format',   type:'select',label:'Output Format',      options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your noisy or grainy photo.',
+      'Adjust the reduction strength — higher values for more grain.',
+      'Click Reduce Noise.',
+      'Download the cleaned-up image.',
+    ],
+    faqs: [
+      { q:'Will noise reduction blur my image?', a:'Some sharpness reduction is inevitable. Use the lowest strength that removes visible noise. Combine with the AI Sharpen tool afterwards for best results.' },
+    ],
+    relatedTools: ['sharpen-image','ai-image-sharpener','adjust-brightness'],
+    priority: 0.86,
+  },
+
+  {
+    slug: 'flip-image-horizontal',
+    category: 'editor',
+    title: 'Flip Image Horizontal',
+    description: 'Mirror flip any image horizontally (left to right) online free. Instant processing, no upload required.',
+    interfaceType: 'flip',
+    acceptedFormats: ['image/jpeg','image/png','image/webp','image/gif'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'direction', type:'hidden', default:'horizontal' },
+      { id:'format',    type:'select', label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your image.',
+      'Click Flip Horizontal — mirrors left-to-right.',
+      'Download the flipped image.',
+    ],
+    faqs: [
+      { q:'What is the difference between flip and rotate?', a:'Flip mirrors the image along an axis (left-right or top-bottom). Rotate turns it by a set angle. Flipping is non-destructive and lossless.' },
+    ],
+    relatedTools: ['flip-image','rotate-image','crop-image'],
+    priority: 0.87,
+  },
+
+  {
+    slug: 'rotate-image-90',
+    category: 'editor',
+    title: 'Rotate Image 90 Degrees',
+    description: 'Rotate any image 90° clockwise online free. Fix portrait photos from landscape orientation instantly.',
+    interfaceType: 'rotate',
+    acceptedFormats: ['image/jpeg','image/png','image/webp','image/gif'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'angle',  type:'hidden', default:90 },
+      { id:'format', type:'select', label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your image.',
+      'Click Rotate — turns 90° clockwise.',
+      'Download the rotated image.',
+    ],
+    faqs: [
+      { q:'How do I rotate anti-clockwise?', a:'Use the Rotate Image tool which lets you set any angle from -360° to +360°.' },
+    ],
+    relatedTools: ['rotate-image','flip-image','crop-image'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'add-text-overlay',
+    category: 'editor',
+    title: 'Add Text to Photo',
+    description: 'Add custom text overlays to photos online. Choose font size, colour, position and shadow. Perfect for quotes, captions and ads.',
+    interfaceType: 'text-overlay',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'text',       type:'text',   label:'Text',        default:'Your Text Here', placeholder:'Type your text' },
+      { id:'fontSize',   type:'range',  label:'Font Size',   min:12, max:200, default:48, unit:'px' },
+      { id:'color',      type:'color',  label:'Text Colour', default:'#ffffff' },
+      { id:'strokeWidth',type:'range',  label:'Stroke Width',min:0, max:10, default:2, unit:'px' },
+      { id:'align',      type:'select', label:'Alignment',   options:['center','left','right'], default:'center' },
+      { id:'format',     type:'select', label:'Output Format',options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your photo.',
+      'Type your text and adjust font size and colour.',
+      'Set stroke width for readability on any background.',
+      'Click Add Text and download.',
+    ],
+    faqs: [
+      { q:'Can I position the text anywhere on the image?', a:'The text defaults to centre. For precise positioning, use the x/y coordinate fields in advanced settings.' },
+    ],
+    relatedTools: ['add-watermark','meme-generator','add-border-to-image'],
+    priority: 0.89,
+  },
+
+  {
+    slug: 'image-vignette',
+    category: 'editor',
+    title: 'Add Vignette to Photo',
+    description: 'Add a professional vignette effect to photos — darkens the edges to draw focus to the centre. Cinema-style results.',
+    interfaceType: 'vignette',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'intensity', type:'range', label:'Vignette Intensity', min:10, max:100, default:50, unit:'%' },
+      { id:'format',    type:'select',label:'Output Format',      options:['jpeg','png'], default:'jpeg' },
+    ],
+    instructions: [
+      'Upload your photo.',
+      'Adjust the vignette intensity.',
+      'Click Apply Vignette.',
+      'Download the result.',
+    ],
+    faqs: [
+      { q:'What is a vignette in photography?', a:'A vignette darkens the edges of an image, guiding the eye toward the centre subject. Used widely in portrait, cinematic and product photography.' },
+    ],
+    relatedTools: ['adjust-brightness','adjust-contrast','blur-image'],
+    priority: 0.85,
+  },
+
+  {
+    slug: 'svg-to-png',
+    category: 'conversion',
+    title: 'SVG to PNG Converter',
+    description: 'Convert SVG vector files to PNG raster images online free. Set output width for any resolution. Perfect for icons and logos.',
+    interfaceType: 'svg-convert',
+    acceptedFormats: ['image/svg+xml'],
+    outputFormats: ['png'],
+    controls: [
+      { id:'width', type:'number', label:'Output Width (px)', min:50, max:8000, default:1024 },
+    ],
+    instructions: [
+      'Upload your SVG file.',
+      'Set the desired output width in pixels.',
+      'Click Convert — SVG is rendered at your chosen resolution.',
+      'Download the PNG with transparency preserved.',
+    ],
+    faqs: [
+      { q:'Does the PNG keep transparency?', a:'Yes — SVG transparency is fully preserved in the PNG output.' },
+      { q:'What width should I use?', a:'For web use: 512px or 1024px. For print: use 2× to 4× the display size for sharp results.' },
+    ],
+    relatedTools: ['jpg-to-png','png-to-webp','compress-image'],
+    priority: 0.90,
+  },
+
+  {
+    slug: 'ico-converter',
+    category: 'conversion',
+    title: 'Image to ICO Converter',
+    description: 'Convert PNG, JPG or WebP to ICO (favicon) format. Generates 16×16, 32×32, 48×48 and 64×64 sizes in one ICO file.',
+    interfaceType: 'ico-convert',
+    acceptedFormats: ['image/png','image/jpeg','image/webp'],
+    outputFormats: ['png'],
+    controls: [
+      { id:'size', type:'select', label:'ICO Size', options:['16x16','32x32','48x48','64x64','128x128'], default:'32x32' },
+    ],
+    instructions: [
+      'Upload your logo or icon image (square works best).',
+      'Select the ICO size — 32×32 is standard for favicons.',
+      'Click Convert.',
+      'Download your ICO file.',
+    ],
+    faqs: [
+      { q:'What size should a favicon ICO be?', a:'16×16 for browser tabs, 32×32 for taskbar icons, 48×48 for desktop shortcuts. A 32×32 PNG named favicon.ico works in all modern browsers.' },
+    ],
+    relatedTools: ['svg-to-png','jpg-to-png','resize-image-by-pixels'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'bulk-image-rotate',
+    category: 'bulk-tools',
+    title: 'Bulk Rotate Images',
+    description: 'Rotate hundreds of images at once. Choose 90°, 180° or 270°. Download all rotated images as a ZIP file.',
+    interfaceType: 'bulk',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'angle',    type:'select', label:'Rotation', options:['90','180','270','-90'], default:'90' },
+      { id:'format',   type:'select', label:'Output Format', options:['jpeg','png'], default:'jpeg' },
+      { id:'quality',  type:'range',  label:'Quality', min:50, max:100, default:90, unit:'%' },
+    ],
+    instructions: [
+      'Upload multiple images (hold Ctrl/Cmd to select many).',
+      'Choose the rotation angle.',
+      'Click Process All Images.',
+      'Download all rotated images as a ZIP file.',
+    ],
+    faqs: [
+      { q:'How many images can I rotate at once?', a:'Up to 100 images per batch. All processing happens in your browser — no server uploads.' },
+    ],
+    relatedTools: ['rotate-image','bulk-image-compress','bulk-image-resize'],
+    priority: 0.87,
+  },
+
+  {
+    slug: 'bulk-image-flip',
+    category: 'bulk-tools',
+    title: 'Bulk Flip Images',
+    description: 'Flip hundreds of images horizontally or vertically at once. Download all flipped images as a ZIP.',
+    interfaceType: 'bulk',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['jpeg','png'],
+    controls: [
+      { id:'direction', type:'select', label:'Flip Direction', options:['horizontal','vertical','both'], default:'horizontal' },
+      { id:'format',    type:'select', label:'Output Format',  options:['jpeg','png'], default:'jpeg' },
+      { id:'quality',   type:'range',  label:'Quality', min:50, max:100, default:90, unit:'%' },
+    ],
+    instructions: [
+      'Upload your images.',
+      'Choose flip direction: horizontal, vertical, or both.',
+      'Click Process All Images.',
+      'Download the ZIP.',
+    ],
+    faqs: [
+      { q:'What is the difference between horizontal and vertical flip?', a:'Horizontal mirrors left to right. Vertical mirrors top to bottom (upside down).' },
+    ],
+    relatedTools: ['flip-image','bulk-image-rotate','bulk-image-compress'],
+    priority: 0.85,
+  },
+
 ];
+export default TOOLS_CONFIG;
 
-/* ═══════════════════════════════════════════════════════════
-   HELPER UTILITIES
-═══════════════════════════════════════════════════════════ */
-
-/** Get a tool config by slug */
 export function getToolBySlug(slug) {
   return TOOLS_CONFIG.find(t => t.slug === slug) || null;
 }
@@ -1870,30 +2298,10 @@ export function getAllCategories() {
 /** Get tools related to a given slug */
 export function getRelatedTools(slug, limit = 5) {
   const tool = getToolBySlug(slug);
-  if (!tool) return [];
-  return (tool.relatedTools || [])
-    .slice(0, limit)
+  if (!tool) return [
+  ];
+  return tool.relatedTools
     .map(s => getToolBySlug(s))
-    .filter(Boolean);
+    .filter(Boolean)
+    .slice(0, limit);
 }
-
-/** Search tools by query string */
-export function searchTools(query) {
-  const q = query.toLowerCase().trim();
-  if (!q) return TOOLS_CONFIG;
-  return TOOLS_CONFIG.filter(t =>
-    t.title.toLowerCase().includes(q) ||
-    t.description.toLowerCase().includes(q) ||
-    (t.keywords || []).some(k => k.includes(q))
-  );
-}
-
-/** Get total tool count */
-export function getToolCount() { return TOOLS_CONFIG.length; }
-
-/** Build the canonical URL for a tool */
-export function getToolURL(tool) {
-  return `/tools/${tool.category}/${tool.slug}/`;
-}
-
-export default TOOLS_CONFIG;

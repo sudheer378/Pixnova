@@ -426,11 +426,26 @@ button { cursor:pointer; font-family:var(--f-b); }
   <div class="nav-inner">
     <a href="/" class="logo">
       <div class="logo-mark">
-        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="white"/>
-          <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/>
-          <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/>
-          <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".25"/>
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lmg1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#06B6D4"/></linearGradient>
+            <linearGradient id="lmg2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#38BDF8"/></linearGradient>
+          </defs>
+          <path d="M7 4L12 7 9.5 8.5Z" fill="url(#lmg1)" opacity=".65"/>
+          <path d="M17 4L12 7 14.5 8.5Z" fill="url(#lmg2)" opacity=".5"/>
+          <path d="M20 12L14.5 8.5 15.5 12Z" fill="url(#lmg1)" opacity=".55"/>
+          <path d="M17.5 20L15.5 12 13.5 15Z" fill="url(#lmg2)" opacity=".45"/>
+          <path d="M12 22L13.5 15 10.5 15Z" fill="url(#lmg1)" opacity=".5"/>
+          <path d="M6.5 20L10.5 15 8.5 12Z" fill="url(#lmg2)" opacity=".5"/>
+          <path d="M4 12L8.5 12 9.5 8.5Z" fill="url(#lmg1)" opacity=".55"/>
+          <rect x="7.5" y="6.5" width="3" height="19" rx="1.2" fill="url(#lmg1)"/>
+          <rect x="7.5" y="6.5" width="8" height="3.5" rx="1.5" fill="url(#lmg2)"/>
+          <rect x="7.5" y="13.5" width="8" height="3.5" rx="1.5" fill="url(#lmg2)"/>
+          <rect x="13" y="6.5" width="3" height="10.5" rx="1.5" fill="url(#lmg1)"/>
+          <circle cx="26" cy="7" r="2.5" fill="#38BDF8" opacity=".85"/>
+          <circle cx="26" cy="7" r="1.2" fill="white"/>
+          <rect x="23" y="23" width="3" height="3" rx=".8" fill="#06B6D4" opacity=".65"/>
+          <rect x="27" y="23" width="2" height="2" rx=".6" fill="#8B5CF6" opacity=".5"/>
         </svg>
       </div>
       Pixaroid
@@ -457,7 +472,7 @@ button { cursor:pointer; font-family:var(--f-b); }
 
 <!-- Hero -->
 <section class="hero wrap fade-up">
-  <div class="hero-eyebrow"><span></span>90+ Free Image Tools</div>
+  <div class="hero-eyebrow"><span></span>85 Free Image Tools</div>
   <h1><span class="g1">The Image Toolkit</span><br><span class="g2">Built for the Web</span></h1>
   <p class="hero-sub">Compress to any KB, convert formats, resize for any platform, remove backgrounds with AI — all in your browser. Zero uploads. Zero data shared.</p>
   <div class="hero-ctas">
@@ -471,7 +486,7 @@ button { cursor:pointer; font-family:var(--f-b); }
     </a>
   </div>
   <div class="hero-stats fade-up d2">
-    <div style="text-align:center"><div class="hero-stat-num">90+</div><div class="hero-stat-lbl">Tools</div></div>
+    <div style="text-align:center"><div class="hero-stat-num">85+</div><div class="hero-stat-lbl">Tools</div></div>
     <div class="hero-stat-div"></div>
     <div style="text-align:center"><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">Free</div></div>
     <div class="hero-stat-div"></div>
@@ -485,7 +500,7 @@ button { cursor:pointer; font-family:var(--f-b); }
 <section class="search-section wrap fade-up d2">
   <div class="search-box">
     <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="search" id="tool-search" placeholder="Search 90+ tools — compress, convert, resize, OCR…" autocomplete="off" />
+    <input type="search" id="tool-search" placeholder="Search 85 tools — compress, convert, resize, OCR…" autocomplete="off" />
     <span id="search-results-count"></span>
   </div>
   <div class="search-tags">
@@ -504,14 +519,14 @@ button { cursor:pointer; font-family:var(--f-b); }
 <section class="wrap fade-up d3" style="padding-bottom:1rem;">
   <div class="section-header">
     <h2 class="section-title">All Tools</h2>
-    <span id="visible-count" style="font-size:.875rem;color:var(--muted);">90 tools</span>
+    <span id="visible-count" style="font-size:.875rem;color:var(--muted);">85 tools</span>
   </div>
 
   <!-- Category filter tabs -->
   <div class="cat-tabs" id="cat-tabs">
     <button class="cat-tab active" data-cat="all">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      All <span class="cat-count" id="count-all">90</span>
+      All <span class="cat-count" id="count-all">85</span>
     </button>
     <button class="cat-tab" data-cat="compression" style="--cc:#6C63FF">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -519,7 +534,7 @@ button { cursor:pointer; font-family:var(--f-b); }
     </button>
     <button class="cat-tab" data-cat="conversion" style="--cc:#8B5CF6">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-      Convert <span class="cat-count" id="count-conversion">13</span>
+      Convert <span class="cat-count" id="count-conversion">15</span>
     </button>
     <button class="cat-tab" data-cat="resize" style="--cc:#22C55E">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
@@ -527,7 +542,7 @@ button { cursor:pointer; font-family:var(--f-b); }
     </button>
     <button class="cat-tab" data-cat="editor" style="--cc:#F59E0B">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      Editor <span class="cat-count" id="count-editor">10</span>
+      Editor <span class="cat-count" id="count-editor">21</span>
     </button>
     <button class="cat-tab" data-cat="ai-tools" style="--cc:#EF4444">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13l.75 2.25L22 16l-2.25.75L19 19l-.75-2.25L16 16l2.25-.75z"/></svg>
@@ -539,11 +554,11 @@ button { cursor:pointer; font-family:var(--f-b); }
     </button>
     <button class="cat-tab" data-cat="utilities" style="--cc:#A855F7">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0"/><path d="M4.93 19.07a10 10 0 0 0 14.14 0"/></svg>
-      Utilities <span class="cat-count" id="count-utilities">6</span>
+      Utilities <span class="cat-count" id="count-utilities">8</span>
     </button>
     <button class="cat-tab" data-cat="bulk-tools" style="--cc:#14B8A6">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-      Bulk <span class="cat-count" id="count-bulk-tools">4</span>
+      Bulk <span class="cat-count" id="count-bulk-tools">6</span>
     </button>
   </div>
 
@@ -785,6 +800,27 @@ const TOOLS = [
   {slug:'bulk-image-resize',cat:'bulk-tools',name:'Bulk Resize',desc:'Resize 100 images, ZIP download',badge:''},
   {slug:'bulk-image-convert',cat:'bulk-tools',name:'Bulk Convert',desc:'Convert 100 images to any format',badge:''},
   {slug:'bulk-image-watermark',cat:'bulk-tools',name:'Bulk Watermark',desc:'Watermark all images at once',badge:''},
+  {slug:'bulk-image-rotate',cat:'bulk-tools',name:'Bulk Rotate',desc:'Rotate 100 images at once',badge:'new'},
+  {slug:'bulk-image-flip',cat:'bulk-tools',name:'Bulk Flip',desc:'Flip 100 images at once',badge:'new'},
+  // NEW EDITOR TOOLS
+  {slug:'meme-generator',cat:'editor',name:'Meme Generator',desc:'Classic Impact-font meme maker',badge:'hot'},
+  {slug:'add-border-to-image',cat:'editor',name:'Add Border',desc:'Custom colour border & frame',badge:'new'},
+  {slug:'round-image-corners',cat:'editor',name:'Round Corners',desc:'Rounded or circular crop',badge:'new'},
+  {slug:'image-to-grayscale',cat:'editor',name:'Grayscale',desc:'Convert to black & white',badge:''},
+  {slug:'sepia-filter',cat:'editor',name:'Sepia Filter',desc:'Vintage warm-tone effect',badge:''},
+  {slug:'invert-image-colors',cat:'editor',name:'Invert Colors',desc:'Photo negative effect',badge:''},
+  {slug:'image-noise-reducer',cat:'editor',name:'Noise Reducer',desc:'Remove grain and sensor noise',badge:''},
+  {slug:'image-vignette',cat:'editor',name:'Add Vignette',desc:'Cinematic edge darkening',badge:''},
+  {slug:'flip-image-horizontal',cat:'editor',name:'Flip Horizontal',desc:'Mirror image left-to-right',badge:''},
+  {slug:'rotate-image-90',cat:'editor',name:'Rotate 90°',desc:'Quick 90° clockwise rotation',badge:''},
+  {slug:'add-text-overlay',cat:'editor',name:'Add Text to Photo',desc:'Captions, quotes and labels',badge:''},
+  // NEW CONVERSION
+  {slug:'png-to-jpg',cat:'conversion',name:'PNG to JPG',desc:'Convert PNG to smaller JPG',badge:'hot'},
+  {slug:'svg-to-png',cat:'conversion',name:'SVG to PNG',desc:'Vector to raster at any size',badge:'new'},
+  {slug:'ico-converter',cat:'conversion',name:'Image to ICO',desc:'Create favicons from any image',badge:'new'},
+  // NEW UTILITIES
+  {slug:'image-to-base64',cat:'utilities',name:'Image to Base64',desc:'Encode image to Base64 string',badge:'new'},
+  {slug:'base64-to-image',cat:'utilities',name:'Base64 to Image',desc:'Decode Base64 back to image',badge:'new'},
 ];
 
 const CAT_ICONS = {
@@ -829,7 +865,7 @@ Object.entries(counts).forEach(([cat,n]) => {
   const el = document.getElementById('count-'+cat);
   if (el) el.textContent = n;
 });
-document.querySelector('.hero-stat-num').textContent = TOOLS.length + '+';
+const firstStat = document.querySelector('.hero-stat-num'); if(firstStat) firstStat.textContent = TOOLS.length + '+';
 
 // Category filter
 document.getElementById('cat-tabs').addEventListener('click', e => {

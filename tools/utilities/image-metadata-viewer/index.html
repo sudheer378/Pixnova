@@ -315,7 +315,7 @@ footer a:hover{color:var(--ac2);}
 <nav class="topnav">
   <div class="ni">
     <a href="/" class="logo">
-      <div class="lm"><svg viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="white"/><rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/><rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".65"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="white" opacity=".25"/></svg></div>
+      <div class="lm"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plg1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#38BDF8"/></linearGradient></defs><path d="M7 4L12 7 9.5 8.5Z" fill="white" opacity=".7"/><path d="M17 4L12 7 14.5 8.5Z" fill="white" opacity=".5"/><path d="M20 12L14.5 8.5 15.5 12Z" fill="white" opacity=".55"/><path d="M17.5 20L15.5 12 13.5 15Z" fill="white" opacity=".45"/><path d="M12 22L13.5 15 10.5 15Z" fill="white" opacity=".5"/><path d="M6.5 20L10.5 15 8.5 12Z" fill="white" opacity=".5"/><path d="M4 12L8.5 12 9.5 8.5Z" fill="white" opacity=".55"/><rect x="7.5" y="6.5" width="3" height="19" rx="1.2" fill="white" opacity=".95"/><rect x="7.5" y="6.5" width="8" height="3.5" rx="1.5" fill="url(#plg1)"/><rect x="7.5" y="13.5" width="8" height="3.5" rx="1.5" fill="url(#plg1)"/><rect x="13" y="6.5" width="3" height="10.5" rx="1.5" fill="white" opacity=".9"/><circle cx="26" cy="7" r="2" fill="white" opacity=".9"/><circle cx="26" cy="7" r="1" fill="url(#plg1)"/></svg></div>
       Pixaroid
     </a>
     <nav class="bc" aria-label="Breadcrumb">
@@ -598,6 +598,75 @@ function getControls(){
   });
   return v;
 }
+/* ── Inline special tools ─────────────────────────────────── */
+async function runBase64Encode(file) {
+  return new Promise(function(ok,fail){
+    var r=new FileReader();
+    r.onload=function(e){
+      var dataUrl=e.target.result;
+      var raw=dataUrl.split(',')[1];
+      var text=dataUrl; // default: data URL
+      // returned as text blob for display in ocr panel
+      var blob=new Blob([dataUrl],{type:'text/plain'});
+      ok({blob:blob,text:dataUrl,rawBase64:raw,format:'txt',w:0,h:0,isBase64:true});
+    };
+    r.onerror=fail;
+    r.readAsDataURL(file);
+  });
+}
+async function runBase64Decode(ctrl) {
+  var input=document.getElementById('base64-input');
+  var raw=(input&&input.value.trim())||ctrl.base64Input||'';
+  if(!raw){throw new Error('Paste a Base64 string or data URL first');}
+  var dataUrl=raw.startsWith('data:')?raw:'data:image/png;base64,'+raw;
+  return new Promise(function(ok,fail){
+    var img=new Image();
+    img.onload=function(){
+      var c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+      c.getContext('2d').drawImage(img,0,0);
+      c.toBlob(function(blob){ok({blob:blob,w:img.width,h:img.height,format:'png'});});
+    };
+    img.onerror=function(){fail(new Error('Invalid Base64 — could not decode image'));};
+    img.src=dataUrl;
+  });
+}
+async function runSVGtoPNG(file,ctrl) {
+  var width=parseInt(ctrl.width)||1024;
+  var url=URL.createObjectURL(file);
+  return new Promise(function(ok,fail){
+    var img=new Image();
+    img.onload=function(){
+      var ratio=img.naturalHeight/img.naturalWidth||1;
+      var h=Math.round(width*ratio);
+      var c=document.createElement('canvas');c.width=width;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,width,h);
+      URL.revokeObjectURL(url);
+      c.toBlob(function(blob){ok({blob:blob,w:width,h:h,format:'png'});});
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);fail(new Error('Cannot render SVG'));};
+    img.src=url;
+  });
+}
+async function runICOConvert(file,ctrl) {
+  var size=parseInt((ctrl.size||'32x32').split('x')[0])||32;
+  var bm=await createImageBitmap(file,{resizeWidth:size,resizeHeight:size,resizeQuality:'high'}).catch(function(){return null;});
+  if(!bm){
+    // Fallback: use canvas
+    return new Promise(function(ok,fail){
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=size;c.height=size;
+        c.getContext('2d').drawImage(img,0,0,size,size);
+        c.toBlob(function(blob){ok({blob:blob,w:size,h:size,format:'png'});});
+      };
+      img.src=URL.createObjectURL(file);
+    });
+  }
+  var c=document.createElement('canvas');c.width=size;c.height=size;
+  c.getContext('2d').drawImage(bm,0,0,size,size);bm.close();
+  return new Promise(function(ok){c.toBlob(function(blob){ok({blob:blob,w:size,h:size,format:'png'});});});
+}
+
 function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,parseFloat(v)||0));}
 
 /* ── FILE HANDLING ── */
@@ -771,22 +840,24 @@ function runWorker(path,payload){
     w.onmessage=function(e){
       if(!e.data||e.data.jobId!==jid)return;
       clearTimeout(t);w.terminate();
-      if(e.data.error)fail(new Error(e.data.error));
-      else{
-        // Reconstruct Blob from ArrayBuffer (workers send buffer to avoid postMessage transfer errors)
-        var blob;
-        if(e.data.buffer){
+      if(e.data.error){fail(new Error(e.data.error));return;}
+      /* Workers send buffer (ArrayBuffer) for max compat; fall back to blob */
+      var blob;
+      try {
+        if(e.data.buffer&&e.data.buffer.byteLength>0){
           blob=new Blob([e.data.buffer],{type:e.data.mime||'image/jpeg'});
         } else if(e.data.blob){
-          blob=e.data.blob; // fallback
+          blob=e.data.blob;
+        } else if(e.data.text!==undefined) {
+          blob=new Blob([e.data.text||''],{type:'text/plain'});
         } else {
           fail(new Error('Worker returned no data'));return;
         }
-        var origSz=payload.origSize||0;
-        ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
-            fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
-            savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
-      }
+      } catch(blobErr) { fail(new Error('Cannot create result blob: '+blobErr.message)); return; }
+      var origSz=payload.origSize||0;
+      ok({blob:blob,w:e.data.width||null,h:e.data.height||null,
+          fmt:e.data.format||null,text:e.data.text,confidence:e.data.confidence,
+          savings:origSz>0?Math.max(0,Math.round((1-blob.size/origSz)*100)):0});
     };
     w.onerror=function(e){clearTimeout(t);w.terminate();fail(new Error(e.message||'Worker crashed'));};
     // Always copy — never transfer — avoids all postMessage type errors
@@ -846,6 +917,19 @@ async function process(file,itype,ctrl){
   }
   if(itype==='bulk')return runBulk(file,ctrl);
   if(itype==='info'||itype==='metadata'||itype==='palette')return runUtil(file,buf);
+  if(itype==='color-picker')return runColorPicker(file,buf);
+  if(itype==='base64-encode')return runBase64(file,controls);
+  if(itype==='svg-convert')return runSvgConvert(buf,file.size,controls);
+  if(itype==='collage')return runCollage(controls);
+  if(itype==='meme-text')return runEditOps(buf,file.type,file.size,[{type:'meme-text',topText:controls.topText||'',bottomText:controls.bottomText||''}],controls.format||'jpeg',90);
+  if(itype==='round-corners')return runEditOps(buf,file.type,file.size,[{type:'round-corners',radius:parseFloat(controls.radius)||30}],(controls.format||'png').replace('png (transparent)','png').replace('jpeg (white bg)','jpeg'),90);
+  if(itype==='shadow')return runEditOps(buf,file.type,file.size,[{type:'shadow',blur:parseFloat(controls.blur)||15,offsetX:parseFloat(controls.offsetX)||5,offsetY:parseFloat(controls.offsetY)||8,color:controls.color||'#000'}],'png',90);
+
+  // Special inline tools
+  if(itype==='base64') return runBase64Encode(file);
+  if(itype==='base64decode') return runBase64Decode(ctrl);
+  if(itype==='svg-convert') return runSVGtoPNG(file,ctrl);
+  if(itype==='ico-convert') return runICOConvert(file,ctrl);
 
   // Editor ops
   var ops=buildOps(itype,ctrl);
@@ -898,11 +982,12 @@ function runAI(itype,buf,mime,origSize,ctrl){
       clearTimeout(t);w.terminate();
       if(e.data.error){fail(new Error(e.data.error));return;}
       var blob;
-      if(e.data.buffer){
+      if(e.data.buffer&&e.data.buffer.byteLength>0){
         blob=new Blob([e.data.buffer],{type:e.data.mime||'image/png'});
       } else if(e.data.blob){
         blob=e.data.blob;
       } else {
+        /* OCR: text-only result */
         blob=new Blob([e.data.text||''],{type:'text/plain'});
       }
       ok({blob:blob,w:e.data.width,h:e.data.height,fmt:e.data.format||'png',
@@ -947,6 +1032,92 @@ async function runBulk(file,ctrl){
 async function runUtil(file,buf){
   var img=await new Promise(function(res,rej){var i=new Image();var u=URL.createObjectURL(file);i.onload=function(){res(i);URL.revokeObjectURL(u);};i.onerror=rej;i.src=u;});
   return{blob:file,w:img.naturalWidth,h:img.naturalHeight,fmt:'original'};
+}
+
+/* ── COLOR PICKER ── */
+async function runColorPicker(file,buf){
+  var img=await new Promise(function(res,rej){var i=new Image(),u=URL.createObjectURL(file);i.onload=function(){res(i);URL.revokeObjectURL(u);};i.onerror=rej;i.src=u;});
+  var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;
+  var ctx=c.getContext('2d');ctx.drawImage(img,0,0);
+  // Show interactive color picker in preview area
+  var pob2=$$('pob');if(!pob2)return{blob:file,w:img.naturalWidth,h:img.naturalHeight};
+  pob2.style.position='relative';pob2.style.cursor='crosshair';
+  pob2.innerHTML='';var dispImg=document.createElement('img');dispImg.src=URL.createObjectURL(file);dispImg.style.cssText='max-width:100%;max-height:220px;object-fit:contain;display:block;width:100%;cursor:crosshair;';pob2.appendChild(dispImg);
+  var colorBox=document.createElement('div');colorBox.style.cssText='padding:.75rem 1rem;background:var(--s2);border:1px solid var(--bd2);border-radius:8px;margin-top:.5rem;font-family:var(--fd);font-size:.875rem;display:none;';pob2.parentNode.appendChild(colorBox);
+  dispImg.addEventListener('click',function(ev){
+    var rect=dispImg.getBoundingClientRect();var sx=Math.round((ev.clientX-rect.left)/rect.width*img.naturalWidth);var sy=Math.round((ev.clientY-rect.top)/rect.height*img.naturalHeight);
+    var px=ctx.getImageData(sx,sy,1,1).data;var r=px[0],g=px[1],b=px[2];
+    var hex='#'+r.toString(16).padStart(2,'0')+g.toString(16).padStart(2,'0')+b.toString(16).padStart(2,'0');
+    var h=0,s=0,l=(r+g+b)/3/255;// simplified HSL
+    colorBox.style.display='block';
+    colorBox.innerHTML='<div style="display:flex;align-items:center;gap:.875rem;flex-wrap:wrap;"><div style="width:48px;height:48px;border-radius:8px;background:'+hex+';border:1px solid var(--bd2);flex-shrink:0;"></div><div><div style="font-weight:700;margin-bottom:.25rem;">Picked Color</div><div style="color:var(--mu);font-size:.8125rem;display:flex;flex-direction:column;gap:.25rem;"><span onclick="navigator.clipboard.writeText(''+hex+'')" style="cursor:pointer;">HEX: <b>'+hex+'</b> 📋</span><span onclick="navigator.clipboard.writeText('rgb('+r+','+g+','+b+')')" style="cursor:pointer;">RGB: <b>rgb('+r+', '+g+', '+b+')</b> 📋</span></div></div></div>';
+  });
+  // Extract palette
+  var id=ctx.getImageData(0,0,c.width,c.height),p=id.data,bk={};
+  for(var i=0;i<p.length;i+=16){var key=Math.round(p[i]/16)*16+','+Math.round(p[i+1]/16)*16+','+Math.round(p[i+2]/16)*16;bk[key]=(bk[key]||0)+1;}
+  var pal=Object.entries(bk).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k])=>'rgb('+k+')');
+  var op2=$$('op');if(op2){op2.classList.add('V');op2.querySelector('h3').textContent='Extracted Palette';var oo2=op2.querySelector('#oo');if(oo2){oo2.style.display='none';var pd2=document.createElement('div');pd2.style.cssText='display:flex;flex-wrap:wrap;gap:.5rem;';pal.forEach(function(col){var sw=document.createElement('div');sw.style.cssText='width:40px;height:40px;border-radius:6px;background:'+col+';cursor:pointer;border:1px solid var(--bd2);';sw.title=col;sw.onclick=function(){navigator.clipboard.writeText(col);};pd2.appendChild(sw);});op2.appendChild(pd2);}}
+  return{blob:file,w:img.naturalWidth,h:img.naturalHeight,fmt:'original'};
+}
+
+/* ── BASE64 ENCODER ── */
+async function runBase64(file,ctrl){
+  var dataUrl=await new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result);};r.onerror=rej;r.readAsDataURL(file);});
+  var result=ctrl.format==='Base64 only'?dataUrl.split(',')[1]:dataUrl;
+  var op2=$$('op');if(op2){
+    op2.classList.add('V');
+    var h3=op2.querySelector('h3');if(h3)h3.textContent='Base64 Output';
+    var oo2=$$('oo');if(oo2){oo2.value=result;oo2.style.display='block';}
+    var dl2=$$('bod');if(dl2)dl2.style.display='inline-flex';
+  }
+  var blob=new Blob([result],{type:'text/plain'});
+  return{blob:blob,text:result,w:null,h:null,fmt:'txt'};
+}
+
+/* ── SVG TO PNG ── */
+async function runSvgConvert(buf,origSize,ctrl){
+  var w=parseInt(ctrl.width)||1024,h=parseInt(ctrl.height)||1024,bg=ctrl.bg||'transparent';
+  var blob=new Blob([buf],{type:'image/svg+xml'});
+  var url=URL.createObjectURL(blob);
+  return new Promise(function(res,rej){
+    var img=new Image();
+    img.onload=function(){
+      var c=document.createElement('canvas');c.width=w;c.height=h;
+      var ctx=c.getContext('2d');
+      if(bg!=='transparent'){ctx.fillStyle=bg==='white'?'#fff':'#000';ctx.fillRect(0,0,w,h);}
+      ctx.drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url);
+      c.toBlob(function(b){res({blob:b,w:w,h:h,fmt:'png'});},bg==='transparent'?'image/png':'image/jpeg',0.95);
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('SVG rendering failed'));};
+    img.src=url;
+  });
+}
+
+/* ── COLLAGE ── */
+async function runCollage(ctrl){
+  var layout=ctrl.layout||'2-grid',gap=parseInt(ctrl.gap)||5,bg=ctrl.bg||'#fff',fmt=ctrl.format||'jpeg';
+  var fi2=document.getElementById('fi');
+  var files=fi2&&fi2.files&&fi2.files.length>=2?Array.from(fi2.files):null;
+  if(!files||files.length<2){throw new Error('Please select 2 or more images for the collage');}
+  var imgs=await Promise.all(files.slice(0,4).map(function(f){return new Promise(function(res,rej){var i=new Image(),u=URL.createObjectURL(f);i.onload=function(){res(i);URL.revokeObjectURL(u);};i.onerror=rej;i.src=u;});}));
+  var count=imgs.length,cellW=imgs[0].naturalWidth,cellH=imgs[0].naturalHeight;
+  var c=document.createElement('canvas'),ctx=c.getContext('2d');
+  if(layout==='2-horizontal'){c.width=cellW*2+gap;c.height=cellH;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH);if(imgs[1])ctx.drawImage(imgs[1],cellW+gap,0,cellW,cellH);}
+  else if(layout==='2-vertical'){c.width=cellW;c.height=cellH*2+gap;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH);if(imgs[1])ctx.drawImage(imgs[1],0,cellH+gap,cellW,cellH);}
+  else if(layout==='3-grid'){c.width=cellW*2+gap;c.height=cellH*2+gap;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH*2+gap);if(imgs[1])ctx.drawImage(imgs[1],cellW+gap,0,cellW,cellH);if(imgs[2])ctx.drawImage(imgs[2],cellW+gap,cellH+gap,cellW,cellH);}
+  else{// 4-grid (default 2-grid)
+    var cols=count<=2?2:2,rows=count<=2?1:2;
+    c.width=cellW*cols+(cols-1)*gap;c.height=cellH*rows+(rows-1)*gap;
+    ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);
+    imgs.forEach(function(img,idx){var col=idx%cols,row=Math.floor(idx/cols);ctx.drawImage(img,col*(cellW+gap),row*(cellH+gap),cellW,cellH);});
+  }
+  return new Promise(function(res){c.toBlob(function(b){res({blob:b,w:c.width,h:c.height,fmt:fmt});},fmt==='png'?'image/png':'image/jpeg',0.92);});
+}
+
+/* ── SHARED EDIT OPS RUNNER ── */
+async function runEditOps(buf,mime,origSize,ops,fmt,q){
+  return runWorker('/workers/filter.worker.js',{op:'edit',buffer:buf,mime:mime,origSize:origSize,operations:ops,format:fmt,quality:q});
 }
 
 /* ── SERVICE WORKER ── */

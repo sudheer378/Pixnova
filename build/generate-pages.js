@@ -209,11 +209,11 @@ ${schemaLines.join('\n')}`;
 }
 
 function buildControlsHTML(controls) {
-  if (!controls || !controls.length) {
-    // Default controls based on interfaceType derived from slug - return empty, controls injected by JS
-    return '';
-  }
-  return controls.filter(c => c.type !== 'hidden').map(c => {
+  if (!controls || !controls.length) return '';
+  /* Skip hidden controls — they are passed via getControls() using JS defaults */
+  var visible = controls.filter(c => c.type && c.type !== 'hidden');
+  if (!visible.length) return '';
+  return visible.map(c => {
     const lbl = `<div class="cl"><span>${esc(c.label||'')}</span>${c.unit ? `<span class="cv" id="v-${c.id}">${c.default??''}${c.unit}</span>` : ''}</div>`;
     let inp = '';
     if (c.type === 'range') {
@@ -229,7 +229,7 @@ function buildControlsHTML(controls) {
       inp = `<input type="${c.type||'text'}" data-control="${c.id}" value="${c.default??''}" ${c.min!=null?`min="${c.min}"`:''}  ${c.max!=null?`max="${c.max}"`:''}/>`;
     }
     return `<div class="cg">${lbl}${inp}</div>`;
-  }).join('\n');
+  }).filter(Boolean).join('\n');
 }
 
 function buildHowSteps(instructions) {

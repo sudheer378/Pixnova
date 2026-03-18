@@ -12,7 +12,7 @@
  * ═══════════════════════════════════════════════════════════════════
  */
 
-const VERSION      = 'pixaroid-v1.0.0';
+const VERSION      = 'pixaroid-v3.0.0';
 const SHELL_CACHE  = `${VERSION}-shell`;
 const PAGES_CACHE  = `${VERSION}-pages`;
 const ASSETS_CACHE = `${VERSION}-assets`;

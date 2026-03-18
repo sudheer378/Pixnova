@@ -1,24 +1,75 @@
 {
-  "name": "Pixaroid — AI Image Tools",
+  "name": "Pixaroid \u2014 Free Image Tools",
   "short_name": "Pixaroid",
-  "description": "70+ free browser-based image tools. Compress, convert, resize, AI enhance.",
+  "description": "85+ free browser-based image tools. Compress, convert, resize, edit, AI enhance. Zero uploads.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F9FAFB",
-  "theme_color": "#4F46E5",
+  "background_color": "#0F0B1E",
+  "theme_color": "#0F0B1E",
   "icons": [
-    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/assets/svg/favicon.svg",     "sizes": "any",     "type": "image/svg+xml", "purpose": "maskable" }
+    {
+      "src": "/assets/svg/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/svg/logo-icon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
   ],
   "shortcuts": [
-    { "name": "Compress Image",    "url": "/tools/compression/compress-image/",    "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "JPG to PNG",        "url": "/tools/conversion/jpg-to-png/",         "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Resize Image",      "url": "/tools/resize/resize-image/",           "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Remove Background", "url": "/tools/ai-tools/background-remover/",  "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] }
+    {
+      "name": "Compress Image",
+      "url": "/tools/compression/compress-image/",
+      "icons": [
+        {
+          "src": "/assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "JPG to PNG",
+      "url": "/tools/conversion/jpg-to-png/",
+      "icons": [
+        {
+          "src": "/assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Resize Image",
+      "url": "/tools/resize/resize-image/",
+      "icons": [
+        {
+          "src": "/assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Remove Background",
+      "url": "/tools/ai-tools/background-remover/",
+      "icons": [
+        {
+          "src": "/assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ],
-  "categories": ["productivity", "photo-video"],
+  "categories": [
+    "productivity",
+    "photo-video"
+  ],
   "screenshots": [
-    { "src": "/assets/images/og-default.png", "sizes": "1200x630", "type": "image/png" }
+    {
+      "src": "/assets/images/og-default.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
   ]
 }
