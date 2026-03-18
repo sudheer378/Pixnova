@@ -210,19 +210,19 @@ ${schemaLines.join('\n')}`;
 
 function buildHowSteps(instructions) {
   return (instructions||[]).map((s,i) => `
-  <div class="how-step">
-    <div class="how-step-num">0${i+1}</div>
-    <div class="how-step-text">${esc(s)}</div>
+  <div class="hst">
+    <div class="hn">0${i+1}</div>
+    <div class="ht2">${esc(s)}</div>
   </div>`).join('\n');
 }
 
 function buildFAQHTML(faqs) {
   return (faqs||[]).map((f,i) => `
-  <div class="faq-item${i===0?' open':''}">
-    <button class="faq-q">${esc(f.q)}
-      <span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+  <div class="fi${i===0?' O':''}">
+    <button class="fq">${esc(f.q)}
+      <span class="fqi"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
     </button>
-    <div class="faq-a"${i===0?' style="max-height:400px"':''}><div class="faq-a-inner">${esc(f.a)}</div></div>
+    <div class="fa"${i===0?' style="max-height:400px"':''}><div class="fai">${esc(f.a)}</div></div>
   </div>`).join('\n');
 }
 

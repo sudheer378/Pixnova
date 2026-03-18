@@ -1,100 +1,96 @@
-/* Pixaroid — Compress Worker (classic script — no ES modules) */
+/* Pixaroid — compress.worker.js — classic script, no ES modules */
 'use strict';
 
-var MIME_MAP = {jpeg:'image/jpeg',jpg:'image/jpeg',png:'image/png',webp:'image/webp',avif:'image/avif',gif:'image/gif'};
-var DIM_STEPS = [0.9,0.85,0.8,0.75,0.7,0.65,0.6,0.55,0.5,0.45,0.4,0.35,0.3,0.25];
+var MIME = {jpeg:'image/jpeg',jpg:'image/jpeg',png:'image/png',webp:'image/webp',gif:'image/gif',avif:'image/avif'};
+var STEPS = [1,0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.25,0.2];
 
 self.onmessage = async function(e) {
-  var d = e.data, jobId = d.jobId;
+  var d = e.data;
   try {
-    var result = d.op === 'compress-target'
-      ? await compressTarget(d)
-      : await compress(d);
-    self.postMessage({jobId:jobId, blob:result.blob, width:result.width, height:result.height, format:result.format}, [result.blob]);
+    var r = (d.op === 'compress-target') ? await targetCompress(d) : await fixedCompress(d);
+    self.postMessage({jobId:d.jobId, blob:r.blob, width:r.w, height:r.h, format:r.fmt});
   } catch(err) {
-    self.postMessage({jobId:jobId, error:err.message||String(err)});
+    self.postMessage({jobId:d.jobId, error: String(err.message||err)});
   }
 };
 
-async function decode(buffer, mime) {
-  var blob = new Blob([buffer], {type: mime||'image/jpeg'});
-  try { return await createImageBitmap(blob); }
-  catch(e) {
-    if (mime === 'image/heic' || mime === 'image/heif') throw new Error('HEIC not supported in this browser. Please convert HEIC to JPG first using the HEIC→JPG tool.');
-    // Try without MIME type
-    try { return await createImageBitmap(new Blob([buffer])); } catch(e2) {}
-    throw new Error('Could not decode image: ' + (e.message||e));
+async function getBitmap(buffer, mime) {
+  var types = [mime, 'image/jpeg', 'image/png', ''];
+  for (var i=0; i<types.length; i++) {
+    try {
+      var blob = types[i] ? new Blob([buffer],{type:types[i]}) : new Blob([buffer]);
+      return await createImageBitmap(blob);
+    } catch(e) {}
   }
+  throw new Error('Cannot decode this image format. Please try JPG or PNG.');
 }
 
-async function render(bm, w, h, fmt, quality) {
-  var mime = MIME_MAP[fmt] || 'image/jpeg';
+async function draw(bm, w, h, fmt, q) {
+  var mime = MIME[fmt] || 'image/jpeg';
   var c = new OffscreenCanvas(w, h);
   var ctx = c.getContext('2d');
-  if (mime === 'image/jpeg') { ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h); }
+  if (mime !== 'image/png' && mime !== 'image/gif') { ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,w,h); }
   ctx.drawImage(bm, 0, 0, w, h);
-  var opts = mime === 'image/png' ? {type:mime} : {type:mime, quality:quality};
-  return c.convertToBlob(opts);
+  var opts = (mime==='image/png'||mime==='image/gif') ? {type:mime} : {type:mime, quality: q/100};
+  var blob = await c.convertToBlob(opts);
+  if (!blob || blob.size===0) throw new Error('Canvas output was empty');
+  return blob;
 }
 
-async function compress(d) {
-  var bm = await decode(d.buffer, d.mime);
+async function fixedCompress(d) {
+  var fmt = d.format || 'jpeg'; if (fmt==='auto') fmt = autoFmt(d.mime);
+  var q = Math.max(1, Math.min(100, parseFloat(d.quality)||80));
+  var bm = await getBitmap(d.buffer, d.mime);
   var w = bm.width, h = bm.height;
-  var maxWidth = d.maxWidth || 0;
-  if (maxWidth > 0 && w > maxWidth) { h = Math.round(h/w*maxWidth); w = maxWidth; }
-  var fmt = d.format || 'jpeg';
-  if (fmt === 'auto') fmt = d.mime === 'image/png' ? 'png' : d.mime === 'image/webp' ? 'webp' : 'jpeg';
-  var quality = Math.max(0.01, Math.min(1, (d.quality||80)/100));
-  var blob = await render(bm, w, h, fmt, quality);
+  if (d.maxWidth && d.maxWidth > 0 && w > d.maxWidth) {
+    h = Math.round(h / w * d.maxWidth); w = d.maxWidth;
+  }
+  var blob = await draw(bm, w, h, fmt, q);
   bm.close();
-  return {blob:blob, width:w, height:h, format:fmt};
+  return {blob:blob, w:w, h:h, fmt:fmt};
 }
 
-async function compressTarget(d) {
-  var targetBytes = d.targetBytes || (d.targetKB || 100) * 1024;
-  var fmt = d.format || 'jpeg';
-  if (fmt === 'auto') fmt = 'jpeg';
-  var minQ = Math.max(0.03, (d.minQuality||10)/100);
-  var bm = await decode(d.buffer, d.mime);
+async function targetCompress(d) {
+  var targetBytes = d.targetBytes || (parseFloat(d.targetKB)||100)*1024;
+  var fmt = (d.format||'jpeg').replace('jpg','jpeg'); if (fmt==='auto') fmt='jpeg';
+  var minQ = Math.max(1, Math.min(50, parseFloat(d.minQuality)||5));
+  var bm = await getBitmap(d.buffer, d.mime);
   var origW = bm.width, origH = bm.height;
 
-  // Quick check
-  var hi = await render(bm, origW, origH, fmt, 0.95);
-  if (hi.size <= targetBytes) { bm.close(); return {blob:hi, width:origW, height:origH, format:fmt}; }
-
-  // Phase 1: binary search on quality
-  var lo = minQ, hiQ = 0.95, best = null;
-  for (var i = 0; i < 14; i++) {
-    var mid = (lo + hiQ) / 2;
-    var probe = await render(bm, origW, origH, fmt, mid);
-    if (probe.size <= targetBytes) { best = {blob:probe, w:origW, h:origH}; lo = mid; }
-    else hiQ = mid;
-    if (hiQ - lo < 0.003) break;
+  // Phase 1: binary search quality at full size
+  var lo=minQ, hi=95, bestBlob=null, bestQ=hi;
+  for (var i=0; i<16; i++) {
+    var mid = Math.round((lo+hi)/2);
+    var probe = await draw(bm, origW, origH, fmt, mid);
+    if (probe.size <= targetBytes) { bestBlob=probe; bestQ=mid; lo=mid+1; }
+    else hi=mid-1;
+    if (lo>hi) break;
   }
-  if (best) { bm.close(); return {blob:best.blob, width:best.w, height:best.h, format:fmt}; }
+  if (bestBlob) { bm.close(); return {blob:bestBlob, w:origW, h:origH, fmt:fmt}; }
 
-  // Phase 2: dimension scaling
-  for (var s = 0; s < DIM_STEPS.length; s++) {
-    var scale = DIM_STEPS[s];
-    var sw = Math.max(1, Math.round(origW * scale));
-    var sh = Math.max(1, Math.round(origH * scale));
-    var sLo = minQ, sHi = 0.92;
-    for (var j = 0; j < 12; j++) {
-      var smid = (sLo + sHi) / 2;
-      var sp = await render(bm, sw, sh, fmt, smid);
-      if (sp.size <= targetBytes) { best = {blob:sp, w:sw, h:sh}; sLo = smid; }
-      else sHi = smid;
-      if (sHi - sLo < 0.003) break;
+  // Phase 2: scale down dimensions
+  for (var s=0; s<STEPS.length; s++) {
+    var sc=STEPS[s], sw=Math.max(1,Math.round(origW*sc)), sh=Math.max(1,Math.round(origH*sc));
+    lo=minQ; hi=95; bestBlob=null;
+    for (var j=0; j<14; j++) {
+      var qm=Math.round((lo+hi)/2);
+      var p2=await draw(bm, sw, sh, fmt, qm);
+      if (p2.size<=targetBytes) { bestBlob=p2; lo=qm+1; }
+      else hi=qm-1;
+      if (lo>hi) break;
     }
-    if (best && best.w === sw) break;
+    if (bestBlob) { bm.close(); return {blob:bestBlob, w:sw, h:sh, fmt:fmt}; }
   }
   bm.close();
-  if (best) return {blob:best.blob, width:best.w, height:best.h, format:fmt};
-
   // Absolute fallback
-  var fbm = await decode(d.buffer, d.mime);
-  var ls = DIM_STEPS[DIM_STEPS.length-1];
-  var fb = await render(fbm, Math.max(1,Math.round(origW*ls)), Math.max(1,Math.round(origH*ls)), fmt, minQ);
+  var fbm = await getBitmap(d.buffer, d.mime);
+  var fb = await draw(fbm, Math.max(1,Math.round(origW*0.2)), Math.max(1,Math.round(origH*0.2)), fmt, minQ);
   fbm.close();
-  return {blob:fb, width:Math.round(origW*ls), height:Math.round(origH*ls), format:fmt};
+  return {blob:fb, w:Math.round(origW*0.2), h:Math.round(origH*0.2), fmt:fmt};
+}
+
+function autoFmt(mime) {
+  if (mime==='image/png') return 'png';
+  if (mime==='image/webp') return 'webp';
+  return 'jpeg';
 }
