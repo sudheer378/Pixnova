@@ -284,6 +284,11 @@ for (const tool of TOOLS) {
 
   const page = stamp(TEMPLATE, {
     TOOL_SLUG:              tool.slug,
+    INTERFACE_TYPE:         tool.interfaceType || 'compress',
+    PROCESS_BUTTON_LABEL:   (() => {
+      const m = {'compress':'Compress Image','compress-target':'Compress to Target','convert':'Convert Image','convert-multi':'Convert Image','resize':'Resize Image','resize-social':'Resize Image','social-canvas':'Resize Image','crop':'Crop Image','rotate':'Rotate Image','flip':'Flip Image','watermark':'Add Watermark','text-overlay':'Add Text','blur':'Apply Blur','sharpen':'Sharpen','adjust':'Apply Adjustments','ai-bg-remove':'Remove Background','ai-upscale':'Upscale Image','ai-enhance':'Enhance Photo','ai-sharpen':'Sharpen with AI','ai-colorize':'Colorize Photo','ai-ocr':'Extract Text','bulk':'Process All','info':'Analyse Image','metadata':'View Metadata','palette':'Extract Palette'};
+      return m[tool.interfaceType] || 'Process Image';
+    })(),
     TOOL_CATEGORY:          tool.category,
     TOOL_CATEGORY_LABEL:    catLabel,
     TOOL_TITLE:             esc(tool.title),

@@ -1,431 +1,522 @@
 /**
- * Pixaroid — Tool Runner  v2.0
- * Full wiring: file pick → validate → process → preview → download.
- * Supports all interface types: compress, convert, resize, edit, AI, bulk, utility.
+ * Pixaroid — Tool Runner  v3.0
+ * Handles processing ONLY. Dispatches pxn:result or pxn:error.
+ * All UI updates (preview, download, savings) done by template inline script.
+ *
+ * Loaded as: <script type="module" data-tool="..." data-category="...">
  */
-import {
-  compressImage, compressToTargetSize, resizeImage,
-  convertImage, editImage, processBulkImages,
-  validateFile, formatBytes,
-} from '/js/engine.js';
-import { showToast }    from '/js/modules/toast.js';
-import { ProgressBar }  from '/js/modules/progress-bar.js';
-import { DownloadManager } from '/js/modules/download-manager.js';
-import { loadToolChunk }   from '/js/modules/performance.js';
-import { injectToolMeta }  from '/js/modules/seo-meta.js';
-import { injectToolLinks } from '/js/modules/internal-links.js';
 
-(async function bootstrap() {
-  const script   = document.currentScript;
-  const slug     = script?.dataset?.tool;
-  const category = script?.dataset?.category;
-  if (!slug) return;
+/* ── Dynamic imports (ES module — runs after DOM ready) ─────── */
+const script   = document.currentScript;
+const slug     = script?.dataset?.tool     || document.body?.dataset?.toolSlug || '';
+const category = script?.dataset?.category || '';
 
-  // Load tool config
+if (slug) init();
+
+async function init() {
+  /* Load config */
   let tool = null;
   try {
     const { default: TOOLS } = await import('/config/tools-config.js');
     tool = TOOLS.find(t => t.slug === slug);
-  } catch(e) { console.warn('[tool-runner] tools-config load failed:', e); }
-  if (!tool) return;
+  } catch(e) { /* config load failed — will use controls from DOM */ }
 
-  // SEO + links
-  injectToolMeta(tool);
-  injectToolLinks(tool);
+  /* Inject SEO + links (non-critical) */
+  try {
+    if (tool) {
+      const { injectToolMeta }  = await import('/js/modules/seo-meta.js');
+      const { injectToolLinks } = await import('/js/modules/internal-links.js');
+      injectToolMeta(tool);
+      injectToolLinks(tool);
+    }
+  } catch(e) { /* optional enhancement */ }
 
-  // Load code-split chunk
-  await loadToolChunk(tool.interfaceType).catch(() => {});
+  /* Build controls from tool config */
+  if (tool?.controls?.length) buildControls(tool.controls);
 
-  // DOM refs
-  const dropzone   = document.getElementById('dropzone');
-  const fileInput  = document.getElementById('file-input');
-  const browseBtn  = document.getElementById('browse-btn');
-  const actionBar  = document.getElementById('action-bar');
-  const btnProcess = document.getElementById('btn-process');
-  const btnDl      = document.getElementById('btn-download');
-  const btnReset   = document.getElementById('btn-reset');
-  const pwWrap     = document.getElementById('progress-wrap');
-  const pfFill     = document.getElementById('progress-fill');
-  const plLabel    = document.getElementById('progress-label');
-  const prevPanel  = document.getElementById('preview-panel');
-  const prevOrig   = document.getElementById('preview-original');
-  const prevResult = document.getElementById('preview-result');
-  const statsOrig  = document.getElementById('stats-original');
-  const statsResult= document.getElementById('stats-result');
-  const ocrPanel   = document.getElementById('ocr-panel');
-  const ocrOut     = document.getElementById('ocr-output');
-
-  let currentFile = null, resultBlob = null, origObjectURL = null;
-
-  const pb = pwWrap ? new ProgressBar({ container: pwWrap, showLabel:true, showETA:true }) : null;
-
-  // ── File handling ──────────────────────────────────────────
-  function onFile(file) {
-    const v = validateFile(file);
-    if (!v.ok) { showToast(v.error, 'error'); return; }
-    currentFile = file; resultBlob = null;
-    if (origObjectURL) URL.revokeObjectURL(origObjectURL);
-    origObjectURL = URL.createObjectURL(file);
-    if (prevOrig)   prevOrig.src = origObjectURL;
-    if (prevPanel)  prevPanel.classList.add('visible');
-    if (statsOrig)  statsOrig.innerHTML = chip(formatBytes(file.size)) + chip(file.name.split('.').pop().toUpperCase());
-    if (statsResult) statsResult.innerHTML = '';
-    if (btnDl)      btnDl.classList.remove('visible');
-    if (prevResult) prevResult.src = '';
-    if (actionBar)  actionBar.style.display = 'flex';
-    if (btnProcess) btnProcess.disabled = false;
-    if (document.getElementById('controls-panel')) document.getElementById('controls-panel').classList.add('visible');
+  /* Populate dropzone format chips */
+  if (tool?.acceptedFormats?.length) {
+    const dz = document.querySelector('.dz-formats');
+    if (dz) {
+      const LABELS = {'image/jpeg':'JPG','image/png':'PNG','image/webp':'WebP','image/heic':'HEIC','image/gif':'GIF','image/bmp':'BMP','image/tiff':'TIFF','image/avif':'AVIF'};
+      dz.innerHTML = tool.acceptedFormats.map(f =>
+        `<span class="dz-fmt-chip">${LABELS[f]||f.split('/')[1].toUpperCase()}</span>`
+      ).join('');
+    }
   }
 
-  if (browseBtn) browseBtn.addEventListener('click', e => { e.stopPropagation(); fileInput?.click(); });
-  if (dropzone)  dropzone.addEventListener('click', () => fileInput?.click());
-  if (dropzone)  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
-  if (dropzone)  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
-  if (dropzone)  dropzone.addEventListener('drop', e => {
-    e.preventDefault(); dropzone.classList.remove('drag-over');
-    const files = Array.from(e.dataTransfer.files||[]);
-    if (files.length) onFile(files[0]);
-  });
-  if (fileInput) fileInput.addEventListener('change', e => {
-    const files = Array.from(e.target.files||[]);
-    if (files.length) onFile(files[0]);
-    e.target.value = '';
-  });
-  // Clipboard paste support
-  document.addEventListener('paste', e => {
-    const img = Array.from(e.clipboardData?.items||[]).find(it => it.type.startsWith('image/'));
-    if (img) { e.preventDefault(); onFile(img.getAsFile()); }
-  });
-
-  // ── Reset ──────────────────────────────────────────────────
-  if (btnReset) btnReset.addEventListener('click', () => {
-    currentFile = resultBlob = null;
-    if (fileInput) fileInput.value = '';
-    if (prevOrig)  prevOrig.src = '';
-    if (prevResult)prevResult.src = '';
-    if (statsOrig) statsOrig.innerHTML = '';
-    if (statsResult)statsResult.innerHTML = '';
-    if (prevPanel) prevPanel.classList.remove('visible');
-    if (pwWrap)    { pwWrap.classList.remove('visible'); pb?.reset(); }
-    if (actionBar) actionBar.style.display = 'none';
-    if (btnDl)     btnDl.classList.remove('visible');
-    if (document.getElementById('controls-panel'))
-      document.getElementById('controls-panel').classList.remove('visible');
-    if (ocrPanel)  ocrPanel.style.display = 'none';
-    if (origObjectURL) { URL.revokeObjectURL(origObjectURL); origObjectURL = null; }
-  });
-
-  // ── Download ───────────────────────────────────────────────
-  if (btnDl) btnDl.addEventListener('click', () => {
-    if (!resultBlob) return;
-    DownloadManager.download(resultBlob, `${slug}-${Date.now()}`, 'pixaroid');
-    showToast('Download started!', 'success', 2500);
-  });
-
-  // ── Process ────────────────────────────────────────────────
-  if (btnProcess) btnProcess.addEventListener('click', async () => {
-    if (!currentFile) { showToast('Please select an image first.', 'warning'); return; }
-    btnProcess.disabled = true;
-    if (pwWrap) { pwWrap.classList.add('visible'); pb?.simulate(88); }
-    const controls = getControlValues();
-
-    try {
-      const result = await routeProcess(tool, currentFile, controls);
-      pb?.complete('Done!');
-      if (result) {
-        resultBlob = result.blob;
-        // Preview result
-        if (prevResult) {
-          prevResult.src = URL.createObjectURL(result.blob);
-          if (statsResult) {
-            const savings = result.savings ?? 0;
-            statsResult.innerHTML =
-              chipGreen(formatBytes(result.blob.size)) +
-              (savings > 0 ? chipGreen(`↓ ${savings}% smaller`) : '') +
-              (result.width ? chip(`${result.width}×${result.height}`) : '');
-          }
-        }
-        // OCR text output
-        if (result.text !== undefined && ocrPanel) {
-          ocrPanel.style.display = 'block';
-          if (ocrOut) ocrOut.value = result.text || '(No text detected)';
-        }
-        if (btnDl) {
-          btnDl.classList.add('visible');
-          const lbl = btnDl.querySelector('#btn-download-label') || btnDl;
-          lbl.textContent = result.isZip ? 'Download ZIP' : 'Download';
-        }
-        showToast('Processing complete! Click Download to save.', 'success');
-      }
-    } catch(err) {
-      pb?.reset();
-      if (pwWrap) pwWrap.classList.remove('visible');
-      showToast(`Error: ${err.message}`, 'error', 6000);
+  /* Listen for process trigger from template */
+  document.addEventListener('pxn:process', async (e) => {
+    const { file, controls } = e.detail || {};
+    if (!file) {
+      document.dispatchEvent(new CustomEvent('pxn:error', { detail:{ message:'No file provided.' } }));
+      return;
     }
-    btnProcess.disabled = false;
+    try {
+      const result = await processFile(tool, file, controls || {});
+      document.dispatchEvent(new CustomEvent('pxn:result', { detail: result }));
+    } catch(err) {
+      document.dispatchEvent(new CustomEvent('pxn:error', { detail:{ message: err.message || String(err) } }));
+    }
   });
-})();
+}
 
-/* ── Route to correct engine function ────────────────────────── */
-async function routeProcess(tool, file, controls) {
-  const itype = tool.interfaceType;
+/* ══════════════════════════════════════════════════════════
+   PROCESSING — no UI here, returns result object
+══════════════════════════════════════════════════════════ */
+async function processFile(tool, file, controls) {
+  const itype = tool?.interfaceType || guessInterfaceType(slug);
 
+  /* Read file as ArrayBuffer */
+  const buffer = await readBuffer(file);
+  const mime   = file.type || guessMime(file.name);
+
+  /* Route to correct worker */
   if (itype === 'compress') {
-    return compressImage(file, {
-      quality:  Number(controls.quality ?? 80),
-      format:   controls.format ?? 'auto',
-      maxWidth: Number(controls.maxWidth ?? 0),
-    });
+    return runWorker('/workers/compress.worker.js', {
+      op:'compress', buffer, mime,
+      quality:  clampNum(controls.quality, 80, 1, 100),
+      format:   controls.format || autoFmt(mime),
+      maxWidth: clampNum(controls.maxWidth, 0),
+    }, buffer);
   }
 
   if (itype === 'compress-target') {
-    return compressToTargetSize(file, {
-      targetKB:   Number(controls.targetKB ?? 100),
-      format:     controls.format ?? 'jpeg',
-      minQuality: Number(controls.minQuality ?? 10),
-    });
+    const targetKB = clampNum(controls.targetKB, 100, 1, 50000);
+    return runWorker('/workers/compress.worker.js', {
+      op:'compress-target', buffer, mime,
+      targetBytes: targetKB * 1024,
+      format:      controls.format || 'jpeg',
+      minQuality:  clampNum(controls.minQuality, 10, 1, 80),
+    }, buffer);
   }
 
   if (itype === 'convert' || itype === 'convert-multi' || itype === 'convert-pdf') {
-    return convertImage(file, {
-      targetFormat: controls.format ?? controls.targetFormat ?? 'jpeg',
-      quality:      Number(controls.quality ?? 90),
-      background:   controls.background ?? '#ffffff',
+    return runWorker('/workers/convert.worker.js', {
+      op:'convert', buffer, mime,
+      targetFormat: (controls.format || controls.targetFormat || 'jpeg').replace('jpg','jpeg'),
+      quality:      clampNum(controls.quality, 90, 1, 100),
+      background:   controls.background || '#ffffff',
       lossless:     controls.lossless === true || controls.lossless === 'true',
-    });
+    }, buffer);
   }
 
   if (itype === 'resize' || itype === 'resize-social' || itype === 'social-canvas') {
-    // Parse preset "Label WxH" pattern
-    let preset = controls.preset;
-    let w = Number(controls.width ?? 0), h = Number(controls.height ?? 0);
-    if (preset && preset.match(/\d+×\d+/)) {
-      const m = preset.match(/(\d+)×(\d+)/);
-      if (m) { w = Number(m[1]); h = Number(m[2]); preset = undefined; }
-    }
-    return resizeImage(file, {
-      width:      w,
-      height:     h,
-      percent:    Number(controls.percent ?? 0),
-      preset:     preset,
+    return runWorker('/workers/resize.worker.js', {
+      op:'resize', buffer, mime,
+      width:      clampNum(controls.width, 0),
+      height:     clampNum(controls.height, 0),
+      percent:    clampNum(controls.percent, 0),
+      preset:     controls.preset || '',
+      fit:        controls.fit || 'contain',
       lockAspect: controls.lockAspect !== 'false',
-      fit:        controls.fit ?? 'contain',
-      format:     controls.format ?? 'auto',
-      quality:    Number(controls.quality ?? 92),
-    });
-  }
-
-  if (['crop','rotate','flip','watermark','text-overlay','blur','sharpen','adjust',
-       'brightness','contrast','saturation','vibrance','hue','vignette',
-       'temperature','tint','highlights','shadows','sepia','grayscale',
-       'invert','noise','denoise','border'].includes(itype)) {
-    const ops = buildEditOps(itype, controls);
-    return editImage(file, ops, {
-      format:  controls.format ?? 'auto',
-      quality: Number(controls.quality ?? 90),
-    });
-  }
-
-  if (['ai-bg-remove','ai-upscale','ai-enhance','ai-sharpen','ai-colorize','ai-ocr'].includes(itype)) {
-    return dispatchAI(itype, file, controls);
+      format:     controls.format || autoFmt(mime),
+      quality:    clampNum(controls.quality, 92, 1, 100),
+    }, buffer);
   }
 
   if (itype === 'bulk') {
-    return runBulk(tool, file, controls);
+    return runBulk(slug, file, controls);
+  }
+
+  if (['ai-bg-remove','ai-upscale','ai-enhance','ai-sharpen','ai-colorize','ai-ocr'].includes(itype)) {
+    return runAI(itype, buffer, mime, controls);
   }
 
   if (['info','metadata','palette','calculator'].includes(itype)) {
-    return runUtility(itype, file, controls);
+    return runUtility(itype, file, buffer);
   }
 
-  throw new Error(`Unknown interface type: "${itype}"`);
+  /* Default: all editor ops → filter worker */
+  const ops = buildOps(itype, controls);
+  return runWorker('/workers/filter.worker.js', {
+    op:'edit', buffer, mime, operations: ops,
+    format:  controls.format || autoFmt(mime),
+    quality: clampNum(controls.quality, 90, 1, 100),
+  }, buffer);
 }
 
-/* ── Edit operations builder ─────────────────────────────────── */
-function buildEditOps(itype, controls) {
-  switch(itype) {
-    case 'rotate':      return [{ type:'rotate',      angle:      Number(controls.angle ?? 90) }];
-    case 'flip':        return [{ type:'flip',         horizontal: controls.direction!=='vertical', vertical: controls.direction==='vertical' }];
-    case 'crop':        return [{ type:'crop',         x:Number(controls.x??0), y:Number(controls.y??0), width:Number(controls.width), height:Number(controls.height) }];
-    case 'watermark':   return [{ type:'watermark',    ...controls, fontSize:Number(controls.fontSize??40), opacity:Number(controls.opacity??50) }];
-    case 'text-overlay':return [{ type:'text',         ...controls, fontSize:Number(controls.fontSize??48) }];
-    case 'blur':        return [{ type:'blur',         radius:     Number(controls.radius??5) }];
-    case 'sharpen':     return [{ type:'sharpen',      amount:     Number(controls.amount??50), radius:Number(controls.radius??1.5) }];
-    case 'vignette':    return [{ type:'vignette',     intensity:  Number(controls.intensity??50) }];
-    case 'border':      return [{ type:'border',       size:       Number(controls.size??10), color:controls.color||'#000000' }];
-    case 'sepia':       return [{ type:'sepia',        intensity:  Number(controls.intensity??80) }];
-    case 'grayscale':   return [{ type:'grayscale' }];
-    case 'invert':      return [{ type:'invert' }];
-    case 'noise':       return [{ type:'noise',        amount:     Number(controls.amount??20) }];
-    case 'denoise':     return [{ type:'denoise',      strength:   Number(controls.strength??1.5) }];
-    case 'adjust':      return [
-      { type:'brightness', value: Number(controls.brightness??0) },
-      { type:'contrast',   value: Number(controls.contrast??0)   },
-      { type:'saturation', value: Number(controls.saturation??0) },
-      { type:'vibrance',   value: Number(controls.vibrance??0)   },
-      { type:'highlights', value: Number(controls.highlights??0) },
-      { type:'shadows',    value: Number(controls.shadows??0)    },
-      { type:'temperature',value: Number(controls.temperature??0)},
-      { type:'tint',       value: Number(controls.tint??0)       },
-    ].filter(op => op.value !== 0);
-    default: return [{ type: itype, ...controls }];
-  }
-}
-
-/* ── AI tool dispatcher ──────────────────────────────────────── */
-async function dispatchAI(itype, file, controls) {
-  const buffer = await new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload  = e => resolve(e.target.result);
-    r.onerror = reject;
-    r.readAsArrayBuffer(file);
-  });
-  const opMap = {
-    'ai-bg-remove': 'ai-bg-remove', 'ai-upscale':'ai-upscale',
-    'ai-enhance':'ai-enhance',      'ai-sharpen':'ai-sharpen',
-    'ai-colorize':'ai-colorize',    'ai-ocr':'ai-ocr',
-  };
+/* ══════════════════════════════════════════════════════════
+   WORKER RUNNER — promise wrapper
+══════════════════════════════════════════════════════════ */
+function runWorker(workerPath, payload, transferBuffer) {
   return new Promise((resolve, reject) => {
-    const jobId  = crypto.randomUUID();
-    const worker = new Worker('/workers/ai.worker.js');
-    const timer  = setTimeout(() => { worker.terminate(); reject(new Error('AI processing timed out.')); }, 180_000);
-    worker.addEventListener('message', e => {
+    let worker;
+    try { worker = new Worker(workerPath); }
+    catch(e) { reject(new Error('Worker failed to load: ' + workerPath)); return; }
+
+    const jobId  = (Math.random()*1e9|0).toString(36);
+    const timer  = setTimeout(() => {
+      worker.terminate();
+      reject(new Error('Processing timed out after 60s. Try a smaller image.'));
+    }, 60000);
+
+    worker.onmessage = (e) => {
+      if (e.data?.jobId !== jobId) return;
+      clearTimeout(timer);
+      worker.terminate();
+      if (e.data.error) {
+        reject(new Error(e.data.error));
+      } else {
+        const blob = e.data.blob;
+        const origSize = payload.buffer?.byteLength || 0;
+        const savings  = origSize > 0 ? Math.max(0, Math.round((1 - blob.size/origSize)*100)) : 0;
+        resolve({
+          blob,
+          width:    e.data.width  || null,
+          height:   e.data.height || null,
+          format:   e.data.format || null,
+          originalSize: origSize,
+          resultSize:   blob.size,
+          savings,
+        });
+      }
+    };
+
+    worker.onerror = (e) => {
+      clearTimeout(timer);
+      worker.terminate();
+      reject(new Error(e.message || 'Worker crashed. Check browser console.'));
+    };
+
+    const msg = { jobId, ...payload };
+    const transfers = transferBuffer instanceof ArrayBuffer ? [transferBuffer] : [];
+    worker.postMessage(msg, transfers);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   AI RUNNER
+══════════════════════════════════════════════════════════ */
+function runAI(itype, buffer, mime, controls) {
+  return new Promise((resolve, reject) => {
+    let worker;
+    try { worker = new Worker('/workers/ai.worker.js'); }
+    catch(e) { reject(new Error('AI worker failed to load')); return; }
+
+    const jobId = (Math.random()*1e9|0).toString(36);
+    const timer = setTimeout(() => {
+      worker.terminate();
+      reject(new Error('AI processing timed out. Try a smaller image.'));
+    }, 120000);
+
+    worker.onmessage = (e) => {
       if (e.data?.type === 'progress') {
-        const pct = e.data.percent ?? 0;
-        const fill = document.getElementById('progress-fill');
-        if (fill) fill.style.width = pct + '%';
+        document.dispatchEvent(new CustomEvent('pxn:ai-progress', { detail: { percent: e.data.percent } }));
         return;
       }
       if (e.data?.jobId !== jobId) return;
-      clearTimeout(timer); worker.terminate();
-      if (e.data.error) reject(new Error(e.data.error));
-      else resolve(e.data);
-    });
-    worker.addEventListener('error', e => { clearTimeout(timer); worker.terminate(); reject(new Error(e.message)); });
-    worker.postMessage({ jobId, op: opMap[itype], buffer, mime: file.type||'image/jpeg',
-      scale: controls.scale, mode: controls.mode, strength: Number(controls.strength??70),
-      style: controls.style, language: controls.language||'eng',
-      amount: Number(controls.amount??70), radius: Number(controls.radius??1.5),
-      intensity: Number(controls.intensity??80), bgColor: controls.bgColor||'transparent',
-      refine: controls.refine !== 'false', preprocess: controls.preprocess !== 'false',
+      clearTimeout(timer);
+      worker.terminate();
+      if (e.data.error) {
+        reject(new Error(e.data.error));
+      } else if (e.data.text !== undefined) {
+        resolve({
+          blob:   new Blob([e.data.text || ''], { type:'text/plain' }),
+          text:   e.data.text,
+          confidence: e.data.confidence,
+          format: 'txt',
+          width:  e.data.width,
+          height: e.data.height,
+        });
+      } else {
+        const blob = e.data.blob;
+        const origSize = buffer?.byteLength || 0;
+        resolve({
+          blob, width:e.data.width, height:e.data.height, format:e.data.format,
+          originalSize: origSize, resultSize: blob.size,
+          savings: origSize > 0 ? Math.max(0, Math.round((1-blob.size/origSize)*100)) : 0,
+        });
+      }
+    };
+
+    worker.onerror = (e) => {
+      clearTimeout(timer);
+      worker.terminate();
+      reject(new Error(e.message || 'AI worker error'));
+    };
+
+    const OP_MAP = {
+      'ai-bg-remove':'ai-bg-remove','ai-upscale':'ai-upscale','ai-enhance':'ai-enhance',
+      'ai-sharpen':'ai-sharpen','ai-colorize':'ai-colorize','ai-ocr':'ai-ocr',
+    };
+    worker.postMessage({
+      jobId, op: OP_MAP[itype], buffer, mime,
+      scale:      controls.scale,
+      mode:       controls.mode,
+      strength:   clampNum(controls.strength, 70, 0, 100),
+      style:      controls.style,
+      language:   controls.language || 'eng',
+      amount:     clampNum(controls.amount, 70, 0, 100),
+      intensity:  clampNum(controls.intensity, 80, 0, 100),
+      bgColor:    controls.bgColor || 'transparent',
+      refine:     controls.refine !== 'false',
+      preprocess: controls.preprocess !== 'false',
     }, [buffer]);
   });
 }
 
-/* ── Bulk runner ─────────────────────────────────────────────── */
-async function runBulk(tool, file, controls) {
-  const task  = _inferBulkTask(tool.slug);
+/* ══════════════════════════════════════════════════════════
+   BULK RUNNER
+══════════════════════════════════════════════════════════ */
+async function runBulk(slug, file, controls) {
+  const task  = inferBulkTask(slug);
   const input = document.getElementById('file-input');
   const files = input?.files?.length > 1 ? Array.from(input.files) : [file];
-  const results = [], errors = [];
-  const total = files.length;
-  for await (const evt of processBulkImages(files, task, controls)) {
-    if (evt.type === 'progress') {
-      const pct = Math.round((evt.current/total)*100);
-      const fill = document.getElementById('progress-fill');
-      if (fill) fill.style.width = pct + '%';
-      const lbl = document.getElementById('progress-label');
-      if (lbl) lbl.textContent = `Processing ${evt.current}/${total}: ${evt.filename}`;
-    }
-    if (evt.type === 'done') { results.push(...(evt.results||[])); errors.push(...(evt.errors||[])); }
-  }
-  return _buildBulkResult(results);
-}
+  const tasks = await Promise.all(files.map(async f => ({
+    filename: f.name,
+    mime:     f.type || guessMime(f.name),
+    buffer:   await readBuffer(f),
+  })));
 
-function _inferBulkTask(slug) {
-  if (slug.includes('compress'))  return 'compress';
-  if (slug.includes('resize'))    return 'resize';
-  if (slug.includes('convert'))   return 'convert';
-  if (slug.includes('watermark')) return 'watermark';
-  if (slug.includes('rotate'))    return 'rotate';
-  if (slug.includes('flip'))      return 'flip';
-  return 'compress';
-}
+  return new Promise((resolve, reject) => {
+    let worker;
+    try { worker = new Worker('/workers/bulk.worker.js'); }
+    catch(e) { reject(new Error('Bulk worker failed to load')); return; }
 
-async function _buildBulkResult(results) {
-  if (!results.length) throw new Error('No output files from bulk processing.');
-  if (results.length === 1) return results[0].result;
-  try {
-    if (!window.JSZip) {
-      await new Promise((res,rej) => {
-        const s = document.createElement('script');
-        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
-        s.onload=res; s.onerror=rej; document.head.appendChild(s);
-      });
-    }
-    const zip = new window.JSZip();
-    const EXT = { 'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif' };
-    for (const { filename, result } of results) {
-      if (!result?.blob) continue;
-      const ext  = EXT[result.blob.type] || 'jpg';
-      const base = filename.replace(/\.[^.]+$/,'');
-      zip.file(`${base}.${ext}`, result.blob);
-    }
-    const zipBlob = await zip.generateAsync({ type:'blob', compression:'DEFLATE' });
-    return { blob: zipBlob, width:null, height:null, format:'zip', isZip:true };
-  } catch { return results[0].result; }
-}
+    const jobId = (Math.random()*1e9|0).toString(36);
+    const timer = setTimeout(() => { worker.terminate(); reject(new Error('Bulk timed out')); }, 300000);
+    const results = [], errors = [];
 
-/* ── Utility tools ───────────────────────────────────────────── */
-async function runUtility(itype, file, controls) {
-  const canvas = document.createElement('canvas');
-  const ctx    = canvas.getContext('2d');
-  const img    = await new Promise((res,rej) => {
-    const i = new Image();
-    i.onload = () => res(i); i.onerror = rej;
-    i.src = URL.createObjectURL(file);
+    worker.onmessage = async (e) => {
+      if (e.data?.jobId !== jobId) return;
+      if (e.data.type === 'progress') {
+        const { current, total, filename } = e.data;
+        document.dispatchEvent(new CustomEvent('pxn:bulk-progress', { detail:{ current,total,filename } }));
+        return;
+      }
+      if (e.data.type === 'done') {
+        clearTimeout(timer);
+        worker.terminate();
+        const allResults = e.data.results || [];
+        if (!allResults.length) { reject(new Error('No files processed')); return; }
+        if (allResults.length === 1) {
+          const r = allResults[0];
+          resolve({ blob:r.blob, format: (r.blob.type.split('/')[1]||'jpg').replace('jpeg','jpg'), savings:0 });
+          return;
+        }
+        // Build ZIP
+        try {
+          if (!window.JSZip) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+          const zip = new window.JSZip();
+          const EXT = {'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'};
+          allResults.forEach(r => {
+            if (!r.blob) return;
+            const ext  = EXT[r.blob.type] || 'jpg';
+            const base = (r.filename||'image').replace(/\.[^.]+$/,'');
+            zip.file(`${base}.${ext}`, r.blob);
+          });
+          const zipBlob = await zip.generateAsync({ type:'blob', compression:'DEFLATE' });
+          resolve({ blob:zipBlob, format:'zip', isZip:true, savings:0 });
+        } catch(e2) {
+          const r = allResults[0];
+          resolve({ blob:r.blob, format:'jpg', savings:0 });
+        }
+      }
+    };
+    worker.onerror = (e) => { clearTimeout(timer); worker.terminate(); reject(new Error(e.message||'Bulk worker error')); };
+
+    const transfers = tasks.map(t => t.buffer).filter(b => b instanceof ArrayBuffer);
+    worker.postMessage({ jobId, tasks, taskType:task, options:controls }, transfers);
   });
-  canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+}
+
+/* ══════════════════════════════════════════════════════════
+   UTILITY TOOLS (no worker needed)
+══════════════════════════════════════════════════════════ */
+async function runUtility(itype, file, buffer) {
+  const img = await new Promise((res, rej) => {
+    const i = new Image();
+    const url = URL.createObjectURL(file);
+    i.onload = () => { res(i); URL.revokeObjectURL(url); };
+    i.onerror = rej;
+    i.src = url;
+  });
+  const c = document.createElement('canvas');
+  c.width = img.naturalWidth; c.height = img.naturalHeight;
+  const ctx = c.getContext('2d');
   ctx.drawImage(img, 0, 0);
-  const id = ctx.getImageData(0,0,canvas.width,canvas.height);
 
   if (itype === 'palette' || itype === 'info') {
+    const id = ctx.getImageData(0, 0, c.width, c.height);
     const colours = extractPalette(id.data, 8);
-    const panel   = document.getElementById('palette-panel') || document.getElementById('result-panel');
-    if (panel) renderPalette(panel, colours, canvas.width, canvas.height, file.size);
-    return { blob: file, width:canvas.width, height:canvas.height };
+    const panel = document.getElementById('palette-panel') || document.getElementById('ocr-panel');
+    if (panel) {
+      panel.style.display = 'block';
+      panel.innerHTML = `<div style="font-weight:600;margin-bottom:.75rem;">Colour Palette — ${c.width}×${c.height}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+          ${colours.map(cl=>`<div style="width:44px;height:44px;border-radius:.5rem;background:${cl};border:1px solid rgba(0,0,0,.1);cursor:pointer" title="${cl}" onclick="navigator.clipboard.writeText('${cl}')"></div>`).join('')}
+        </div>`;
+    }
+    return { blob: file, width: c.width, height: c.height, format: 'original' };
   }
+
   if (itype === 'metadata') {
-    const panel = document.getElementById('result-panel') || document.getElementById('ocr-panel');
-    const info  = { name:file.name, size:formatBytes(file.size), width:canvas.width, height:canvas.height,
-      type:file.type, lastModified:new Date(file.lastModified).toLocaleDateString(), aspect:`${canvas.width}:${canvas.height}` };
-    if (panel) { panel.style.display='block'; panel.innerHTML = `<pre style="font-size:.875rem;white-space:pre-wrap">${JSON.stringify(info,null,2)}</pre>`; }
-    return { blob: file, ...info };
+    const info = { Name:file.name, Size:fmtBytes(file.size), Dimensions:`${c.width}×${c.height}`, Type:file.type, Modified:new Date(file.lastModified).toLocaleDateString() };
+    const panel = document.getElementById('ocr-panel');
+    if (panel) {
+      panel.style.display = 'block';
+      panel.querySelector('h3')?.remove();
+      const out = panel.querySelector('#ocr-output');
+      if (out) out.value = Object.entries(info).map(([k,v])=>`${k}: ${v}`).join('\n');
+    }
+    return { blob: file, width: c.width, height: c.height };
   }
-  return { blob: file, width:canvas.width, height:canvas.height };
+
+  return { blob: file, width: c.width, height: c.height };
 }
 
-function extractPalette(data, count=8) {
-  const buckets = {}, step=16;
-  for (let i=0; i<data.length; i+=4) {
+/* ══════════════════════════════════════════════════════════
+   CONTROLS BUILDER
+══════════════════════════════════════════════════════════ */
+function buildControls(controls) {
+  const body = document.getElementById('controls-body');
+  if (!body || !controls?.length) return;
+  body.innerHTML = '';
+  controls.forEach(ctrl => {
+    if (ctrl.type === 'hidden') return;
+    const group = document.createElement('div');
+    group.className = 'cg';
+    // Label
+    if (ctrl.type !== 'checkbox') {
+      const lbl = document.createElement('div');
+      lbl.className = 'cl';
+      lbl.innerHTML = `<span>${ctrl.label||''}</span>${ctrl.unit ? `<span id="v-${ctrl.id}">${ctrl.default??''}${ctrl.unit}</span>` : ''}`;
+      group.appendChild(lbl);
+    }
+    // Input
+    let inp;
+    if (ctrl.type === 'range') {
+      inp = Object.assign(document.createElement('input'), {type:'range',min:ctrl.min??0,max:ctrl.max??100,value:ctrl.default??80});
+      if (ctrl.unit) inp.oninput = () => { const v=document.getElementById('v-'+ctrl.id); if(v) v.textContent=inp.value+ctrl.unit; };
+    } else if (ctrl.type === 'select') {
+      inp = document.createElement('select');
+      (ctrl.options||[]).forEach(o => { const opt=document.createElement('option'); opt.value=o; opt.textContent=o; if(o===ctrl.default)opt.selected=true; inp.appendChild(opt); });
+    } else if (ctrl.type === 'checkbox') {
+      const row = document.createElement('label');
+      row.className = 'checkbox-row';
+      inp = Object.assign(document.createElement('input'), {type:'checkbox', checked:!!ctrl.default});
+      const span = document.createElement('span'); span.textContent = ctrl.label||'';
+      row.appendChild(inp); row.appendChild(span); group.appendChild(row);
+    } else if (ctrl.type === 'color') {
+      inp = Object.assign(document.createElement('input'), {type:'color', value:ctrl.default||'#ffffff'});
+    } else {
+      inp = Object.assign(document.createElement('input'), {type:ctrl.type||'text', value:ctrl.default??'', placeholder:ctrl.placeholder||''});
+      if (ctrl.min != null) inp.min = ctrl.min;
+      if (ctrl.max != null) inp.max = ctrl.max;
+    }
+    if (inp) { inp.dataset.control = ctrl.id; if (ctrl.type !== 'checkbox') group.appendChild(inp); }
+    body.appendChild(group);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   EDIT OPERATIONS BUILDER
+══════════════════════════════════════════════════════════ */
+function buildOps(itype, controls) {
+  switch(itype) {
+    case 'rotate':       return [{type:'rotate',       angle:     clampNum(controls.angle,90)}];
+    case 'flip':         return [{type:'flip',          horizontal:controls.direction!=='vertical', vertical:controls.direction==='vertical'}];
+    case 'crop':         return [{type:'crop',          x:+controls.x||0, y:+controls.y||0, width:+controls.width, height:+controls.height}];
+    case 'watermark':    return [{type:'watermark',     text:controls.text||'© Pixaroid', fontSize:+controls.fontSize||40, color:controls.color||'#ffffff', opacity:+controls.opacity||50, position:controls.position||'bottom-right', tile:controls.tile==='true'}];
+    case 'text-overlay': return [{type:'text',          text:controls.text||'', fontSize:+controls.fontSize||48, color:controls.color||'#ffffff', strokeWidth:+controls.strokeWidth||2, align:controls.align||'center'}];
+    case 'blur':         return [{type:'blur',          radius:    clampNum(controls.radius,5,0.1,50)}];
+    case 'sharpen':      return [{type:'sharpen',       amount:    clampNum(controls.amount,50,0,100), radius:clampNum(controls.radius,1.5,0.1,10)}];
+    case 'vignette':     return [{type:'vignette',      intensity: clampNum(controls.intensity,50,0,100)}];
+    case 'border':       return [{type:'border',        size:      clampNum(controls.size,10,1,200), color:controls.color||'#000000'}];
+    case 'sepia':        return [{type:'sepia',         intensity: clampNum(controls.intensity,80,0,100)}];
+    case 'grayscale':    return [{type:'grayscale'}];
+    case 'invert':       return [{type:'invert'}];
+    case 'noise':        return [{type:'noise',         amount:    clampNum(controls.amount,20,0,100)}];
+    case 'denoise':      return [{type:'denoise',       strength:  clampNum(controls.strength,1.5,0,5)}];
+    case 'adjust':
+    default:
+      return [
+        {type:'brightness', value:clampNum(controls.brightness,0,-100,100)},
+        {type:'contrast',   value:clampNum(controls.contrast,0,-100,100)},
+        {type:'saturation', value:clampNum(controls.saturation,0,-100,100)},
+        {type:'vibrance',   value:clampNum(controls.vibrance,0,-100,100)},
+        {type:'temperature',value:clampNum(controls.temperature,0,-100,100)},
+        {type:'highlights', value:clampNum(controls.highlights,0,-100,100)},
+        {type:'shadows',    value:clampNum(controls.shadows,0,-100,100)},
+      ].filter(op => op.value !== 0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════════ */
+function readBuffer(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload  = e => res(e.target.result);
+    r.onerror = () => rej(new Error('Failed to read file'));
+    r.readAsArrayBuffer(file);
+  });
+}
+function clampNum(v, def, min, max) {
+  const n = parseFloat(v);
+  if (isNaN(n)) return def;
+  if (min != null && n < min) return min;
+  if (max != null && n > max) return max;
+  return n;
+}
+function autoFmt(mime) {
+  if (mime==='image/png')  return 'png';
+  if (mime==='image/webp') return 'webp';
+  if (mime==='image/gif')  return 'gif';
+  return 'jpeg';
+}
+function guessMime(name) {
+  const ext = (name||'').split('.').pop().toLowerCase();
+  const map = {jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',gif:'image/gif',bmp:'image/bmp',tiff:'image/tiff',avif:'image/avif',heic:'image/heic',heif:'image/heif'};
+  return map[ext] || 'image/jpeg';
+}
+function guessInterfaceType(slug) {
+  if (slug.includes('compress-to')||slug.includes('to-'+'kb')) return 'compress-target';
+  if (slug.startsWith('compress')||slug.includes('reduce')||slug.includes('optim')) return 'compress';
+  if (slug.includes('resize')||slug.includes('passport')||slug.includes('dpi')) return 'resize';
+  if (slug.includes('convert')||slug.includes('to-png')||slug.includes('to-jpg')||slug.includes('to-webp')||slug.includes('heic')||slug.includes('bmp')||slug.includes('gif')||slug.includes('tiff')||slug.includes('pdf')) return 'convert';
+  if (slug.includes('crop')) return 'crop';
+  if (slug.includes('rotate')) return 'rotate';
+  if (slug.includes('flip')) return 'flip';
+  if (slug.includes('watermark')) return 'watermark';
+  if (slug.includes('blur')) return 'blur';
+  if (slug.includes('sharpen')||slug.includes('sharpener')) return 'sharpen';
+  if (slug.includes('brightness')) return 'adjust';
+  if (slug.includes('contrast'))   return 'adjust';
+  if (slug.includes('saturation')) return 'adjust';
+  if (slug.includes('background')||slug.includes('bg-remov')) return 'ai-bg-remove';
+  if (slug.includes('upscal')) return 'ai-upscale';
+  if (slug.includes('enhanc')) return 'ai-enhance';
+  if (slug.includes('coloriz')) return 'ai-colorize';
+  if (slug.includes('ocr')||slug.includes('text-ext')) return 'ai-ocr';
+  if (slug.includes('bulk')) return 'bulk';
+  return 'compress'; // safe default
+}
+function inferBulkTask(slug) {
+  if (slug.includes('compress')) return 'compress';
+  if (slug.includes('resize'))   return 'resize';
+  if (slug.includes('convert'))  return 'convert';
+  if (slug.includes('watermark'))return 'watermark';
+  return 'compress';
+}
+function extractPalette(data, count) {
+  const buckets = {}, step = 16;
+  for (let i=0;i<data.length;i+=4) {
     if (data[i+3]<128) continue;
-    const key = `${Math.round(data[i]/step)*step},${Math.round(data[i+1]/step)*step},${Math.round(data[i+2]/step)*step}`;
-    buckets[key] = (buckets[key]||0)+1;
+    const k=`${Math.round(data[i]/step)*step},${Math.round(data[i+1]/step)*step},${Math.round(data[i+2]/step)*step}`;
+    buckets[k]=(buckets[k]||0)+1;
   }
   return Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,count)
-    .map(([k])=>{ const [r,g,b]=k.split(','); return `rgb(${r},${g},${b})`; });
+    .map(([k])=>`rgb(${k})`);
 }
-
-function renderPalette(panel, colours, w, h, size) {
-  panel.style.display='block';
-  panel.innerHTML = `<div style="font-family:'Poppins',sans-serif;font-weight:600;margin-bottom:.75rem;">Colour Palette — ${w}×${h} · ${formatBytes(size)}</div>
-  <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-    ${colours.map(c=>`<div style="width:44px;height:44px;border-radius:.5rem;background:${c};border:1px solid rgba(0,0,0,.1);cursor:pointer;title='${c}'" onclick="navigator.clipboard.writeText('${c}')"></div>`).join('')}
-  </div>`;
+function fmtBytes(n) {
+  if (!n) return '0 B';
+  if (n<1024) return n+' B';
+  if (n<1048576) return (n/1024).toFixed(1)+' KB';
+  return (n/1048576).toFixed(2)+' MB';
 }
-
-/* ── Helpers ─────────────────────────────────────────────────── */
-function getControlValues() {
-  const vals = {};
-  document.querySelectorAll('#controls-body [data-control]').forEach(el => {
-    vals[el.dataset.control] = el.type==='checkbox' ? el.checked : el.value;
-  });
-  return vals;
-}
-
-function chip(t) {
-  return `<span style="padding:.2rem .625rem;border-radius:999px;background:var(--bg,#F9FAFB);border:1px solid var(--border,#E5E7EB);font-size:.75rem;">${t}</span>`;
-}
-function chipGreen(t) {
-  return `<span style="padding:.2rem .625rem;border-radius:999px;background:rgba(16,185,129,.1);color:#059669;font-weight:600;font-size:.75rem;">${t}</span>`;
+function loadScript(src) {
+  return new Promise((res,rej)=>{ const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s); });
 }
