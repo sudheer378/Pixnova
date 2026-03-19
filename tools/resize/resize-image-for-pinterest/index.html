@@ -321,13 +321,13 @@
       <div class="tool-card" id="tool-card">
 
         <!-- Dropzone -->
-        <div class="dropzone" id="dropzone" role="button" tabindex="0">
+        <label class="dropzone" id="dropzone" for="file-input" tabindex="0">
           <div class="dz-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
           </div>
           <h3>Drop your image here</h3>
           <p>or <span class="dz-browse" id="browse-btn">browse to upload</span></p>
-          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" style="display:none;" />
+          <input type="file" id="file-input" tabindex="-1" accept="image/jpeg,image/png,image/webp" style="display:none;" />
           <p class="dz-formats">JPEG, PNG, WEBP — up to 20 MB</p>
         </div>
 
@@ -516,7 +516,7 @@ var MAX   = 20971520; // 20MB
 
 /* ── DOM ── */
 function $$(id){return document.getElementById(id);}
-var dz=$$('dz'),fi=$$('fi'),bb=$$('bb');
+var dz=$$('dz'),fi=$$('fi');
 var ab=$$('ab'),bp=$$('bp'),bd=$$('bd'),br=$$('br');
 var pw=$$('pw'),pf=$$('pf'),pl=$$('pl'),pd=$$('pd');
 var prs=$$('prs'),pob=$$('pob'),prb=$$('prb');
@@ -687,12 +687,10 @@ function handleFile(f){
   toast('Image loaded — press '+('Resize Image'||'Process'),'ok',2000);
 }
 
-bb&&bb.addEventListener('click',function(e){e.stopPropagation();fi.click();});
-dz.addEventListener('click',function(){fi.click();});
-dz.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')fi.click();});
-dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('on');});
+// Drag-and-drop (label handles click natively via for="fi")
+dz.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
-dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('on');var f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
+dz.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dz.classList.remove('on');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
 fi.addEventListener('change',function(e){var f=e.target.files&&e.target.files[0];if(f)handleFile(f);fi.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
@@ -1114,5 +1112,3 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch
 })();
 })();
 </script>
-</body>
-</html>

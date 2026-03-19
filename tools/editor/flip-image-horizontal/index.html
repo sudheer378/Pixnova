@@ -120,7 +120,7 @@ h1.ht{font-size:clamp(1.4rem,3vw,2.125rem);font-weight:800;letter-spacing:-.04em
 .tc{background:var(--s1);border:1px solid var(--bd2);border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 8px 40px rgba(0,0,0,.45);}
 
 /* ── DROPZONE ── */
-.dz{padding:3rem 1.75rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;border-bottom:1px solid var(--bd);background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,111,255,.05),transparent);transition:background .2s;}
+.dz{padding:3rem 1.75rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;border-bottom:1px solid var(--bd);-webkit-tap-highlight-color:transparent;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,111,255,.05),transparent);transition:background .2s;}
 .dz:hover,.dz.on{background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,111,255,.1),transparent);}
 .dz.on{outline:2px dashed var(--ac);outline-offset:-2px;border-radius:0;}
 .dring{width:76px;height:76px;border-radius:50%;border:2px dashed rgba(124,111,255,.28);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;background:radial-gradient(circle,rgba(124,111,255,.08),transparent);transition:border-color .25s,transform .25s,box-shadow .25s;}
@@ -345,15 +345,15 @@ footer a:hover{color:var(--ac2);}
   <div>
     <div class="tc" id="tc">
 
-      <!-- DROPZONE -->
-      <div class="dz" id="dz" role="button" tabindex="0" aria-label="Upload image">
+      <!-- DROPZONE — label wraps hidden input for guaranteed mobile file dialog -->
+      <label class="dz" id="dz" for="fi" tabindex="0" aria-label="Upload image">
         <div class="dring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
         <h3>Drop image here</h3>
-        <p>or <span class="dbr" id="bb">click to browse</span> &nbsp;·&nbsp; Paste with Ctrl+V</p>
-        <input type="file" id="fi" accept="image/*" style="display:none"/>
+        <p>or <span class="dbr">click to browse</span> &nbsp;·&nbsp; Paste with Ctrl+V</p>
+        <input type="file" id="fi" accept="image/*" style="display:none" tabindex="-1"/>
         <div class="dfmt"><span class="dc">JPG</span><span class="dc">PNG</span><span class="dc">WebP</span><span class="dc">HEIC</span><span class="dc">GIF</span><span class="dc">BMP</span></div>
         <p class="dh">Max 20 MB · Processed locally · Zero uploads</p>
-      </div>
+      </label>
 
       <!-- SETTINGS -->
       <div class="sp" id="sp">
@@ -510,7 +510,7 @@ var MAX   = 20971520; // 20MB
 
 /* ── DOM ── */
 function $$(id){return document.getElementById(id);}
-var dz=$$('dz'),fi=$$('fi'),bb=$$('bb');
+var dz=$$('dz'),fi=$$('fi');
 var ab=$$('ab'),bp=$$('bp'),bd=$$('bd'),br=$$('br');
 var pw=$$('pw'),pf=$$('pf'),pl=$$('pl'),pd=$$('pd');
 var prs=$$('prs'),pob=$$('pob'),prb=$$('prb');
@@ -681,12 +681,10 @@ function handleFile(f){
   toast('Image loaded — press '+('Flip Image'||'Process'),'ok',2000);
 }
 
-bb&&bb.addEventListener('click',function(e){e.stopPropagation();fi.click();});
-dz.addEventListener('click',function(){fi.click();});
-dz.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')fi.click();});
-dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('on');});
+// Drag-and-drop (label handles click natively via for="fi")
+dz.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
-dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('on');var f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
+dz.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dz.classList.remove('on');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
 fi.addEventListener('change',function(e){var f=e.target.files&&e.target.files[0];if(f)handleFile(f);fi.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);

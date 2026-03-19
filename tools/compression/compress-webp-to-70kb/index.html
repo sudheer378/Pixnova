@@ -198,13 +198,13 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border:1px solid var(--
 <div class="grid">
   <div>
     <div class="tool-card">
-      <div class="dropzone" id="dz" role="button" tabindex="0">
+      <label class="dropzone" id="dz" for="fi" tabindex="0">
         <div class="dz-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
         <p class="dz-t">Drop your image here</p>
         <p class="dz-s">or <span class="dz-br" id="bb">browse to upload</span></p>
-        <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic" style="display:none"/>
+        <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic" style="display:none" tabindex="-1"/>
         <p style="margin-top:.75rem;font-size:.75rem;color:var(--subtle);">Max 20 MB · Files stay on your device</p>
-      </div>
+      </label>
       <div class="ctrl-panel" id="cp"><div class="ctrl-title">Settings</div>
         <div class="ctrl-grid" id="controls-body"></div>
       </div>
@@ -376,9 +376,7 @@ function handleFile(f){
   toast('Image loaded — press '+inferLabel(SLUG),'ok',2000);
 }
 
-bb&&bb.addEventListener('click',function(e){e.stopPropagation();fi.click();});
-dz.addEventListener('click',function(){fi.click();});
-dz.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')fi.click();});
+// label[for=fi] handles click natively
 dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
 dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('on');var f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
