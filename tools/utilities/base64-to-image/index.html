@@ -177,6 +177,9 @@ input[type=color]{width:44px;height:34px;padding:2px;border:1px solid var(--bd2)
 .btnd svg{width:15px;height:15px;}
 .btnr{padding:.75rem 1rem;border-radius:11px;border:1px solid var(--bd2);background:transparent;color:var(--mu);font-size:.875rem;font-family:var(--fb);transition:color .2s,border-color .2s;}
 .btnr:hover{color:var(--tx);border-color:var(--bd3);}
+.btn-change{display:inline-flex;align-items:center;gap:.375rem;padding:.5rem .875rem;border-radius:9px;border:1px solid var(--bd2);background:transparent;color:var(--mu);font-size:.8125rem;font-family:var(--fb);font-weight:500;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-change:hover{color:var(--ac2);border-color:var(--ac);}
+.btnr:hover{color:var(--tx);border-color:var(--bd3);}
 .fn{font-size:.8125rem;color:var(--su);margin-left:.125rem;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 /* ── SAVINGS ── */
@@ -378,6 +381,10 @@ footer a:hover{color:var(--ac2);}
           <span id="dl">Download</span>
         </button>
         <button class="btnr" id="br">Reset</button>
+        <label for="fi" class="btn-change" id="btn-change" title="Choose different image">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Change
+        </label>
         <span class="fn" id="fn"></span>
       </div>
 
@@ -659,8 +666,12 @@ function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,parseFloat(v)||0)
 function handleFile(f){
   if(!f)return;
   if(f.size>MAX){toast('File too large — max 20 MB','er',4000);return;}
-  if(!f.type.startsWith('image/')&&!/\.(heic|heif)$/i.test(f.name)){
-    toast('Please select an image file (JPG, PNG, WebP, HEIC, GIF, BMP…)','er',4000);return;
+  // Accept if MIME says image/, OR if extension matches (Android often sends empty MIME)
+  var ext=(f.name||'').split('.').pop().toLowerCase();
+  var knownExt=/^(jpg|jpeg|png|webp|gif|bmp|tiff|tif|avif|heic|heif|svg)$/i.test(ext);
+  var isMimeOk=f.type&&f.type.startsWith('image/');
+  if(!isMimeOk&&!knownExt){
+    toast('Please select an image (JPG, PNG, WebP, HEIC, GIF, BMP)','er',4000);return;
   }
   curFile=f;resBlob=null;
   if(origURL)URL.revokeObjectURL(origURL);
@@ -678,18 +689,27 @@ function handleFile(f){
   if(op)op.classList.remove('V');
   bd.classList.remove('V');
   fn.textContent=f.name;
+  // Hide dropzone, show tool area
+  dz.style.display='none';
   prs.classList.add('V');
   if(sp)sp.classList.add('V');
   ab.classList.add('V');
   bp.disabled=false;
-  toast('Image loaded — press '+('Process Image'||'Process'),'ok',2000);
+  toast('Image loaded — tap Process to continue','ok',2500);
 }
 
 // Drag-and-drop (label handles click natively via for="fi")
 dz.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
 dz.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dz.classList.remove('on');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
-fi.addEventListener('change',function(e){var f=e.target.files&&e.target.files[0];if(f)handleFile(f);fi.value='';});
+fi.addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];
+  if(f){
+    handleFile(f);
+    // Delay clearing so mobile browsers complete the file read
+    setTimeout(function(){try{fi.value='';}catch(x){}},500);
+  }
+});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
   var img=items.find(function(i){return i.type.startsWith('image/');});
@@ -776,6 +796,7 @@ br&&br.addEventListener('click',function(){
   pob.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Original</p></div>';
   prb.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Result appears here</p></div>';
   so.innerHTML='';sr.innerHTML='';fn.textContent='';
+  dz.style.display='';   // show dropzone again
   prs.classList.remove('V');ab.classList.remove('V');
   if(sp)sp.classList.remove('V');
   bd.classList.remove('V');bp.disabled=true;
