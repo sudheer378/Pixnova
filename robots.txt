@@ -1,7 +1,7 @@
 # ============================================================
 #  Pixaroid — robots.txt
 #  Domain: https://pixaroid.vercel.app
-#  Last updated: 2026-03-16
+#  Last updated: 2026-03-20
 # ============================================================
 
 # ── Default: allow all crawlers ─────────────────────────────
@@ -16,18 +16,20 @@ Allow: /tools/ai-tools/
 Allow: /tools/social-tools/
 Allow: /tools/utilities/
 Allow: /tools/bulk-tools/
+Allow: /llms.txt
 
-# Disallow build artefacts and source files
+# Disallow build artefacts and private files
 Disallow: /build/
 Disallow: /workers/
 Disallow: /tests/
 Disallow: /datasets/
 Disallow: /node_modules/
 Disallow: /.git/
-Disallow: /dist/build/
+Disallow: /dist/
 Disallow: /*.map$
+Disallow: /seo/
 
-# Disallow low-value query strings
+# Disallow low-value query parameters
 Disallow: /*?ref=
 Disallow: /*?utm_
 Disallow: /*?fbclid=
@@ -36,28 +38,44 @@ Disallow: /*?gclid=
 # ── Google ──────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Googlebot-Image
 Allow: /assets/
 Disallow: /assets/models/
 
+User-agent: Storebot-Google
+Disallow: /
+
 # ── Bing ────────────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 1
 
-# ── DuckDuckGo ──────────────────────────────────────────────
+# ── Other search engines ────────────────────────────────────
 User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
 Allow: /
 Crawl-delay: 2
 
-# ── AI Crawlers — allow sitemap + llms.txt ──────────────────
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# ── AI Crawlers — fully permitted + llms.txt ────────────────
 User-agent: GPTBot
 Allow: /
 Allow: /llms.txt
-Allow: /seo/llms.txt
-Disallow: /assets/models/
+
+User-agent: ChatGPT-User
+Allow: /
 
 User-agent: Claude-Web
 Allow: /
@@ -69,16 +87,32 @@ Allow: /llms.txt
 
 User-agent: PerplexityBot
 Allow: /
+Allow: /llms.txt
 
 User-agent: cohere-ai
 Allow: /
+Allow: /llms.txt
 
-# ── Block bad bots ──────────────────────────────────────────
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+Crawl-delay: 2
+
+User-agent: PetalBot
+Allow: /
+Crawl-delay: 2
+
+# ── Block scrapers and bad bots ─────────────────────────────
 User-agent: AhrefsBot
-Crawl-delay: 10
+Crawl-delay: 30
 
 User-agent: SemrushBot
-Crawl-delay: 10
+Crawl-delay: 30
 
 User-agent: DotBot
 Disallow: /
@@ -88,6 +122,15 @@ Disallow: /
 
 User-agent: BLEXBot
 Disallow: /
+
+User-agent: SeznamBot
+Crawl-delay: 10
+
+User-agent: 80legs
+Disallow: /
+
+User-agent: ia_archiver
+Crawl-delay: 5
 
 # ── Sitemaps ────────────────────────────────────────────────
 Sitemap: https://pixaroid.vercel.app/sitemap.xml

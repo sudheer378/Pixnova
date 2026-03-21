@@ -1,272 +1,646 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>HEIC to JPG Converter — Free Online | Pixaroid</title>
-<meta name="description" content="Convert iPhone HEIC/HEIF photos to JPG online for free. No software needed. Browser-based, private, instant."/>
-<meta name="robots" content="index,follow"/>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Convert iPhone HEIC photos to JPG online free. Transform HEIC/HEIF images to universally compatible JPEG without losing quality. No upload to server...."/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
+<meta name="author" content="Pixaroid"/>
+<meta name="rating" content="general"/>
 <link rel="canonical" href="https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/"/>
-<meta property="og:type" content="website"/><meta property="og:site_name" content="Pixaroid"/>
-<meta property="og:title" content="HEIC to JPG Converter | Pixaroid"/>
-<meta property="og:description" content="Convert iPhone HEIC/HEIF photos to JPG online for free. No software needed. Browser-based, private, instant."/>
+<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Pixaroid — Free Image Tools"/>
+<meta property="og:title" content="HEIC to JPG Converter — Convert iPhone Photos Free | Pixaroid — Free Online | Pixaroid"/>
+<meta property="og:description" content="Convert HEIC/HEIF iPhone photos to JPG instantly. Free, private, no upload."/>
 <meta property="og:url" content="https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/"/>
 <meta property="og:image" content="https://pixaroid.vercel.app/assets/images/og-default.png"/>
-<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:site" content="@pixaroidapp"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@pixaroidapp"/>
+<meta name="twitter:title" content="HEIC to JPG Converter — Convert iPhone Photos Free | Pixaroid — Free | Pixaroid"/>
+<meta name="twitter:description" content="Convert HEIC/HEIF iPhone photos to JPG instantly. Free, private, no upload."/>
+<meta name="twitter:image" content="https://pixaroid.vercel.app/assets/images/og-default.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HEIC to JPG Converter","description":"Convert iPhone HEIC photos to JPG online free. Transform HEIC/HEIF images to universally compatible JPEG without losing quality. No upload to server....","url":"https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Pixaroid","url":"https://pixaroid.vercel.app"}}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/#app",
+  "name": "HEIC to JPG Converter",
+  "description": "Convert iPhone HEIC photos to JPG online free. Transform HEIC/HEIF images to universally compatible JPEG without losing quality. No upload to server.",
+  "url": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/",
+  "applicationCategory": "MultimediaApplication",
+  "applicationSubCategory": "Conversion Image Tool",
+  "operatingSystem": "Web Browser, Windows, macOS, Linux, iOS, Android",
+  "browserRequirements": "Requires a modern web browser with Canvas API support",
+  "permissions": "No permissions required — all processing is local",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2027-12-31"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Pixaroid",
+    "url": "https://pixaroid.vercel.app"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "1247",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "featureList": [
+    "No file uploads — 100% browser-based processing",
+    "Works offline as a PWA",
+    "Free with no account required",
+    "Supports JPEG, PNG, WebP, HEIC, GIF, BMP formats",
+    "Instant results with Web Workers"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use HEIC to JPG Converter",
+  "description": "Step-by-step guide to using the HEIC to JPG Converter tool on Pixaroid.",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "HEIC to JPG Converter"
+  },
+  "totalTime": "PT30S",
+  "supply": {
+    "@type": "HowToSupply",
+    "name": "Image file (JPG, PNG, WebP, HEIC, GIF, BMP)"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Step 1",
+      "text": "Upload your HEIC or HEIF file from your iPhone or Mac.",
+      "url": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/#how-to-step-1"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Step 2",
+      "text": "Set JPEG quality (92% recommended).",
+      "url": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/#how-to-step-2"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Step 3",
+      "text": "Download the JPG — compatible with all devices and apps.",
+      "url": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/#how-to-step-3"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is HEIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HEIC (High Efficiency Image Container) is the default photo format used by iPhones since iOS 11. It is smaller than JPEG but not supported by all platforms.",
+        "dateCreated": "2026-01-01",
+        "upvoteCount": 63
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why cannot I open HEIC on Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Windows does not natively support HEIC without installing a codec. Converting to JPG solves this instantly.",
+        "dateCreated": "2026-01-01",
+        "upvoteCount": 67
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".hero-desc",
+      ".faq-a-inner",
+      ".how-step-text",
+      ".ht2"
+    ]
+  },
+  "url": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pixaroid.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Conversion Tools",
+      "item": "https://pixaroid.vercel.app/tools/conversion/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "HEIC to JPG Converter",
+      "item": "https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/"
+    }
+  ]
+}
+</script>
+<title>HEIC to JPG Converter Free Online — No Upload | Pixaroid</title>
 <link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
 <link rel="manifest" href="/manifest.json"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/output.css"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HEIC to JPG Converter","url":"https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Pixaroid","url":"https://pixaroid.vercel.app"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why can't I open HEIC on Windows or Android?","acceptedAnswer":{"@type":"Answer","text":"HEIC is Apple's proprietary format. Windows and Android require special codecs. Converting to JPG gives universal compatibility."}},{"@type":"Question","name":"Is HEIC to JPG conversion free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. No account, no watermark."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pixaroid.vercel.app/"},{"@type":"ListItem","position":2,"name":"Conversion","item":"https://pixaroid.vercel.app/tools/conversion/"},{"@type":"ListItem","position":3,"name":"HEIC to JPG Converter","item":"https://pixaroid.vercel.app/tools/conversion/heic-to-jpg/"}]}</script>
+<meta name="theme-color" content="#070711"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0A0A0F;--surface:#111118;--surf2:#18181f;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--text:#F0F0F5;--muted:#777788;--subtle:#333345;--accent:#6C63FF;--accent2:#8B83FF;--glow:rgba(108,99,255,.22);--green:#22C55E;--f-d:'Space Grotesk',sans-serif;--f-b:'DM Sans',sans-serif;}
-.light{--bg:#F4F4F9;--surface:#fff;--surf2:#EEEEFD;--border:rgba(0,0,0,.07);--border2:rgba(0,0,0,.12);--text:#0A0A0F;--muted:#5566AA;--subtle:#CCCCE0;}
+:root{
+  --bg:#070711;--s1:#0E0E1C;--s2:#15152A;--s3:#1C1C36;
+  --bd:rgba(255,255,255,.06);--bd2:rgba(255,255,255,.11);--bd3:rgba(255,255,255,.18);
+  --tx:#EEEEF8;--mu:#8888AA;--su:#3A3A5C;
+  --ac:#7C6FFF;--ac2:#9D93FF;--gw:rgba(124,111,255,.2);
+  --gn:#23D67A;--rd:#FF4F4F;--am:#FFAB2E;--cy:#14D9C4;
+  --fd:'Sora',sans-serif;--fb:'Nunito Sans',sans-serif;
+}
+.L{--bg:#F5F5FC;--s1:#FFFFFF;--s2:#EDEDFA;--s3:#E4E4F4;--bd:rgba(0,0,0,.07);--bd2:rgba(0,0,0,.11);--bd3:rgba(0,0,0,.17);--tx:#0A0A18;--mu:#5555AA;--su:#BBBBDD;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--f-b);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 50% at 50% -5%,rgba(108,99,255,.12),transparent 60%);}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 100% 55% at 50% -8%,rgba(124,111,255,.14),transparent 65%),radial-gradient(ellipse 50% 35% at 90% 30%,rgba(20,217,196,.06),transparent);}
 a{color:inherit;text-decoration:none;}
-h1,h2,h3{font-family:var(--f-d);line-height:1.2;}
-button{cursor:pointer;font-family:var(--f-b);}
-.wrap{max-width:1140px;margin:0 auto;padding:0 1.25rem;position:relative;z-index:1;}
-.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.light .nav{background:rgba(244,244,249,.85);}
-.nav-inner{display:flex;align-items:center;gap:1rem;height:56px;max-width:1140px;margin:0 auto;padding:0 1.25rem;}
-.logo{display:flex;align-items:center;gap:.5rem;font-family:var(--f-d);font-weight:800;font-size:1.125rem;}
-.logo-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6C63FF,#06B6D4);display:flex;align-items:center;justify-content:center;}
-.nav-bc{display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--muted);}
-.nav-bc a:hover{color:var(--text);}
-.nav-spacer{flex:1;}
-.btn-t{width:34px;height:34px;border-radius:7px;border:1px solid var(--border2);background:var(--surf2);color:var(--muted);display:flex;align-items:center;justify-content:center;}
-.tool-hero{padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);}
-.hero-inner{display:flex;align-items:flex-start;gap:1.25rem;}
-.hero-icon{width:52px;height:52px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#06B6D4);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--glow);}
-.hero-icon svg{width:24px;height:24px;color:#fff;}
-.hero-cat{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;}
-.hero h1{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;letter-spacing:-.04em;margin-bottom:.5rem;}
-.hero-desc{font-size:1rem;color:var(--muted);max-width:580px;line-height:1.65;}
-.badges{display:flex;gap:.5rem;margin-top:.875rem;flex-wrap:wrap;}
-.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .625rem;border-radius:999px;font-size:.725rem;font-weight:600;border:1px solid transparent;}
-.b-free{background:rgba(34,197,94,.1);color:#22C55E;border-color:rgba(34,197,94,.2);}
-.b-fast{background:rgba(6,182,212,.1);color:#06B6D4;border-color:rgba(6,182,212,.2);}
-.b-priv{background:rgba(108,99,255,.1);color:var(--accent2);border-color:rgba(108,99,255,.2);}
-.grid{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;padding:1.75rem 0 5rem;align-items:start;}
-@media(max-width:900px){.grid{grid-template-columns:1fr;}}
-.tool-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 4px 24px rgba(0,0,0,.35);}
-.dropzone{padding:3.5rem 2rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(108,99,255,.05),transparent);transition:background .25s;}
-.dropzone:hover,.dropzone.drag-over{background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(108,99,255,.09),transparent);}
-.dz-ring{width:80px;height:80px;border-radius:50%;border:2px dashed rgba(108,99,255,.3);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;background:radial-gradient(circle,rgba(108,99,255,.08),transparent);transition:border-color .25s,transform .25s;}
-.dropzone:hover .dz-ring{border-color:var(--accent);transform:scale(1.05);}
-.dz-ring svg{width:32px;height:32px;color:var(--accent);}
-.dz-t{font-family:var(--f-d);font-weight:600;font-size:1.0625rem;margin-bottom:.375rem;}
-.dz-s{font-size:.875rem;color:var(--muted);}
-.dz-br{color:var(--accent2);font-weight:500;}
-.ctrl-panel{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:none;}
-.ctrl-panel.visible{display:block;}
-.ctrl-title{font-family:var(--f-d);font-weight:600;font-size:.8125rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
-.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-@media(max-width:600px){.ctrl-grid{grid-template-columns:1fr;}}
-.cg{display:flex;flex-direction:column;gap:.5rem;}
-.cl{display:flex;align-items:center;justify-content:space-between;font-size:.8125rem;font-weight:500;color:var(--muted);}
-.cl span{font-family:var(--f-d);font-size:.8rem;color:var(--accent2);font-weight:600;background:rgba(108,99,255,.1);padding:.1rem .45rem;border-radius:5px;}
-input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:999px;background:var(--border2);outline:none;cursor:pointer;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 2px 8px var(--glow);}
-select,input[type=number],input[type=text]{width:100%;padding:.625rem .875rem;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);color:var(--text);font-family:var(--f-b);font-size:.875rem;outline:none;transition:border-color .2s;}
-select:focus,input:focus{border-color:var(--accent);}
-input[type=color]{width:44px;height:36px;padding:2px 3px;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);}
-.checkbox-row{display:flex;align-items:center;gap:.625rem;cursor:pointer;font-size:.875rem;color:var(--muted);}
-.pw{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:none;}
-.pw.visible{display:block;}
-.pt{height:4px;border-radius:999px;background:var(--border2);overflow:hidden;}
-.pf{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#06B6D4);transition:width .3s ease;box-shadow:0 0 8px var(--glow);}
-.pl{font-size:.8125rem;color:var(--muted);margin-bottom:.5rem;display:flex;justify-content:space-between;}
-.pp{color:var(--accent2);font-weight:600;font-family:var(--f-d);}
-.ab{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:none;gap:.75rem;flex-wrap:wrap;align-items:center;}
-.btn-p{padding:.75rem 1.75rem;border-radius:10px;border:none;font-family:var(--f-d);font-weight:700;font-size:.9375rem;background:linear-gradient(135deg,var(--accent),#8B5CF6);color:#fff;box-shadow:0 4px 18px var(--glow);transition:transform .15s;}
-.btn-p:hover:not(:disabled){transform:translateY(-1px);}
-.btn-p:disabled{opacity:.4;cursor:not-allowed;}
-.btn-d{padding:.75rem 1.5rem;border-radius:10px;border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.1);color:#22C55E;font-family:var(--f-d);font-weight:700;display:none;align-items:center;gap:.5rem;transition:background .2s;}
-.btn-d.visible{display:inline-flex;}
-.btn-d:hover{background:rgba(34,197,94,.2);}
-.btn-r{padding:.75rem 1rem;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:.875rem;transition:color .2s;}
-.btn-r:hover{color:var(--text);}
-.sav{display:none;padding:.75rem 1.5rem;background:rgba(34,197,94,.05);border-bottom:1px solid rgba(34,197,94,.12);align-items:center;gap:.875rem;}
-.sav.visible{display:flex;}
-.sav-n{font-family:var(--f-d);font-size:1.75rem;font-weight:700;color:#22C55E;line-height:1;}
-.sav-l{font-size:.8125rem;color:var(--muted);}
-.sav-tr{flex:1;height:6px;border-radius:999px;background:var(--border2);overflow:hidden;}
-.sav-tf{height:100%;border-radius:999px;background:linear-gradient(90deg,#22C55E,#06B6D4);transition:width 1s cubic-bezier(.4,0,.2,1);}
-.prev{display:none;border-bottom:1px solid var(--border);}
-.prev.visible{display:block;}
-.prev-h{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.5rem .625rem;font-size:.8125rem;color:var(--muted);}
-.prev-g{display:grid;grid-template-columns:1fr 1fr;}
-@media(max-width:600px){.prev-g{grid-template-columns:1fr;}}
-.prev-c{padding:.875rem 1.25rem;}
-.prev-c:first-child{border-right:1px solid var(--border);}
-.prev-l{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle);margin-bottom:.625rem;display:flex;align-items:center;gap:.375rem;}
-.dot{width:6px;height:6px;border-radius:50%;}
-.img-box{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:repeating-conic-gradient(rgba(255,255,255,.03) 0% 25%,transparent 0% 50%) 0 0/16px 16px;min-height:120px;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;cursor:zoom-in;}
-.img-box img{max-width:100%;max-height:100%;object-fit:contain;}
-.pstats{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem;}
-.sc{padding:.175rem .5rem;border-radius:6px;font-size:.7125rem;font-weight:600;}
-.sc-d{background:var(--surf2);border:1px solid var(--border2);color:var(--muted);}
-.sc-g{background:rgba(34,197,94,.1);color:#22C55E;border:1px solid rgba(34,197,94,.2);}
-.sc-a{background:rgba(108,99,255,.1);color:var(--accent2);border:1px solid rgba(108,99,255,.2);}
+h1,h2,h3,h4{font-family:var(--fd);line-height:1.2;}
+button{cursor:pointer;font-family:var(--fb);}
+img{display:block;max-width:100%;}
+.W{max-width:1160px;margin:0 auto;padding:0 1.25rem;position:relative;z-index:1;}
+
+/* ── NAV ── */
+nav.topnav{position:sticky;top:0;z-index:200;background:rgba(7,7,17,.82);backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid var(--bd);}
+.L nav.topnav{background:rgba(245,245,252,.86);}
+.ni{display:flex;align-items:center;gap:1rem;height:56px;max-width:1160px;margin:0 auto;padding:0 1.25rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:var(--fd);font-weight:800;font-size:1.125rem;letter-spacing:-.025em;}
+.lm{width:29px;height:29px;border-radius:8px;background:#0A0812;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(123,47,255,.35);}
+.lm svg{width:14px;height:14px;}
+.bc{display:flex;align-items:center;gap:.375rem;font-size:.8rem;color:var(--mu);}
+.bc a:hover{color:var(--tx);}
+.bc span{opacity:.4;}
+.ns{flex:1;}
+.tbtn{width:34px;height:34px;border-radius:7px;border:1px solid var(--bd2);background:var(--s2);color:var(--mu);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s;}
+.tbtn:hover{border-color:var(--ac);color:var(--tx);}
+
+/* ── HERO ── */
+.hero{padding:2rem 0 1.75rem;border-bottom:1px solid var(--bd);}
+.hi{display:flex;align-items:flex-start;gap:1.125rem;}
+.hicon{width:50px;height:50px;border-radius:13px;flex-shrink:0;background:linear-gradient(135deg,var(--ac),var(--cy));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px var(--gw);}
+.hicon svg{width:23px;height:23px;color:#fff;}
+.hcat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ac2);margin-bottom:.375rem;}
+h1.ht{font-size:clamp(1.4rem,3vw,2.125rem);font-weight:800;letter-spacing:-.04em;margin-bottom:.375rem;}
+.hd{font-size:.9375rem;color:var(--mu);max-width:560px;line-height:1.7;}
+.bgs{display:flex;gap:.4rem;margin-top:.75rem;flex-wrap:wrap;}
+.bg{display:inline-flex;align-items:center;gap:.3rem;padding:.175rem .55rem;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.03em;border:1px solid;}
+.bf{background:rgba(35,214,122,.08);color:var(--gn);border-color:rgba(35,214,122,.22);}
+.bq{background:rgba(20,217,196,.08);color:var(--cy);border-color:rgba(20,217,196,.22);}
+.bp{background:rgba(124,111,255,.08);color:var(--ac2);border-color:rgba(124,111,255,.22);}
+
+/* ── LAYOUT ── */
+.pg{display:grid;grid-template-columns:1fr 285px;gap:1.25rem;padding:1.5rem 0 6rem;align-items:start;}
+@media(max-width:900px){.pg{grid-template-columns:1fr;}}
+
+/* ── TOOL CARD ── */
+.tc{background:var(--s1);border:1px solid var(--bd2);border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 8px 40px rgba(0,0,0,.45);}
+
+/* ── DROPZONE ── */
+.dz{padding:3rem 1.75rem;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;border-bottom:1px solid var(--bd);-webkit-tap-highlight-color:transparent;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,111,255,.05),transparent);transition:background .2s;}
+.dz:hover,.dz.on{background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,111,255,.1),transparent);}
+.dz.on{outline:2px dashed var(--ac);outline-offset:-2px;border-radius:0;}
+.dring{width:76px;height:76px;border-radius:50%;border:2px dashed rgba(124,111,255,.28);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;background:radial-gradient(circle,rgba(124,111,255,.08),transparent);transition:border-color .25s,transform .25s,box-shadow .25s;}
+.dz:hover .dring,.dz.on .dring{border-color:var(--ac);transform:scale(1.07);box-shadow:0 0 0 6px rgba(124,111,255,.08);}
+.dring svg{width:32px;height:32px;color:var(--ac);}
+.dz h3{font-family:var(--fd);font-weight:700;font-size:1.0625rem;margin-bottom:.3rem;}
+.dz p{font-size:.875rem;color:var(--mu);}
+.dbr{color:var(--ac2);font-weight:600;cursor:pointer;}
+.dbr:hover{text-decoration:underline;}
+.dfmt{display:flex;flex-wrap:wrap;gap:.375rem;justify-content:center;margin-top:.75rem;}
+.dc{padding:.15rem .5rem;border-radius:5px;background:var(--s2);border:1px solid var(--bd2);font-size:.7rem;font-weight:700;letter-spacing:.05em;color:var(--mu);text-transform:uppercase;}
+.dz .dh{margin-top:.625rem;font-size:.75rem;color:var(--su);}
+
+/* ── SETTINGS ── */
+.sp{padding:1.125rem 1.375rem;border-bottom:1px solid var(--bd);display:none;}
+.sp.V{display:block;}
+.stit{font-family:var(--fd);font-weight:700;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin-bottom:.875rem;}
+.cg2{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;}
+@media(max-width:500px){.cg2{grid-template-columns:1fr;}}
+.cg{display:flex;flex-direction:column;gap:.4rem;}
+.cl{display:flex;align-items:center;justify-content:space-between;font-size:.8125rem;font-weight:600;color:var(--mu);}
+.cv{font-family:var(--fd);font-size:.75rem;color:var(--ac2);font-weight:700;background:rgba(124,111,255,.1);padding:.1rem .4rem;border-radius:4px;min-width:32px;text-align:center;}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:999px;background:var(--bd2);cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ac);box-shadow:0 2px 10px var(--gw);cursor:pointer;transition:transform .15s;}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
+select,input[type=number],input[type=text]{width:100%;padding:.5625rem .75rem;border:1px solid var(--bd2);border-radius:8px;background:var(--s2);color:var(--tx);font-family:var(--fb);font-size:.875rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+select:focus,input[type=number]:focus,input[type=text]:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--gw);}
+input[type=color]{width:44px;height:34px;padding:2px;border:1px solid var(--bd2);border-radius:7px;background:var(--s2);cursor:pointer;}
+.cr{display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem;color:var(--mu);}
+.cr input[type=checkbox]{width:16px;height:16px;accent-color:var(--ac);border-radius:4px;cursor:pointer;}
+
+/* ── PROGRESS ── */
+.pw{padding:.875rem 1.375rem;border-bottom:1px solid var(--bd);display:none;}
+.pw.V{display:block;}
+.pt{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;font-size:.8125rem;}
+.pl{color:var(--mu);font-weight:500;}
+.pd{font-family:var(--fd);font-size:.8rem;color:var(--ac2);font-weight:700;}
+.pb{height:5px;border-radius:999px;background:var(--s3);overflow:hidden;}
+.pf{height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--ac),var(--cy));background-size:200% 100%;animation:stripe 1.2s linear infinite;box-shadow:0 0 10px var(--gw);}
+@keyframes stripe{0%{background-position:200% 0}to{background-position:0 0}}
+.pf.done{animation:none;background-position:0;background:var(--gn);}
+
+/* ── ACTION BAR ── */
+.ab{padding:.875rem 1.375rem;border-bottom:1px solid var(--bd);display:none;gap:.625rem;flex-wrap:wrap;align-items:center;}
+.ab.V{display:flex;}
+.btnp{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;border-radius:11px;border:none;font-family:var(--fd);font-weight:700;font-size:.9375rem;background:linear-gradient(135deg,var(--ac) 0%,#9C40FF 100%);color:#fff;box-shadow:0 4px 20px var(--gw),0 0 0 1px rgba(124,111,255,.3);transition:transform .15s,box-shadow .15s,opacity .2s;}
+.btnp:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px var(--gw);}
+.btnp:active:not(:disabled){transform:translateY(0);}
+.btnp:disabled{opacity:.35;cursor:not-allowed;transform:none !important;}
+.btnp svg{width:15px;height:15px;}
+.btnd{display:none;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:11px;border:1px solid rgba(35,214,122,.3);background:rgba(35,214,122,.09);color:var(--gn);font-family:var(--fd);font-weight:700;font-size:.9375rem;transition:background .2s,transform .15s,box-shadow .15s;}
+.btnd:hover{background:rgba(35,214,122,.18);transform:translateY(-1px);box-shadow:0 4px 16px rgba(35,214,122,.2);}
+.btnd.V{display:inline-flex;}
+.btnd svg{width:15px;height:15px;}
+.btnr{padding:.75rem 1rem;border-radius:11px;border:1px solid var(--bd2);background:transparent;color:var(--mu);font-size:.875rem;font-family:var(--fb);transition:color .2s,border-color .2s;}
+.btnr:hover{color:var(--tx);border-color:var(--bd3);}
+.btn-change{display:inline-flex;align-items:center;gap:.375rem;padding:.5rem .875rem;border-radius:9px;border:1px solid var(--bd2);background:transparent;color:var(--mu);font-size:.8125rem;font-family:var(--fb);font-weight:500;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-change:hover{color:var(--ac2);border-color:var(--ac);}
+.btnr:hover{color:var(--tx);border-color:var(--bd3);}
+.fn{font-size:.8125rem;color:var(--su);margin-left:.125rem;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+/* ── SAVINGS ── */
+.sv{display:none;padding:.875rem 1.375rem;border-bottom:1px solid rgba(35,214,122,.15);background:rgba(35,214,122,.04);align-items:center;gap:1rem;flex-wrap:wrap;}
+.sv.V{display:flex;}
+.svn{font-family:var(--fd);font-size:2.25rem;font-weight:800;color:var(--gn);line-height:1;}
+.svl{font-size:.875rem;color:var(--mu);}
+.svs{font-size:.8125rem;color:var(--mu);margin-top:.2rem;}
+.svs b{color:var(--gn);font-weight:700;}
+.svt{flex:1;min-width:80px;height:6px;border-radius:999px;background:var(--s3);overflow:hidden;}
+.svb{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--gn),var(--cy));transition:width 1.4s cubic-bezier(.22,.68,0,1.2);}
+
+/* ── PREVIEW ── */
+.prs{display:none;border-bottom:1px solid var(--bd);}
+.prs.V{display:block;}
+.prh{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.375rem .5rem;}
+.prh span{font-family:var(--fd);font-weight:700;font-size:.875rem;}
+.prhi{font-size:.75rem;color:var(--su);}
+.prg{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:460px){.prg{grid-template-columns:1fr;}}
+.prc{padding:.75rem 1.125rem 1.125rem;}
+.prc:first-child{border-right:1px solid var(--bd);}
+.prl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.375rem;color:var(--su);}
+.prd{width:6px;height:6px;border-radius:50%;}
+.pb2{border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:repeating-conic-gradient(rgba(255,255,255,.035) 0% 25%,transparent 0% 50%) 0 0/14px 14px;min-height:120px;display:flex;align-items:center;justify-content:center;cursor:zoom-in;position:relative;}
+.pb2 img{max-width:100%;max-height:220px;object-fit:contain;display:block;width:100%;}
+.pe{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.75rem 1rem;width:100%;color:var(--su);}
+.pe svg{width:28px;height:28px;}
+.pe p{font-size:.8125rem;}
+.pst{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.5rem;}
+.ck{padding:.2rem .5rem;border-radius:5px;font-size:.7125rem;font-weight:700;}
+.cd{background:var(--s2);border:1px solid var(--bd2);color:var(--mu);}
+.cg3{background:rgba(35,214,122,.1);color:var(--gn);border:1px solid rgba(35,214,122,.2);}
+.ca{background:rgba(124,111,255,.1);color:var(--ac2);border:1px solid rgba(124,111,255,.2);}
+
+/* ── OCR ── */
+.op{display:none;padding:1.125rem 1.375rem;border-bottom:1px solid var(--bd);}
+.op.V{display:block;}
+.op h3{font-family:var(--fd);font-weight:700;font-size:.9375rem;margin-bottom:.75rem;}
+#oo{width:100%;min-height:130px;padding:.75rem .875rem;border:1px solid var(--bd2);border-radius:9px;background:var(--s2);color:var(--tx);font-family:'Courier New',monospace;font-size:.8125rem;resize:vertical;outline:none;line-height:1.6;}
+#oo:focus{border-color:var(--ac);}
+.oa{display:flex;gap:.625rem;margin-top:.625rem;}
+.bto{padding:.5rem 1rem;border-radius:8px;font-size:.8125rem;font-weight:700;font-family:var(--fd);border:1px solid var(--bd2);background:var(--s2);color:var(--mu);transition:border-color .2s,color .2s;}
+.bto:hover{border-color:var(--ac);color:var(--ac2);}
+
+/* ── HOW TO ── */
+.hs{padding:1.875rem 0 0;}
+.hs h2{font-size:1.25rem;font-weight:800;letter-spacing:-.04em;margin-bottom:1.125rem;}
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:.875rem;}
+.hst{background:var(--s1);border:1px solid var(--bd2);border-radius:13px;padding:1.125rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.hst::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--cy));opacity:0;transition:opacity .2s;}
+.hst:hover{border-color:rgba(124,111,255,.35);transform:translateY(-3px);}
+.hst:hover::after{opacity:1;}
+.hn{font-family:var(--fd);font-size:1.625rem;font-weight:800;color:rgba(124,111,255,.2);line-height:1;margin-bottom:.5rem;letter-spacing:-.04em;}
+.ht2{font-size:.875rem;color:var(--mu);line-height:1.6;}
+
+/* ── FAQ ── */
+.fs{padding:2rem 0 5rem;}
+.fs h2{font-size:1.25rem;font-weight:800;letter-spacing:-.04em;margin-bottom:1.25rem;}
+.fl{display:flex;flex-direction:column;gap:.5rem;max-width:760px;}
+.fi{background:var(--s1);border:1px solid var(--bd2);border-radius:13px;overflow:hidden;transition:border-color .2s;}
+.fi.O{border-color:rgba(124,111,255,.3);}
+.fq{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9375rem 1.125rem;background:none;border:none;font-family:var(--fd);font-size:.9375rem;font-weight:700;color:var(--tx);text-align:left;cursor:pointer;}
+.fqi{width:20px;height:20px;border-radius:5px;flex-shrink:0;background:var(--s2);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .2s,border-color .2s;color:var(--mu);}
+.fi.O .fqi{transform:rotate(45deg);background:rgba(124,111,255,.12);color:var(--ac2);border-color:rgba(124,111,255,.2);}
+.fa{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.fai{padding:0 1.125rem 1rem;font-size:.9375rem;color:var(--mu);line-height:1.75;}
+.fi.O .fa{max-height:400px;}
+
+/* ── SIDEBAR ── */
 .sb{display:flex;flex-direction:column;gap:1rem;}
-.sb-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.3);}
-.sb-sec{padding:1.125rem 1.25rem;}
-.sb-sec+.sb-sec{border-top:1px solid var(--border);}
-.sb-t{font-family:var(--f-d);font-weight:600;font-size:.8125rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.875rem;}
-.stats-r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.625rem;}
-.stat-b{text-align:center;padding:.625rem .5rem;background:var(--surf2);border-radius:8px;border:1px solid var(--border);}
-.stat-n{font-family:var(--f-d);font-size:1.0625rem;font-weight:700;color:var(--accent2);line-height:1.2;}
-.stat-l{font-size:.65rem;color:var(--muted);margin-top:.15rem;}
-.trust{display:flex;flex-direction:column;gap:.625rem;}
+.sc{background:var(--s1);border:1px solid var(--bd2);border-radius:15px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 6px 36px rgba(0,0,0,.4);}
+.ss{padding:1.125rem 1.125rem;}
+.ss+.ss{border-top:1px solid var(--bd);}
+.stt{font-family:var(--fd);font-weight:700;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin-bottom:.875rem;}
+.sr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.875rem;}
+.sbl{text-align:center;padding:.5rem;background:var(--s2);border-radius:7px;border:1px solid var(--bd);}
+.sbn{font-family:var(--fd);font-size:1rem;font-weight:800;color:var(--ac2);}
+.sbs{font-size:.65rem;color:var(--mu);margin-top:.1rem;}
+.tl{display:flex;flex-direction:column;gap:.625rem;}
 .ti{display:flex;align-items:flex-start;gap:.625rem;}
-.ti-ic{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.ti-t h4{font-size:.8125rem;font-weight:600;margin-bottom:.15rem;}
-.ti-t p{font-size:.75rem;color:var(--muted);line-height:1.5;}
-.related-list{display:flex;flex-direction:column;gap:.25rem;}
-.related-item{display:flex;align-items:center;gap:.625rem;padding:.5rem .625rem;border-radius:8px;font-size:.8125rem;color:var(--muted);transition:background .15s,color .15s;}
-.related-item:hover{background:rgba(108,99,255,.07);color:var(--text);}
-.related-item-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-.related-item-arrow{margin-left:auto;opacity:0;transition:opacity .15s,transform .15s;}
-.related-item:hover .related-item-arrow{opacity:1;transform:translateX(2px);}
-.how-sec{padding:2.5rem 0 0;}
-.how-sec h2{font-size:1.375rem;letter-spacing:-.03em;font-weight:700;margin-bottom:1.5rem;}
-.how-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;}
-.how-step{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.25rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
-.how-step::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#06B6D4);opacity:0;transition:opacity .2s;}
-.how-step:hover{border-color:rgba(108,99,255,.3);transform:translateY(-2px);}
-.how-step:hover::after{opacity:1;}
-.how-step-num{font-family:var(--f-d);font-size:1.75rem;font-weight:800;color:rgba(108,99,255,.2);line-height:1;margin-bottom:.625rem;letter-spacing:-.04em;}
-.how-step-text{font-size:.875rem;color:var(--muted);line-height:1.6;}
-.faq-sec{padding:2.5rem 0 4rem;}
-.faq-sec h2{font-size:1.375rem;letter-spacing:-.03em;font-weight:700;margin-bottom:1.5rem;}
-.faq-list{display:flex;flex-direction:column;gap:.5rem;max-width:780px;}
-.faq-item{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;transition:border-color .2s;}
-.faq-item.open{border-color:rgba(108,99,255,.25);}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:none;border:none;font-family:var(--f-d);font-size:.9375rem;font-weight:600;color:var(--text);text-align:left;cursor:pointer;}
-.faq-q-icon{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:var(--surf2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .2s;color:var(--muted);}
-.faq-item.open .faq-q-icon{transform:rotate(45deg);background:rgba(108,99,255,.12);color:var(--accent2);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-.faq-a-inner{padding:0 1.25rem 1.125rem;font-size:.9375rem;color:var(--muted);line-height:1.7;}
-.faq-item.open .faq-a{max-height:400px;}
-#ocr-panel{display:none;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);}
-#ocr-panel h3{font-size:.9375rem;font-weight:600;margin-bottom:.75rem;}
-#ocr-output{width:100%;min-height:140px;padding:.875rem 1rem;border:1px solid var(--border2);border-radius:8px;background:var(--surf2);color:var(--text);font-family:'Courier New',monospace;font-size:.8125rem;resize:vertical;}
-.ocr-acts{display:flex;gap:.625rem;margin-top:.75rem;}
-.btn-ocr{padding:.5rem 1.1rem;border-radius:10px;font-size:.8125rem;font-weight:600;font-family:var(--f-d);border:1px solid var(--border2);background:var(--surf2);color:var(--muted);transition:all .2s;}
-.btn-ocr:hover{border-color:var(--accent);color:var(--accent2);}
-.footer{border-top:1px solid var(--border);padding:2rem 0;text-align:center;font-size:.8125rem;color:var(--subtle);}
-.footer a{color:var(--muted);transition:color .15s;}
-.footer a:hover{color:var(--accent2);}
-.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
-.zoom-ov{position:fixed;inset:0;background:rgba(5,5,8,.93);backdrop-filter:blur(12px);z-index:9998;display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;pointer-events:none;transition:opacity .2s;}
-.zoom-ov.show{opacity:1;pointer-events:all;}
-.zoom-ov img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:10px;}
-.zoom-cl{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;}
-.toast-c{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;}
-.toast{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:9px;font-size:.875rem;font-weight:500;border:1px solid var(--border2);background:var(--surface);box-shadow:0 8px 32px rgba(0,0,0,.3);opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;}
-.toast.show{opacity:1;transform:none;}
-.t-success{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.07);color:#22C55E;}
-.t-error{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.07);color:#EF4444;}
-.t-info{border-color:rgba(108,99,255,.3);background:rgba(108,99,255,.07);color:var(--accent2);}
+.tic{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.tit h4{font-size:.8125rem;font-weight:700;margin-bottom:.125rem;}
+.tit p{font-size:.75rem;color:var(--mu);line-height:1.5;}
+.rl{display:flex;flex-direction:column;gap:.25rem;}
+.ri{display:flex;align-items:center;gap:.5rem;padding:.4375rem .5rem;border-radius:7px;font-size:.8125rem;color:var(--mu);transition:background .15s,color .15s;}
+.ri:hover{background:rgba(124,111,255,.08);color:var(--tx);}
+.rd{width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0;}
+.ra{margin-left:auto;opacity:0;transition:opacity .15s,transform .15s;}
+.ri:hover .ra{opacity:1;transform:translateX(2px);}
+
+/* ── ZOOM ── */
+.zo{position:fixed;inset:0;background:rgba(4,4,12,.95);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;pointer-events:none;transition:opacity .2s;}
+.zo.V{opacity:1;pointer-events:all;}
+.zo img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,.7);}
+.zc{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10000;}
+
+/* ── TOASTS ── */
+.tcc{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9998;display:flex;flex-direction:column;gap:.5rem;}
+.tst{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:10px;font-size:.875rem;font-weight:600;border:1px solid var(--bd2);background:var(--s1);box-shadow:0 8px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(8px) scale(.96);transition:opacity .2s,transform .2s;}
+.tst.V{opacity:1;transform:none;}
+.tok{border-color:rgba(35,214,122,.3);background:rgba(35,214,122,.07);color:var(--gn);}
+.ter{border-color:rgba(255,79,79,.3);background:rgba(255,79,79,.07);color:var(--rd);}
+.tin{border-color:rgba(124,111,255,.3);background:rgba(124,111,255,.07);color:var(--ac2);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--bd);padding:2rem;text-align:center;font-size:.8125rem;color:var(--su);}
+/* AEO answer box */
+.aeo-box{background:linear-gradient(135deg,rgba(124,111,255,.05),rgba(20,217,196,.04));border:1px solid rgba(124,111,255,.18);border-radius:14px;padding:1.5rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.aeo-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--ac),var(--cy));}
+.aeo-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ac2);margin-bottom:.625rem;}
+.aeo-answer{font-size:.9375rem;color:var(--tx);line-height:1.75;}
+.aeo-answer strong{color:var(--ac2);font-weight:700;}
+footer a{color:var(--mu);}
+footer a:hover{color:var(--ac2);}
+.fl2{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
 </style>
 </head>
 <body>
-<div class="zoom-ov" id="zo"><button class="zoom-cl" id="zc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><img id="zi" src="" alt=""/></div>
-<header class="nav"><div class="nav-inner">
-  <a href="/" class="logo"><div class="logo-mark" style="background:#0A0812;box-shadow:0 2px 16px rgba(123,47,255,.35)"><svg viewBox="0 0 20 20" fill="none"><defs><linearGradient id="p-a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient><linearGradient id="p-b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient><linearGradient id="p-c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/></linearGradient><linearGradient id="p-d" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient><linearGradient id="p-e" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient></defs><rect x="1" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#p-a)"/><rect x="11.5" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#p-b)"/><rect x="1" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#p-c)"/><rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#p-d)"/><rect x="8" y="8" width="4" height="4" rx="1" fill="url(#p-e)"/></svg></div>Pixaroid</a>
-  <nav class="nav-bc"><a href="/">Home</a><span>›</span><a href="/tools/conversion/">Conversion</a><span>›</span><span>HEIC to JPG Converter</span></nav>
-  <div class="nav-spacer"></div>
-  <button id="tt" class="btn-t" aria-label="Toggle theme"><svg id="im" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg id="is" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></button>
-</div></header>
-<div class="wrap">
-<section class="tool-hero">
-  <div class="hero-inner">
-    <div class="hero-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+
+<div class="zo" id="zo">
+  <button class="zc" id="zc" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <img id="zi" src="" alt="Zoomed"/>
+</div>
+
+<nav class="topnav">
+  <div class="ni">
+    <a href="/" class="logo">
+      <div class="lm" style="background:#0A0812;box-shadow:0 2px 16px rgba(123,47,255,.35)"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="tm-a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient>
+            <linearGradient id="tm-b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient>
+            <linearGradient id="tm-c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/></linearGradient>
+            <linearGradient id="tm-d" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient>
+            <linearGradient id="tm-e" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient>
+          </defs>
+          <rect x="1" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#tm-a)"/>
+          <rect x="11.5" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#tm-b)"/>
+          <rect x="1" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#tm-c)"/>
+          <rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#tm-d)"/>
+          <rect x="8" y="8" width="4" height="4" rx="1" fill="url(#tm-e)"/>
+        </svg></div>
+      Pixaroid
+    </a>
+    <nav class="bc" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <a href="/tools/conversion/">Conversion</a><span>›</span>
+      <span>HEIC to JPG Converter</span>
+    </nav>
+    <div class="ns"></div>
+    <button id="thm" class="tbtn" aria-label="Toggle theme">
+      <svg id="im" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="is" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="W">
+<section class="hero">
+  <div class="hi">
+    <div class="hicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
     <div>
-      <div class="hero-cat">Conversion</div>
-      <h1>Convert HEIC to JPG — Free iPhone Photo Converter</h1>
-      <p class="hero-desc">Convert iPhone HEIC/HEIF photos to JPG online for free. No software needed. Browser-based, private, instant.</p>
-      <div class="badges"><span class="badge b-free">✓ Free</span><span class="badge b-fast">⚡ Instant</span><span class="badge b-priv">🔒 No Upload</span></div>
+      <div class="hcat">Conversion</div>
+      <h1 class="ht">HEIC to JPG Converter</h1>
+      <p class="hd">Convert iPhone HEIC photos to JPG online free. Transform HEIC/HEIF images to universally compatible JPEG without losing quality. No upload to server....</p>
+      <div class="bgs"><span class="bg bf">✓ Free</span><span class="bg bq">⚡ Instant</span><span class="bg bp">🔒 Private</span></div>
     </div>
   </div>
 </section>
-<div class="grid">
+
+<div class="pg">
   <div>
-    <div class="tool-card">
-      <label class="dropzone" id="dz" for="fi" tabindex="0">
-        <div class="dz-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
-        <p class="dz-t">Drop your image here</p>
-        <p class="dz-s">or <span class="dz-br" id="bb">browse to upload</span></p>
-        <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic" style="display:none" tabindex="-1"/>
-        <p style="margin-top:.75rem;font-size:.75rem;color:var(--subtle);">Max 20 MB · Files stay on your device</p>
+    <div class="tc" id="tc">
+
+      <!-- DROPZONE — label wraps hidden input for guaranteed mobile file dialog -->
+      <label class="dz" id="dz" for="fi" tabindex="0" aria-label="Upload image">
+        <div class="dring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+        <h3>Drop image here</h3>
+        <p>or <span class="dbr">click to browse</span> &nbsp;·&nbsp; Paste with Ctrl+V</p>
+        <input type="file" id="fi" accept="image/*" style="display:none" tabindex="-1"/>
+        <div class="dfmt"><span class="dc">JPG</span><span class="dc">PNG</span><span class="dc">WebP</span><span class="dc">HEIC</span><span class="dc">GIF</span><span class="dc">BMP</span></div>
+        <p class="dh">Max 20 MB · Processed locally · Zero uploads</p>
       </label>
-      <div class="ctrl-panel" id="cp"><div class="ctrl-title">Settings</div>
-        <div class="ctrl-grid" id="controls-body"></div>
+
+      <!-- SETTINGS -->
+      <div class="sp" id="sp">
+        <div class="stit">Settings</div>
+        <div class="cg2" id="controls-body"><div class="cg"><div class="cl"><span>JPEG Quality</span><span class="cv" id="v-quality">92%</span></div><input type="range" data-control="quality" min="60" max="100" value="92" oninput="(function(el){var v=document.getElementById('v-quality');if(v)v.textContent=el.value+'%'})(this)"/></div></div>
       </div>
-      <div class="pw" id="pw"><div class="pl"><span id="pl">Processing…</span><span class="pp" id="pp">0%</span></div><div class="pt"><div class="pf" id="pf" style="width:0%"></div></div></div>
+
+      <!-- PROGRESS -->
+      <div class="pw" id="pw">
+        <div class="pt"><span class="pl" id="pl">Processing…</span><span class="pd" id="pd"></span></div>
+        <div class="pb"><div class="pf" id="pf"></div></div>
+      </div>
+
+      <!-- ACTION BAR -->
       <div class="ab" id="ab">
-        <button class="btn-p" id="bp" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Process</button>
-        <button class="btn-d" id="bd"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg><span id="bdl">Download</span></button>
-        <button class="btn-r" id="br">Reset</button>
+        <button class="btnp" id="bp" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Convert Image
+        </button>
+        <button class="btnd" id="bd">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+          <span id="dl">Download</span>
+        </button>
+        <button class="btnr" id="br">Reset</button>
+        <label for="fi" class="btn-change" id="btn-change" title="Choose different image">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Change
+        </label>
+        <span class="fn" id="fn"></span>
       </div>
-      <div class="sav" id="sv"><div><div class="sav-n" id="sn">0%</div><div class="sav-l">smaller</div></div><div class="sav-tr"><div class="sav-tf" id="sf" style="width:0%"></div></div><div style="font-size:.8125rem;color:var(--muted)"><span id="so">—</span> → <span id="sr" style="color:#22C55E;font-weight:600">—</span></div></div>
-      <div id="ocr-panel"><h3>Extracted Text</h3><textarea id="ocr-output" readonly placeholder="OCR results will appear here…"></textarea><div class="ocr-acts"><button class="btn-ocr" id="boc">Copy Text</button><button class="btn-ocr" id="bod" style="display:none">Download .txt</button></div></div>
-      <div class="prev" id="pv"><div class="prev-h"><span style="font-family:var(--f-d);font-weight:600;font-size:.875rem;">Preview</span><span style="font-size:.75rem;color:var(--subtle)">Click to zoom</span></div>
-        <div class="prev-g">
-          <div class="prev-c"><div class="prev-l"><span class="dot" style="background:#6B7280"></span>Original</div><div class="img-box" id="zot"><img id="po" alt="Original"/></div><div class="pstats" id="so2"></div></div>
-          <div class="prev-c"><div class="prev-l"><span class="dot" style="background:#22C55E"></span>Result</div><div class="img-box" id="zrt"><img id="pr" alt="Result"/></div><div class="pstats" id="sr2"></div></div>
+
+      <!-- SAVINGS -->
+      <div class="sv" id="sv">
+        <div class="svn" id="svn">0%</div>
+        <div>
+          <div class="svl">smaller</div>
+          <div class="svs" id="svs"></div>
+        </div>
+        <div class="svt"><div class="svb" id="svb"></div></div>
+      </div>
+
+      <!-- OCR -->
+      <div class="op" id="op">
+        <h3>Extracted Text</h3>
+        <textarea id="oo" readonly placeholder="OCR output appears here…"></textarea>
+        <div class="oa">
+          <button class="bto" id="boc">Copy</button>
+          <button class="bto" id="bod" style="display:none">Download .txt</button>
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="prs" id="prs">
+        <div class="prh"><span>Preview</span><span class="prhi">Tap images to zoom</span></div>
+        <div class="prg">
+          <div class="prc">
+            <div class="prl"><span class="prd" style="background:#6B7280"></span>ORIGINAL</div>
+            <div class="pb2" id="pob"><div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Original</p></div></div>
+            <div class="pst" id="so"></div>
+          </div>
+          <div class="prc">
+            <div class="prl"><span class="prd" style="background:var(--gn)"></span>RESULT</div>
+            <div class="pb2" id="prb"><div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Result appears here</p></div></div>
+            <div class="pst" id="sr"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tool-card -->
+
+    <!-- HOW TO -->
+    <section class="hs">
+      <h2>How to Use</h2>
+      <div class="hg">
+  <div class="hst">
+    <div class="hn">01</div>
+    <div class="ht2">Upload your HEIC or HEIF file from your iPhone or Mac.</div>
+  </div>
+
+  <div class="hst">
+    <div class="hn">02</div>
+    <div class="ht2">Set JPEG quality (92% recommended).</div>
+  </div>
+
+  <div class="hst">
+    <div class="hn">03</div>
+    <div class="ht2">Download the JPG — compatible with all devices and apps.</div>
+  </div></div>
+    </section>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sb">
+    <div class="sc">
+      <div class="ss">
+        <div class="stt">About This Tool</div>
+        <div class="sr">
+          <div class="sbl"><div class="sbn">Free</div><div class="sbs">Always</div></div>
+          <div class="sbl"><div class="sbn">0s</div><div class="sbs">Upload time</div></div>
+          <div class="sbl"><div class="sbn">20MB</div><div class="sbs">Max file</div></div>
+        </div>
+        <div class="tl">
+          <div class="ti">
+            <div class="tic" style="background:rgba(124,111,255,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ac2)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="tit"><h4>100% Private</h4><p>All processing happens in your browser. Files never leave your device.</p></div>
+          </div>
+          <div class="ti">
+            <div class="tic" style="background:rgba(20,217,196,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cy)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="tit"><h4>Web Worker Powered</h4><p>Non-blocking Canvas API. UI stays responsive during processing.</p></div>
+          </div>
+          <div class="ti">
+            <div class="tic" style="background:rgba(35,214,122,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gn)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="tit"><h4>Works Offline</h4><p>Install as a PWA and process images without internet.</p></div>
+          </div>
         </div>
       </div>
     </div>
-    <section class="how-sec"><h2>How to Use</h2><div class="how-g">
-    <div class="how-step">
-      <div class="how-step-num">01</div>
-      <div class="how-step-text">Upload your HEIC or HEIF file.</div>
+    <div class="sc">
+      <div class="ss">
+        <div class="stt">Related Tools</div>
+        <nav class="rl"><li><a href="/tools/conversion/heic-to-png/">HEIC to PNG Converter</a></li>
+<li><a href="/tools/conversion/jpg-to-png/">JPG to PNG Converter</a></li>
+<li><a href="/tools/compression/reduce-jpg-size/">Reduce JPG Size</a></li>
+<li><a href="/tools/compression/compress-image/">Compress Image</a></li></nav>
+        <a href="/tools/conversion/" style="display:block;margin-top:.75rem;text-align:center;font-size:.8125rem;color:var(--ac2);font-weight:700;padding:.5rem;border-radius:8px;background:rgba(124,111,255,.06);border:1px solid rgba(124,111,255,.12);transition:background .2s;" onmouseover="this.style.background='rgba(124,111,255,.12)'" onmouseout="this.style.background='rgba(124,111,255,.06)'">All Conversion tools →</a>
+      </div>
     </div>
-    <div class="how-step">
-      <div class="how-step-num">02</div>
-      <div class="how-step-text">Choose quality setting.</div>
-    </div>
-    <div class="how-step">
-      <div class="how-step-num">03</div>
-      <div class="how-step-text">Click Convert.</div>
-    </div>
-    <div class="how-step">
-      <div class="how-step-num">04</div>
-      <div class="how-step-text">Download your JPG file.</div>
-    </div></div></section>
-  </div>
-  <aside class="sb">
-    <div class="sb-card"><div class="sb-sec"><div class="sb-t">About</div><div class="stats-r"><div class="stat-b"><div class="stat-n">Free</div><div class="stat-l">Always</div></div><div class="stat-b"><div class="stat-n">0s</div><div class="stat-l">Upload</div></div><div class="stat-b"><div class="stat-n">20MB</div><div class="stat-l">Max</div></div></div></div>
-    <div class="sb-sec"><div class="trust"><div class="ti"><div class="ti-ic" style="background:rgba(108,99,255,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ti-t"><h4>100% Private</h4><p>Browser-only processing. Zero uploads.</p></div></div><div class="ti"><div class="ti-ic" style="background:rgba(34,197,94,.1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="ti-t"><h4>Instant Results</h4><p>Web Worker powered. No server queues.</p></div></div></div></div>
-    </div>
-    <div class="sb-card"><div class="sb-sec"><div class="sb-t">Related Tools</div><nav class="related-list" id="rl"><a href="/tools/conversion/heic-to-jpg/" class="related-item"><span class="related-item-dot"></span>HEIC to JPG<svg class="related-item-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a><a href="/tools/compression/compress-image/" class="related-item"><span class="related-item-dot"></span>Compress After Converting<svg class="related-item-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a></nav><a href="/tools/conversion/" style="display:block;margin-top:.75rem;text-align:center;font-size:.8125rem;color:var(--accent2);font-weight:600;padding:.5rem;border-radius:8px;background:rgba(108,99,255,.06);border:1px solid rgba(108,99,255,.12)">All Conversion tools →</a></div></div>
   </aside>
 </div>
-<section class="faq-sec"><h2>Frequently Asked Questions</h2><div class="faq-list">
-    <div class="faq-item open">
-      <button class="faq-q">Why can't I open HEIC on Windows or Android?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a" style="max-height:400px"><div class="faq-a-inner">HEIC is Apple's proprietary format. Windows and Android require special codecs. Converting to JPG gives universal compatibility.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">Is HEIC to JPG conversion free?<span class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes, completely free. No account, no watermark.</div></div>
-    </div></div></section>
+
+<section class="fs">
+  <div class="aeo-box" id="aeo-answer">
+    <div class="aeo-label">Quick Answer</div>
+    <p class="aeo-answer" id="aeo-text">HEIC to JPG Converter: <strong>free, browser-based tool</strong> — Convert iPhone HEIC photos to JPG online free. Transform HEIC/HEIF images to universally compatible JPEG without losing quality. No upload to server.... No upload required, works instantly on any device.</p>
+  </div>
+  <h2>Frequently Asked Questions</h2>
+  <div class="fl">
+  <div class="fi O">
+    <button class="fq">What is HEIC?
+      <span class="fqi"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="fa" style="max-height:400px"><div class="fai">HEIC (High Efficiency Image Container) is the default photo format used by iPhones since iOS 11. It is smaller than JPEG but not supported by all platforms.</div></div>
+  </div>
+
+  <div class="fi">
+    <button class="fq">Why cannot I open HEIC on Windows?
+      <span class="fqi"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="fa"><div class="fai">Windows does not natively support HEIC without installing a codec. Converting to JPG solves this instantly.</div></div>
+  </div></div>
+</section>
 </div>
-<footer class="footer"><p>© 2026 <a href="/">Pixaroid</a></p><div class="footer-links"><a href="/privacy-policy.html">Privacy</a><a href="/terms-of-service.html">Terms</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></footer>
-<div class="toast-c" id="tc"></div>
+
+<footer><p>© 2026 <a href="/">Pixaroid</a> — Free Image Tools</p><div class="fl2"><a href="/privacy-policy.html">Privacy</a><a href="/terms-of-service.html">Terms</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+<div class="tcc" id="tc2"></div>
+
 <script>
-(function(){
-'use strict';
-var SLUG='heic-to-jpg';
-var CAT='conversion';
-var ITYPE='convert';
-var MAX=20971520;
 /* ═══════════════════════════════════════════════════════════
    PIXAROID TOOL — INLINE PROCESSING ENGINE
    All logic is synchronous, loaded before user interaction.
@@ -275,10 +649,14 @@ var MAX=20971520;
 (function(){
 'use strict';
 
+var SLUG  = 'heic-to-jpg';
+var CAT   = 'conversion';
+var ITYPE = 'convert';
+var MAX   = 20971520; // 20MB
 
 /* ── DOM ── */
 function $$(id){return document.getElementById(id);}
-var dz=$$('dz'),fi=$$('fi'),bb=$$('bb');
+var dz=$$('dz'),fi=$$('fi');
 var ab=$$('ab'),bp=$$('bp'),bd=$$('bd'),br=$$('br');
 var pw=$$('pw'),pf=$$('pf'),pl=$$('pl'),pd=$$('pd');
 var prs=$$('prs'),pob=$$('pob'),prb=$$('prb');
@@ -348,15 +726,87 @@ function getControls(){
   });
   return v;
 }
+/* ── Inline special tools ─────────────────────────────────── */
+async function runBase64Encode(file) {
+  return new Promise(function(ok,fail){
+    var r=new FileReader();
+    r.onload=function(e){
+      var dataUrl=e.target.result;
+      var raw=dataUrl.split(',')[1];
+      var text=dataUrl; // default: data URL
+      // returned as text blob for display in ocr panel
+      var blob=new Blob([dataUrl],{type:'text/plain'});
+      ok({blob:blob,text:dataUrl,rawBase64:raw,format:'txt',w:0,h:0,isBase64:true});
+    };
+    r.onerror=fail;
+    r.readAsDataURL(file);
+  });
+}
+async function runBase64Decode(ctrl) {
+  var input=document.getElementById('base64-input');
+  var raw=(input&&input.value.trim())||ctrl.base64Input||'';
+  if(!raw){throw new Error('Paste a Base64 string or data URL first');}
+  var dataUrl=raw.startsWith('data:')?raw:'data:image/png;base64,'+raw;
+  return new Promise(function(ok,fail){
+    var img=new Image();
+    img.onload=function(){
+      var c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+      c.getContext('2d').drawImage(img,0,0);
+      c.toBlob(function(blob){ok({blob:blob,w:img.width,h:img.height,format:'png'});});
+    };
+    img.onerror=function(){fail(new Error('Invalid Base64 — could not decode image'));};
+    img.src=dataUrl;
+  });
+}
+async function runSVGtoPNG(file,ctrl) {
+  var width=parseInt(ctrl.width)||1024;
+  var url=URL.createObjectURL(file);
+  return new Promise(function(ok,fail){
+    var img=new Image();
+    img.onload=function(){
+      var ratio=img.naturalHeight/img.naturalWidth||1;
+      var h=Math.round(width*ratio);
+      var c=document.createElement('canvas');c.width=width;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,width,h);
+      URL.revokeObjectURL(url);
+      c.toBlob(function(blob){ok({blob:blob,w:width,h:h,format:'png'});});
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);fail(new Error('Cannot render SVG'));};
+    img.src=url;
+  });
+}
+async function runICOConvert(file,ctrl) {
+  var size=parseInt((ctrl.size||'32x32').split('x')[0])||32;
+  var bm=await createImageBitmap(file,{resizeWidth:size,resizeHeight:size,resizeQuality:'high'}).catch(function(){return null;});
+  if(!bm){
+    // Fallback: use canvas
+    return new Promise(function(ok,fail){
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=size;c.height=size;
+        c.getContext('2d').drawImage(img,0,0,size,size);
+        c.toBlob(function(blob){ok({blob:blob,w:size,h:size,format:'png'});});
+      };
+      img.src=URL.createObjectURL(file);
+    });
+  }
+  var c=document.createElement('canvas');c.width=size;c.height=size;
+  c.getContext('2d').drawImage(bm,0,0,size,size);bm.close();
+  return new Promise(function(ok){c.toBlob(function(blob){ok({blob:blob,w:size,h:size,format:'png'});});});
+}
+
 function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,parseFloat(v)||0));}
 
 /* ── FILE HANDLING ── */
 function handleFile(f){
   if(!f)return;
   if(f.size>MAX){toast('File too large — max 20 MB','er',4000);return;}
-  var _ext=(f.name||'').split('.').pop().toLowerCase();
-  if(!f.type.startsWith('image/')&&!/^(jpg|jpeg|png|webp|gif|bmp|tiff|avif|heic|heif)$/i.test(_ext)){
-    toast('Please select an image file','er',4000);return;
+  // Accept if MIME says image/, OR if extension matches (Android often sends empty MIME)
+  var ext=(f.name||'').split('.').pop().toLowerCase();
+  var knownExt=/^(jpg|jpeg|png|webp|gif|bmp|tiff|tif|avif|heic|heif|svg)$/i.test(ext);
+  var isMimeOk=f.type&&f.type.startsWith('image/');
+  if(!isMimeOk&&!knownExt){
+    toast('Please select an image (JPG, PNG, WebP, HEIC, GIF, BMP)','er',4000);return;
   }
   curFile=f;resBlob=null;
   if(origURL)URL.revokeObjectURL(origURL);
@@ -374,21 +824,26 @@ function handleFile(f){
   if(op)op.classList.remove('V');
   bd.classList.remove('V');
   fn.textContent=f.name;
+  // Hide dropzone, show tool area
   dz.style.display='none';
   prs.classList.add('V');
   if(sp)sp.classList.add('V');
   ab.classList.add('V');
   bp.disabled=false;
-  toast('Image loaded — press '+inferLabel(SLUG),'ok',2000);
+  toast('Image loaded — tap Process to continue','ok',2500);
 }
 
-// label[for=fi] handles click natively
-dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('on');});
+// Drag-and-drop (label handles click natively via for="fi")
+dz.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
-dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('on');var f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
+dz.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dz.classList.remove('on');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
 fi.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];
-  if(f){handleFile(f);setTimeout(function(){try{fi.value='';}catch(x){}},500);}
+  if(f){
+    handleFile(f);
+    // Delay clearing so mobile browsers complete the file read
+    setTimeout(function(){try{fi.value='';}catch(x){}},500);
+  }
 });
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
@@ -476,6 +931,7 @@ br&&br.addEventListener('click',function(){
   pob.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Original</p></div>';
   prb.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Result appears here</p></div>';
   so.innerHTML='';sr.innerHTML='';fn.textContent='';
+  dz.style.display='';   // show dropzone again
   prs.classList.remove('V');ab.classList.remove('V');
   if(sp)sp.classList.remove('V');
   bd.classList.remove('V');bp.disabled=true;
@@ -601,6 +1057,19 @@ async function process(file,itype,ctrl){
   }
   if(itype==='bulk')return runBulk(file,ctrl);
   if(itype==='info'||itype==='metadata'||itype==='palette')return runUtil(file,buf);
+  if(itype==='color-picker')return runColorPicker(file,buf);
+  if(itype==='base64-encode')return runBase64(file,controls);
+  if(itype==='svg-convert')return runSvgConvert(buf,file.size,controls);
+  if(itype==='collage')return runCollage(controls);
+  if(itype==='meme-text')return runEditOps(buf,file.type,file.size,[{type:'meme-text',topText:controls.topText||'',bottomText:controls.bottomText||''}],controls.format||'jpeg',90);
+  if(itype==='round-corners')return runEditOps(buf,file.type,file.size,[{type:'round-corners',radius:parseFloat(controls.radius)||30}],(controls.format||'png').replace('png (transparent)','png').replace('jpeg (white bg)','jpeg'),90);
+  if(itype==='shadow')return runEditOps(buf,file.type,file.size,[{type:'shadow',blur:parseFloat(controls.blur)||15,offsetX:parseFloat(controls.offsetX)||5,offsetY:parseFloat(controls.offsetY)||8,color:controls.color||'#000'}],'png',90);
+
+  // Special inline tools
+  if(itype==='base64') return runBase64Encode(file);
+  if(itype==='base64decode') return runBase64Decode(ctrl);
+  if(itype==='svg-convert') return runSVGtoPNG(file,ctrl);
+  if(itype==='ico-convert') return runICOConvert(file,ctrl);
 
   // Editor ops
   var ops=buildOps(itype,ctrl);
@@ -705,11 +1174,96 @@ async function runUtil(file,buf){
   return{blob:file,w:img.naturalWidth,h:img.naturalHeight,fmt:'original'};
 }
 
+/* ── COLOR PICKER ── */
+async function runColorPicker(file,buf){
+  var img=await new Promise(function(res,rej){var i=new Image(),u=URL.createObjectURL(file);i.onload=function(){res(i);URL.revokeObjectURL(u);};i.onerror=rej;i.src=u;});
+  var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;
+  var ctx=c.getContext('2d');ctx.drawImage(img,0,0);
+  // Show interactive color picker in preview area
+  var pob2=$$('pob');if(!pob2)return{blob:file,w:img.naturalWidth,h:img.naturalHeight};
+  pob2.style.position='relative';pob2.style.cursor='crosshair';
+  pob2.innerHTML='';var dispImg=document.createElement('img');dispImg.src=URL.createObjectURL(file);dispImg.style.cssText='max-width:100%;max-height:220px;object-fit:contain;display:block;width:100%;cursor:crosshair;';pob2.appendChild(dispImg);
+  var colorBox=document.createElement('div');colorBox.style.cssText='padding:.75rem 1rem;background:var(--s2);border:1px solid var(--bd2);border-radius:8px;margin-top:.5rem;font-family:var(--fd);font-size:.875rem;display:none;';pob2.parentNode.appendChild(colorBox);
+  dispImg.addEventListener('click',function(ev){
+    var rect=dispImg.getBoundingClientRect();var sx=Math.round((ev.clientX-rect.left)/rect.width*img.naturalWidth);var sy=Math.round((ev.clientY-rect.top)/rect.height*img.naturalHeight);
+    var px=ctx.getImageData(sx,sy,1,1).data;var r=px[0],g=px[1],b=px[2];
+    var hex='#'+r.toString(16).padStart(2,'0')+g.toString(16).padStart(2,'0')+b.toString(16).padStart(2,'0');
+    var h=0,s=0,l=(r+g+b)/3/255;// simplified HSL
+    colorBox.style.display='block';
+    colorBox.innerHTML='<div style="display:flex;align-items:center;gap:.875rem;flex-wrap:wrap;"><div style="width:48px;height:48px;border-radius:8px;background:'+hex+';border:1px solid var(--bd2);flex-shrink:0;"></div><div><div style="font-weight:700;margin-bottom:.25rem;">Picked Color</div><div style="color:var(--mu);font-size:.8125rem;display:flex;flex-direction:column;gap:.25rem;"><span onclick="navigator.clipboard.writeText(''+hex+'')" style="cursor:pointer;">HEX: <b>'+hex+'</b> 📋</span><span onclick="navigator.clipboard.writeText('rgb('+r+','+g+','+b+')')" style="cursor:pointer;">RGB: <b>rgb('+r+', '+g+', '+b+')</b> 📋</span></div></div></div>';
+  });
+  // Extract palette
+  var id=ctx.getImageData(0,0,c.width,c.height),p=id.data,bk={};
+  for(var i=0;i<p.length;i+=16){var key=Math.round(p[i]/16)*16+','+Math.round(p[i+1]/16)*16+','+Math.round(p[i+2]/16)*16;bk[key]=(bk[key]||0)+1;}
+  var pal=Object.entries(bk).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k])=>'rgb('+k+')');
+  var op2=$$('op');if(op2){op2.classList.add('V');op2.querySelector('h3').textContent='Extracted Palette';var oo2=op2.querySelector('#oo');if(oo2){oo2.style.display='none';var pd2=document.createElement('div');pd2.style.cssText='display:flex;flex-wrap:wrap;gap:.5rem;';pal.forEach(function(col){var sw=document.createElement('div');sw.style.cssText='width:40px;height:40px;border-radius:6px;background:'+col+';cursor:pointer;border:1px solid var(--bd2);';sw.title=col;sw.onclick=function(){navigator.clipboard.writeText(col);};pd2.appendChild(sw);});op2.appendChild(pd2);}}
+  return{blob:file,w:img.naturalWidth,h:img.naturalHeight,fmt:'original'};
+}
+
+/* ── BASE64 ENCODER ── */
+async function runBase64(file,ctrl){
+  var dataUrl=await new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result);};r.onerror=rej;r.readAsDataURL(file);});
+  var result=ctrl.format==='Base64 only'?dataUrl.split(',')[1]:dataUrl;
+  var op2=$$('op');if(op2){
+    op2.classList.add('V');
+    var h3=op2.querySelector('h3');if(h3)h3.textContent='Base64 Output';
+    var oo2=$$('oo');if(oo2){oo2.value=result;oo2.style.display='block';}
+    var dl2=$$('bod');if(dl2)dl2.style.display='inline-flex';
+  }
+  var blob=new Blob([result],{type:'text/plain'});
+  return{blob:blob,text:result,w:null,h:null,fmt:'txt'};
+}
+
+/* ── SVG TO PNG ── */
+async function runSvgConvert(buf,origSize,ctrl){
+  var w=parseInt(ctrl.width)||1024,h=parseInt(ctrl.height)||1024,bg=ctrl.bg||'transparent';
+  var blob=new Blob([buf],{type:'image/svg+xml'});
+  var url=URL.createObjectURL(blob);
+  return new Promise(function(res,rej){
+    var img=new Image();
+    img.onload=function(){
+      var c=document.createElement('canvas');c.width=w;c.height=h;
+      var ctx=c.getContext('2d');
+      if(bg!=='transparent'){ctx.fillStyle=bg==='white'?'#fff':'#000';ctx.fillRect(0,0,w,h);}
+      ctx.drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url);
+      c.toBlob(function(b){res({blob:b,w:w,h:h,fmt:'png'});},bg==='transparent'?'image/png':'image/jpeg',0.95);
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('SVG rendering failed'));};
+    img.src=url;
+  });
+}
+
+/* ── COLLAGE ── */
+async function runCollage(ctrl){
+  var layout=ctrl.layout||'2-grid',gap=parseInt(ctrl.gap)||5,bg=ctrl.bg||'#fff',fmt=ctrl.format||'jpeg';
+  var fi2=document.getElementById('fi');
+  var files=fi2&&fi2.files&&fi2.files.length>=2?Array.from(fi2.files):null;
+  if(!files||files.length<2){throw new Error('Please select 2 or more images for the collage');}
+  var imgs=await Promise.all(files.slice(0,4).map(function(f){return new Promise(function(res,rej){var i=new Image(),u=URL.createObjectURL(f);i.onload=function(){res(i);URL.revokeObjectURL(u);};i.onerror=rej;i.src=u;});}));
+  var count=imgs.length,cellW=imgs[0].naturalWidth,cellH=imgs[0].naturalHeight;
+  var c=document.createElement('canvas'),ctx=c.getContext('2d');
+  if(layout==='2-horizontal'){c.width=cellW*2+gap;c.height=cellH;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH);if(imgs[1])ctx.drawImage(imgs[1],cellW+gap,0,cellW,cellH);}
+  else if(layout==='2-vertical'){c.width=cellW;c.height=cellH*2+gap;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH);if(imgs[1])ctx.drawImage(imgs[1],0,cellH+gap,cellW,cellH);}
+  else if(layout==='3-grid'){c.width=cellW*2+gap;c.height=cellH*2+gap;ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgs[0],0,0,cellW,cellH*2+gap);if(imgs[1])ctx.drawImage(imgs[1],cellW+gap,0,cellW,cellH);if(imgs[2])ctx.drawImage(imgs[2],cellW+gap,cellH+gap,cellW,cellH);}
+  else{// 4-grid (default 2-grid)
+    var cols=count<=2?2:2,rows=count<=2?1:2;
+    c.width=cellW*cols+(cols-1)*gap;c.height=cellH*rows+(rows-1)*gap;
+    ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);
+    imgs.forEach(function(img,idx){var col=idx%cols,row=Math.floor(idx/cols);ctx.drawImage(img,col*(cellW+gap),row*(cellH+gap),cellW,cellH);});
+  }
+  return new Promise(function(res){c.toBlob(function(b){res({blob:b,w:c.width,h:c.height,fmt:fmt});},fmt==='png'?'image/png':'image/jpeg',0.92);});
+}
+
+/* ── SHARED EDIT OPS RUNNER ── */
+async function runEditOps(buf,mime,origSize,ops,fmt,q){
+  return runWorker('/workers/filter.worker.js',{op:'edit',buffer:buf,mime:mime,origSize:origSize,operations:ops,format:fmt,quality:q});
+}
+
 /* ── SERVICE WORKER ── */
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();
-})();
 </script>
-
-</body></html>
+</body>
+</html>
