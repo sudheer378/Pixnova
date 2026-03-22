@@ -12,6 +12,25 @@
 > the Canvas API and Web Workers. No images are uploaded to any server.
 > No account or signup required. Works on all devices including mobile.
 
+## PDF Tools
+
+Pixaroid includes 11 free browser-based PDF tools that require no file upload.
+
+### High-Traffic PDF Tools
+
+- **PDF Editor** — `/tools/pdf-tools/pdf-editor/` — Add text, images, shapes, whiteout, drawings and signatures directly on PDF pages
+- **Compress PDF** — `/tools/pdf-tools/pdf-compress/` — Reduce PDF file size by compressing embedded images; text stays sharp
+- **JPG to PDF** — `/tools/pdf-tools/jpg-to-pdf/` — Convert JPEG images to PDF; supports multi-page from multiple images
+- **PDF to JPG** — `/tools/pdf-tools/pdf-to-jpg/` — Extract PDF pages as high-quality JPEG images (72/150/300 DPI)
+- **Merge PDFs** — `/tools/pdf-tools/pdf-merge/` — Combine up to 10 PDF files into one; drag to reorder
+- **Split PDF** — `/tools/pdf-tools/pdf-split/` — Extract specific pages or split every page individually
+- **PNG to PDF** — `/tools/pdf-tools/png-to-pdf/` — PNG images to multi-page PDF
+- **PDF to PNG** — `/tools/pdf-tools/pdf-to-png/` — PDF pages to lossless PNG files
+- **Rotate PDF** — `/tools/pdf-tools/pdf-rotate/` — Rotate pages 90°/180°/270°, all pages or specific pages
+- **Watermark PDF** — `/tools/pdf-tools/pdf-watermark/` — Add text watermarks with custom colour, opacity, angle
+- **PDF to Text (OCR)** — `/tools/pdf-tools/pdf-to-word/` — Extract text from PDFs including scanned documents
+
+
 ## What Pixaroid Is
 
 Pixaroid is a web application at https://pixaroid.vercel.app that lets users

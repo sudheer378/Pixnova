@@ -2278,6 +2278,288 @@ const TOOLS_CONFIG = [
     priority: 0.85,
   },
 
+
+  // ── PDF TOOLS (High Traffic) ────────────────────────────────
+
+  {
+    slug: 'jpg-to-pdf',
+    category: 'pdf-tools',
+    title: 'JPG to PDF Converter',
+    description: 'Convert JPG and JPEG images to PDF online free. Combine multiple images into one PDF. Browser-based, no upload required.',
+    interfaceType: 'pdf-create',
+    acceptedFormats: ['image/jpeg','image/png','image/webp'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'pageSize', type:'select', label:'Page Size', options:['A4','Letter','A3','Custom'], default:'A4' },
+      { id:'orientation', type:'select', label:'Orientation', options:['Portrait','Landscape'], default:'Portrait' },
+      { id:'margin', type:'range', label:'Margin', min:0, max:50, default:10, unit:'px' },
+      { id:'quality', type:'range', label:'Image Quality', min:50, max:100, default:90, unit:'%' },
+    ],
+    instructions: [
+      'Upload one or more JPG images — drag multiple files at once.',
+      'Set page size (A4 is standard for most uses), orientation, and margin.',
+      'Click Convert to PDF to generate a PDF with each image on its own page.',
+      'Download your PDF file.',
+    ],
+    faqs: [
+      { q:'Can I convert multiple JPG images to one PDF?', a:'Yes. Upload multiple images and they will each become a separate page in the PDF. Drag to reorder pages before converting.' },
+      { q:'What PDF page size should I use?', a:'A4 (210mm x 297mm) is the global standard. Use Letter (8.5" x 11") for US documents. A3 is for large format prints.' },
+      { q:'Is the JPG to PDF conversion free?', a:'Yes — completely free, no account, no watermark, no upload. All conversion runs in your browser.' },
+    ],
+    relatedTools: ['png-to-pdf','image-to-pdf','pdf-to-jpg','pdf-compress'],
+    priority: 0.95,
+  },
+
+  {
+    slug: 'png-to-pdf',
+    category: 'pdf-tools',
+    title: 'PNG to PDF Converter',
+    description: 'Convert PNG images to PDF online free. Preserves transparency with white background. Multiple pages supported.',
+    interfaceType: 'pdf-create',
+    acceptedFormats: ['image/png','image/jpeg','image/webp'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'pageSize', type:'select', label:'Page Size', options:['A4','Letter','A3'], default:'A4' },
+      { id:'orientation', type:'select', label:'Orientation', options:['Portrait','Landscape'], default:'Portrait' },
+      { id:'margin', type:'range', label:'Margin', min:0, max:50, default:10, unit:'px' },
+    ],
+    instructions: [
+      'Upload your PNG image or multiple PNG files.',
+      'Set page size and orientation.',
+      'Click Convert to PDF.',
+      'Download your PDF.',
+    ],
+    faqs: [
+      { q:'Does the PDF keep PNG transparency?', a:'PDF does not natively support transparency in the same way as PNG. Transparent areas are rendered with a white background in the PDF.' },
+    ],
+    relatedTools: ['jpg-to-pdf','image-to-pdf','pdf-to-png'],
+    priority: 0.92,
+  },
+
+  {
+    slug: 'pdf-to-jpg',
+    category: 'pdf-tools',
+    title: 'PDF to JPG Converter',
+    description: 'Convert PDF pages to JPG images online free. Extract each page as a separate JPG. Browser-based, no server upload.',
+    interfaceType: 'pdf-extract',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['jpeg'],
+    controls: [
+      { id:'quality', type:'range', label:'Image Quality', min:50, max:100, default:90, unit:'%' },
+      { id:'dpi', type:'select', label:'Resolution', options:['72 DPI (Screen)','150 DPI (Standard)','300 DPI (Print)'], default:'150 DPI (Standard)' },
+    ],
+    instructions: [
+      'Upload your PDF file (up to 20MB).',
+      'Set the output resolution — 150 DPI is good for web, 300 DPI for print.',
+      'Click Convert to JPG.',
+      'Download individual JPG images or all as a ZIP file.',
+    ],
+    faqs: [
+      { q:'How many PDF pages can I convert?', a:'Up to 50 pages per PDF. Each page becomes a separate JPG file. All processing happens in your browser using PDF.js.' },
+      { q:'What resolution should I use for PDF to JPG?', a:'72 DPI for web/screen display. 150 DPI for standard quality. 300 DPI for print-quality output.' },
+    ],
+    relatedTools: ['pdf-to-png','pdf-to-image','jpg-to-pdf','pdf-compress'],
+    priority: 0.94,
+  },
+
+  {
+    slug: 'pdf-to-png',
+    category: 'pdf-tools',
+    title: 'PDF to PNG Converter',
+    description: 'Convert PDF pages to PNG images with transparency online free. Extract PDF pages as high-quality PNG files.',
+    interfaceType: 'pdf-extract',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['png'],
+    controls: [
+      { id:'dpi', type:'select', label:'Resolution', options:['72 DPI','150 DPI','300 DPI'], default:'150 DPI' },
+    ],
+    instructions: [
+      'Upload your PDF.',
+      'Choose output resolution.',
+      'Click Convert to PNG.',
+      'Download your PNG files.',
+    ],
+    faqs: [
+      { q:'Why convert PDF to PNG instead of JPG?', a:'PNG is lossless and supports transparency. Use PNG when you need pixel-perfect quality or plan to edit the images further.' },
+    ],
+    relatedTools: ['pdf-to-jpg','png-to-pdf','image-to-pdf'],
+    priority: 0.91,
+  },
+
+  {
+    slug: 'pdf-compress',
+    category: 'pdf-tools',
+    title: 'Compress PDF',
+    description: 'Reduce PDF file size online free by compressing embedded images. Keeps text and vector graphics sharp. Browser-based.',
+    interfaceType: 'pdf-compress',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'quality', type:'select', label:'Compression Level', options:['High Quality (72 DPI)','Balanced (150 DPI)','Maximum Compression (96 DPI)'], default:'Balanced (150 DPI)' },
+    ],
+    instructions: [
+      'Upload your PDF file.',
+      'Choose compression level — Balanced reduces size by 40-70% while keeping readable quality.',
+      'Click Compress PDF.',
+      'Download your smaller PDF.',
+    ],
+    faqs: [
+      { q:'How much can I compress a PDF?', a:'PDFs with many photos can be reduced by 50-80%. PDFs with mostly text compress very little since text is already compact.' },
+      { q:'Will text quality be affected?', a:'No — only embedded images are compressed. Text, vectors, and graphics remain perfectly sharp.' },
+    ],
+    relatedTools: ['jpg-to-pdf','pdf-to-jpg','image-to-pdf'],
+    priority: 0.96,
+  },
+
+  {
+    slug: 'pdf-merge',
+    category: 'pdf-tools',
+    title: 'Merge PDF Files',
+    description: 'Combine multiple PDF files into one PDF online free. Drag to reorder pages. Browser-based, no upload to server.',
+    interfaceType: 'pdf-merge',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [],
+    instructions: [
+      'Upload two or more PDF files.',
+      'Drag and drop to reorder them if needed.',
+      'Click Merge PDFs.',
+      'Download your combined PDF.',
+    ],
+    faqs: [
+      { q:'How many PDFs can I merge at once?', a:'Up to 10 PDF files per merge. All processing happens in your browser using PDF-lib.' },
+      { q:'Will the merged PDF be the same quality as the originals?', a:'Yes — merging PDFs does not re-encode content. Quality is identical to the source files.' },
+    ],
+    relatedTools: ['pdf-compress','pdf-to-jpg','jpg-to-pdf'],
+    priority: 0.94,
+  },
+
+  {
+    slug: 'pdf-split',
+    category: 'pdf-tools',
+    title: 'Split PDF',
+    description: 'Split a PDF into individual pages or custom page ranges online free. Extract specific pages as separate PDFs.',
+    interfaceType: 'pdf-split',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'mode', type:'select', label:'Split Mode', options:['Every Page','Custom Range'], default:'Every Page' },
+      { id:'range', type:'text', label:'Page Range (e.g. 1-3,5,7-9)', default:'', placeholder:'1-3,5,7-9' },
+    ],
+    instructions: [
+      'Upload your PDF file.',
+      'Choose split mode: every page or custom range.',
+      'Click Split PDF.',
+      'Download individual pages or a ZIP of all pages.',
+    ],
+    faqs: [
+      { q:'Can I extract just specific pages from a PDF?', a:'Yes — enter a page range like "1-3,5,8-10" to extract only those pages.' },
+    ],
+    relatedTools: ['pdf-merge','pdf-to-jpg','pdf-compress'],
+    priority: 0.91,
+  },
+
+  {
+    slug: 'pdf-rotate',
+    category: 'pdf-tools',
+    title: 'Rotate PDF Pages',
+    description: 'Rotate PDF pages 90°, 180° or 270° online free. Rotate all pages or specific pages. Browser-based.',
+    interfaceType: 'pdf-rotate',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'angle', type:'select', label:'Rotation', options:['90° Clockwise','180°','90° Counter-clockwise'], default:'90° Clockwise' },
+      { id:'pages', type:'text', label:'Pages (leave blank for all)', default:'', placeholder:'All pages' },
+    ],
+    instructions: [
+      'Upload your PDF.',
+      'Choose rotation angle.',
+      'Optionally specify which pages to rotate.',
+      'Download rotated PDF.',
+    ],
+    faqs: [
+      { q:'Can I rotate only some pages in a PDF?', a:'Yes — enter specific page numbers (e.g. "1,3,5") to rotate only those pages.' },
+    ],
+    relatedTools: ['pdf-split','pdf-merge','pdf-compress'],
+    priority: 0.88,
+  },
+
+  {
+    slug: 'pdf-watermark',
+    category: 'pdf-tools',
+    title: 'Add Watermark to PDF',
+    description: 'Add text or image watermarks to PDF pages online free. Customize position, opacity, and rotation. Browser-based.',
+    interfaceType: 'pdf-watermark',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [
+      { id:'text', type:'text', label:'Watermark Text', default:'CONFIDENTIAL', placeholder:'Enter watermark text' },
+      { id:'opacity', type:'range', label:'Opacity', min:5, max:100, default:30, unit:'%' },
+      { id:'angle', type:'range', label:'Rotation', min:-90, max:90, default:-45, unit:'°' },
+      { id:'color', type:'color', label:'Text Color', default:'#FF0000' },
+    ],
+    instructions: [
+      'Upload your PDF.',
+      'Enter your watermark text (e.g. CONFIDENTIAL, DRAFT).',
+      'Set opacity, rotation, and color.',
+      'Download watermarked PDF.',
+    ],
+    faqs: [
+      { q:'Can I add an image as a watermark?', a:'Currently only text watermarks are supported. For image watermarks, convert PDF to images first, add watermark, then convert back.' },
+    ],
+    relatedTools: ['pdf-merge','pdf-compress','add-watermark'],
+    priority: 0.89,
+  },
+
+  {
+    slug: 'pdf-to-word',
+    category: 'pdf-tools',
+    title: 'PDF to Text (OCR)',
+    description: 'Extract text from PDF files online free using OCR. Works on scanned PDFs and image-based PDFs. Browser-based.',
+    interfaceType: 'pdf-ocr',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['txt'],
+    controls: [
+      { id:'language', type:'select', label:'Language', options:['English','Spanish','French','German','Hindi','Arabic','Chinese'], default:'English' },
+    ],
+    instructions: [
+      'Upload your PDF.',
+      'Select the language for OCR recognition.',
+      'Click Extract Text.',
+      'Copy or download the extracted text.',
+    ],
+    faqs: [
+      { q:'Does this work on scanned PDFs?', a:'Yes — the tool renders each PDF page as an image and applies Tesseract.js OCR to extract text. Works on scanned documents.' },
+    ],
+    relatedTools: ['pdf-to-jpg','image-to-text-ocr','pdf-split'],
+    priority: 0.90,
+  },
+
+  {
+    slug: 'pdf-editor',
+    category: 'pdf-tools',
+    title: 'PDF Editor',
+    description: 'Edit PDF content online free. Add text, images, shapes, whiteout, freehand drawings and digital signatures directly on PDF pages. Browser-based — no upload.',
+    interfaceType: 'pdf-editor',
+    acceptedFormats: ['application/pdf'],
+    outputFormats: ['pdf'],
+    controls: [],
+    instructions: [
+      'Upload your PDF by clicking "Open PDF" or dropping the file.',
+      'Choose a tool from the left toolbar: Text, Image, Shape, Whiteout, Draw or Signature.',
+      'Click on the PDF page to add elements. Drag to move, use handles to resize.',
+      'Double-click text to edit its content.',
+      'Click "Download PDF" to save your edited document.',
+    ],
+    faqs: [
+      { q:'Can I change existing text in a PDF?', a:'Use the Whiteout tool to cover existing text with a white block, then add new text on top with the Text tool. This is how browser-based PDF editing works without server-side processing.' },
+      { q:'Is the PDF editor free?', a:'Yes — completely free, no account, no watermark, no upload. All editing runs in your browser using PDF-lib.' },
+      { q:'What can I add to a PDF?', a:'Text (with custom font, size, colour), images (JPG/PNG), rectangles, circles, lines, freehand drawings, whiteout blocks, and digital signature drawings.' },
+      { q:'Will my PDF look the same after editing?', a:'Yes — the original PDF content is preserved. New elements are added as an overlay layer on top of the existing content.' },
+    ],
+    relatedTools: ['pdf-compress','pdf-merge','pdf-watermark','add-watermark'],
+    priority: 0.97,
+  },
 ];
 export default TOOLS_CONFIG;
 

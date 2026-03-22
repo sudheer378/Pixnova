@@ -1,5 +1,5 @@
 {
-  "name": "Pixaroid \u2014 Free Image Tools",
+  "name": "Pixaroid \u2014 Free Image & PDF Tools",
   "short_name": "Pixaroid",
   "description": "85+ free browser-based image tools. Compress, convert, resize, edit, AI enhance. Zero uploads.",
   "start_url": "/",
@@ -59,6 +59,18 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "PDF Editor",
+      "short_name": "PDF Edit",
+      "description": "Edit PDFs online free",
+      "url": "/tools/pdf-tools/pdf-editor/"
+    },
+    {
+      "name": "PDF Compress",
+      "short_name": "Compress PDF",
+      "description": "Reduce PDF file size",
+      "url": "/tools/pdf-tools/pdf-compress/"
     }
   ],
   "categories": [
