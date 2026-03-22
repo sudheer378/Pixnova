@@ -142,6 +142,5 @@ Crawl-delay: 5
 # ── Sitemaps ────────────────────────────────────────────────
 Sitemap: https://pixaroid.vercel.app/sitemap.xml
 Sitemap: https://pixaroid.vercel.app/sitemap-tools.xml
-
-# ── Host ────────────────────────────────────────────────────
-Host: https://pixaroid.vercel.app
+Sitemap: https://pixaroid.vercel.app/sitemap-guides.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-categories.xml
