@@ -131,5 +131,11 @@
       "source": "/guides",
       "destination": "/guides/index.html"
     }
+  ],
+  "errors": [
+    {
+      "statusCode": 404,
+      "destination": "/404.html"
+    }
   ]
 }

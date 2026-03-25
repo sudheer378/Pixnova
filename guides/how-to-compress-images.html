@@ -46,6 +46,11 @@
     .ad-placeholder{border:1.5px dashed rgba(79,70,229,.2);border-radius:.625rem;background:rgba(79,70,229,.03);display:flex;align-items:center;justify-content:center;min-height:90px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:rgba(79,70,229,.4);margin:1.5rem 0;}
     footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.8125rem;color:var(--muted);}footer a{color:var(--brand);}
   </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+body,h1,h2,h3,h4,p,a,button{font-family:'Plus Jakarta Sans',sans-serif !important;}
+</style>
 </head>
 <body>
 <header class="navbar"><div class="navbar-inner">
@@ -183,6 +188,24 @@
   b.addEventListener('click',()=>{const d=!r.classList.contains('dark');r.classList.toggle('dark',d);localStorage.setItem('pxn-theme',d?'dark':'light');});
   // Auto-init ads module
   import('/js/modules/ads.js').then(m=>m.autoInjectAds()).catch(()=>{});
+})();
+</script>
+<script src="/js/modules/level2.js" defer></script>
+<script>
+(function(){
+// Back to top
+var btn=document.createElement('button');
+btn.id='btt';btn.setAttribute('aria-label','Back to top');
+btn.style.cssText='position:fixed;bottom:5rem;right:1.25rem;width:40px;height:40px;border-radius:50%;background:rgba(124,111,255,.85);backdrop-filter:blur(8px);border:1px solid rgba(124,111,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:90;box-shadow:0 4px 16px rgba(124,111,255,.35);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;';
+btn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>';
+document.body.appendChild(btn);
+window.addEventListener('scroll',function(){var s=window.scrollY>400;btn.style.opacity=s?'1':'0';btn.style.transform=s?'translateY(0)':'translateY(8px)';btn.style.pointerEvents=s?'all':'none';},{passive:true});
+btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+// Scroll reveal
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.guide-section,.faq-item,.step').forEach(function(el,i){el.style.opacity='0';el.style.transform='translateY(14px)';el.style.transition='opacity .5s ease '+(i*.05)+'s,transform .5s ease '+(i*.05)+'s';io.observe(el);});
+}
 })();
 </script>
 </body></html>
