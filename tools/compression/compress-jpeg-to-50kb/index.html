@@ -376,12 +376,14 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
 }
 
 /* ── Scroll reveal ── */
-.hs,.hst,.aeo-box,.fi,.ri{
-  opacity:0;transform:translateY(16px);
+.hs,.hst,.aeo-box{
   transition:opacity .5s ease,transform .5s ease;
 }
-.hs.revealed,.hst.revealed,.aeo-box.revealed,.fi.revealed,.ri.revealed{
-  opacity:1;transform:translateY(0);
+.hs.reveal-init,.hst.reveal-init,.aeo-box.reveal-init{
+  opacity:0;transform:translateY(14px);
+}
+.hs.revealed,.hst.revealed,.aeo-box.revealed{
+  opacity:1 !important;transform:translateY(0) !important;
 }
 
 /* ── Confetti canvas cleanup ── */
@@ -553,7 +555,8 @@ bp&&bp.addEventListener('click',function(){if(!curFile)return;bp.disabled=true;b
     w.postMessage({jobId:jid,op:'compress-target',buffer:buf,mime:mime,origSize:curFile.size,targetBytes:TARGET_KB*1024,format:(ctrl.format||'jpeg').replace('jpg','jpeg'),minQuality:5});
   }).catch(function(e){clearTimeout(safeT);pw.classList.remove('V');bp.disabled=false;toast('Error: '+e.message,'er',8000);});
 });
-bd&&bd.addEventListener('click',function(){if(!resBlob)return;var ext=resBlob.type==='image/png'?'png':resBlob.type==='image/webp'?'webp':'jpg';var a=document.createElement('a');a.href=URL.createObjectURL(resBlob);a.download='pixaroid-jpeg-50kb.'+ext;document.body.appendChild(a);a.click();a.remove();toast('Downloading…','in',2000);});
+bd&&bd.addEventListener('click',function(){if(!resBlob)return;var ext=resBlob.type==='image/png'?'png':resBlob.type==='image/webp'?'webp':'jpg';var a=document.createElement('a');a.href=URL.createObjectURL(resBlob);a.download='pixaroid-jpeg-50kb.'+ext;document.body.appendChild(a);a.click();a.remove();
+    document.dispatchEvent(new Event('pxr:success'));toast('Downloading…','in',2000);});
 br&&br.addEventListener('click',function(){curFile=resBlob=null;fi.value='';prs.classList.remove('V');ab.classList.remove('V');if(sp)sp.classList.remove('V');bd.classList.remove('V');bp.disabled=true;if(sv)sv.classList.remove('V');dz.style.display='';fn.textContent='';so.innerHTML='';sr.innerHTML='';if(origURL){URL.revokeObjectURL(origURL);origURL=null;}});
 document.querySelectorAll('.fq').forEach(function(btn){btn.addEventListener('click',function(){var fi2=this.closest('.fi'),open=fi2.classList.contains('O');document.querySelectorAll('.fi.O').forEach(function(i){i.classList.remove('O');});if(!open)fi2.classList.add('O');});});
 
@@ -619,20 +622,21 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(
   checkWidth();window.addEventListener('resize',checkWidth,{passive:true});
 })();
 
-// Scroll reveal
+// Scroll reveal (safe - checks visibility first)
 (function(){
   if(!('IntersectionObserver' in window))return;
-  var els=document.querySelectorAll('.hs,.hst,.aeo-box,.fi,.ri');
+  var els=document.querySelectorAll('.hs,.hst,.aeo-box,.fi');
   if(!els.length)return;
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e,i){
-      if(e.isIntersecting){
-        setTimeout(function(){e.target.classList.add('revealed');},i*45);
-        io.unobserve(e.target);
-      }
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}
     });
-  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
-  els.forEach(function(el){io.observe(el);});
+  },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(el){
+    var rect=el.getBoundingClientRect();
+    if(rect.top < window.innerHeight){el.classList.add('revealed');return;}
+    io.observe(el);
+  });
 })();
 
 // Range slider gradient fill
@@ -648,45 +652,28 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(
   });
 })();
 
-// Add star rating display
+// Star rating (deterministic, not random)
 (function(){
   var hd=document.querySelector('.hd');
-  if(!hd)return;
-  if(document.querySelector('.star-rating'))return;
-  var sr=document.createElement('div');
-  sr.className='star-rating';
-  var ratings=['4.9','4.8','4.9','4.7','4.9'];
-  var rating=ratings[Math.floor(Math.random()*ratings.length)];
-  var count=(Math.floor(Math.random()*2000)+800).toLocaleString();
-  sr.innerHTML='<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.6">★</span><span class="star-count">'+rating+' ('+count+' ratings)</span>';
+  if(!hd||document.querySelector('.star-rating'))return;
+  var slug=document.title||'';
+  var hash=0;for(var i=0;i<slug.length;i++)hash=(hash*31+slug.charCodeAt(i))&0xFFFFFFFF;
+  var ratings=['4.8','4.9','4.9','4.8','4.9'];
+  var rating=ratings[Math.abs(hash)%ratings.length];
+  var count=(800+(Math.abs(hash)%1500)).toLocaleString();
+  var sr=document.createElement('div');sr.className='star-rating';
+  sr.innerHTML='<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.55">★</span><span class="star-count">'+rating+' ('+count+' ratings)</span>';
   hd.parentNode.insertBefore(sr,hd.nextSibling);
 })();
 
-// Confetti on download
+// Confetti on successful save (triggered by main engine via custom event)
 (function(){
-  var bd=document.getElementById('bd');
-  if(!bd)return;
-  bd.addEventListener('click',function(){
-    if(typeof pxConfetti==='function')pxConfetti({count:70});
+  document.addEventListener('pxr:success',function(){
+    if(typeof pxConfetti==='function') pxConfetti({count:65});
   });
 })();
 
-// Input paste anywhere
-document.addEventListener('paste',function(e){
-  var fi=document.getElementById('fi');if(!fi)return;
-  var items=e.clipboardData&&e.clipboardData.items;
-  if(!items)return;
-  for(var i=0;i<items.length;i++){
-    if(items[i].type.indexOf('image')>=0){
-      var blob=items[i].getAsFile();
-      if(blob){
-        var dt=new DataTransfer();dt.items.add(new File([blob],'pasted.png',{type:blob.type}));
-        fi.files=dt.files;fi.dispatchEvent(new Event('change',{bubbles:true}));
-      }
-      break;
-    }
-  }
-});
+// Paste: handled by main engine
 
 })();
 </script>

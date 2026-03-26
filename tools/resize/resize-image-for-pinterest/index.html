@@ -502,12 +502,14 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
 }
 
 /* ── Scroll reveal ── */
-.hs,.hst,.aeo-box,.fi,.ri{
-  opacity:0;transform:translateY(16px);
+.hs,.hst,.aeo-box{
   transition:opacity .5s ease,transform .5s ease;
 }
-.hs.revealed,.hst.revealed,.aeo-box.revealed,.fi.revealed,.ri.revealed{
-  opacity:1;transform:translateY(0);
+.hs.reveal-init,.hst.reveal-init,.aeo-box.reveal-init{
+  opacity:0;transform:translateY(14px);
+}
+.hs.revealed,.hst.revealed,.aeo-box.revealed{
+  opacity:1 !important;transform:translateY(0) !important;
 }
 
 /* ── Confetti canvas cleanup ── */
