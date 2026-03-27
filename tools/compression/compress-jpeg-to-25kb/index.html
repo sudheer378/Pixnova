@@ -677,4 +677,19 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(
 
 })();
 </script>
+<script>
+// Mobile dropzone fix - explicit click triggers file picker
+(function(){
+  var dz2=document.getElementById('dz');
+  var fi2=document.getElementById('fi');
+  if(!dz2||!fi2)return;
+  dz2.addEventListener('click',function(e){
+    if(e.target===dz2||e.target.closest('label')===dz2){
+      e.preventDefault();fi2.click();
+    }
+  });
+  dz2.addEventListener('touchend',function(e){
+    e.preventDefault();fi2.click();
+  },{passive:false});
+})();</script>
 </body></html>

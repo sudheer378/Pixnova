@@ -905,7 +905,7 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
 var SLUG  = 'png-to-pdf';
 var CAT   = 'pdf-tools';
 var ITYPE = 'pdf-create';
-var MAX   = 20971520; // 20MB
+var MAX = 20971520; // 20MB // 20MB
 
 /* ── DOM ── */
 function $$(id){return document.getElementById(id);}
@@ -1094,10 +1094,10 @@ fi.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];
   if(f){
     handleFile(f);
-    // Delay clearing so mobile browsers complete the file read
-    setTimeout(function(){try{fi.value='';}catch(x){}},500);
+    setTimeout(function(){try{fi.value='';}catch(ex){}},800);
   }
 });
+fi.addEventListener('click',function(){this.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
   var img=items.find(function(i){return i.type.startsWith('image/');});
@@ -1265,8 +1265,67 @@ function runWorker(path,payload){
 ══════════════════════════════════════════════════════════ */
 async function process(file,itype,ctrl){
   if(!itype||itype==='auto')itype=guessItype(SLUG);
-  var mime=file.type||'image/jpeg';
+  var mime=file.type||(file.name&&file.name.endsWith('.pdf')?'application/pdf':'image/jpeg');
   var buf=await readBuf(file);
+
+  // PDF Worker routes
+  if(itype==='pdf-compress'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-compress',buffer:buf,mime:'application/pdf',origSize:file.size,
+      quality:clamp(ctrl.quality||72,1,100),dpi:parseInt(ctrl.dpi)||72,
+    });
+  }
+  if(itype==='pdf-extract'||itype==='pdf-to-jpg'||itype==='pdf-to-png'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-extract',buffer:buf,mime:'application/pdf',origSize:file.size,
+      format:ctrl.format||'jpeg',dpi:parseInt(ctrl.dpi)||150,
+      page:parseInt(ctrl.page)||0,
+    });
+  }
+  if(itype==='pdf-merge'){
+    // Merge: collect all files
+    var fi2=document.getElementById('fi');
+    var files2=fi2&&fi2.files&&fi2.files.length>1?fi2.files:[fi2&&fi2.files&&fi2.files[0]].filter(Boolean);
+    var bufs=await Promise.all(Array.from(files2).map(function(f2){return readBuf(f2);}));
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-merge',buffers:bufs,origSize:file.size,
+    });
+  }
+  if(itype==='pdf-split'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-split',buffer:buf,mime:'application/pdf',origSize:file.size,
+      pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-rotate'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-rotate',buffer:buf,mime:'application/pdf',origSize:file.size,
+      angle:parseInt(ctrl.angle)||90,pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-watermark'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-watermark',buffer:buf,mime:'application/pdf',origSize:file.size,
+      text:ctrl.text||'Confidential',fontSize:parseInt(ctrl.fontSize)||48,
+      color:ctrl.color||'#FF0000',opacity:clamp(ctrl.opacity||30,5,100),
+      angle:parseInt(ctrl.angle)||45,pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-ocr'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-ocr',buffer:buf,mime:'application/pdf',origSize:file.size,
+      language:ctrl.language||'eng',
+    });
+  }
+  if(itype==='pdf-create'){
+    // image → PDF (jpg-to-pdf, png-to-pdf)
+    var mime2=file.type||'image/jpeg';
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-create',buffer:buf,mime:mime2,origSize:file.size,
+      pageSize:ctrl.pageSize||'A4',fit:ctrl.fit||'contain',
+    });
+  }
+
 
   if(itype==='compress'){
     return runWorker('/workers/compress.worker.js',{
@@ -1521,6 +1580,25 @@ if('ontouchstart' in window){
   if(dzEl){dzEl.style.webkitTapHighlightColor='transparent';}
   document.addEventListener('touchstart',function(){},{passive:true});
 }
+
+// Mobile dropzone fix - explicit click triggers file picker
+(function(){
+  var dz2=document.getElementById('dz');
+  var fi2=document.getElementById('fi');
+  if(!dz2||!fi2)return;
+  // On mobile, label click may not trigger file input - add backup
+  dz2.addEventListener('click',function(e){
+    if(e.target===dz2||e.target.closest('label')===dz2){
+      e.preventDefault();
+      fi2.click();
+    }
+  });
+  // Touch: prevent double-tap zoom and ensure tap opens picker
+  dz2.addEventListener('touchend',function(e){
+    e.preventDefault();
+    fi2.click();
+  },{passive:false});
+})();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();

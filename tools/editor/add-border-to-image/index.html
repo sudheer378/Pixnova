@@ -1110,10 +1110,10 @@ fi.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];
   if(f){
     handleFile(f);
-    // Delay clearing so mobile browsers complete the file read
-    setTimeout(function(){try{fi.value='';}catch(x){}},500);
+    setTimeout(function(){try{fi.value='';}catch(ex){}},800);
   }
 });
+fi.addEventListener('click',function(){this.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
   var img=items.find(function(i){return i.type.startsWith('image/');});
@@ -1537,6 +1537,25 @@ if('ontouchstart' in window){
   if(dzEl){dzEl.style.webkitTapHighlightColor='transparent';}
   document.addEventListener('touchstart',function(){},{passive:true});
 }
+
+// Mobile dropzone fix - explicit click triggers file picker
+(function(){
+  var dz2=document.getElementById('dz');
+  var fi2=document.getElementById('fi');
+  if(!dz2||!fi2)return;
+  // On mobile, label click may not trigger file input - add backup
+  dz2.addEventListener('click',function(e){
+    if(e.target===dz2||e.target.closest('label')===dz2){
+      e.preventDefault();
+      fi2.click();
+    }
+  });
+  // Touch: prevent double-tap zoom and ensure tap opens picker
+  dz2.addEventListener('touchend',function(e){
+    e.preventDefault();
+    fi2.click();
+  },{passive:false});
+})();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();

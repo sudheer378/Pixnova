@@ -81,7 +81,7 @@
   "totalTime": "PT30S",
   "supply": {
     "@type": "HowToSupply",
-    "name": "Image file (JPG, PNG, WebP, HEIC, GIF, BMP)"
+    "name": "Image file (PDF files only)"
   },
   "step": [
     {
@@ -734,9 +734,9 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
         <div class="dring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
         <h3>Drop image here</h3>
         <p>or <span class="dbr">click to browse</span> &nbsp;·&nbsp; Paste with Ctrl+V</p>
-        <input type="file" id="fi" accept="image/*" style="display:none" tabindex="-1"/>
-        <div class="dfmt"><span class="dc">JPG</span><span class="dc">PNG</span><span class="dc">WebP</span><span class="dc">HEIC</span><span class="dc">GIF</span><span class="dc">BMP</span></div>
-        <p class="dh">Max 20 MB · Processed locally · Zero uploads</p>
+        <input type="file" id="fi" accept="application/pdf,.pdf" style="display:none" tabindex="-1"/>
+        <div class="dfmt"><span class="dc">PDF files only</span></div>
+        <p class="dh">Max 50 MB · Processed locally · Zero uploads</p>
       </label>
 
       <!-- SETTINGS -->
@@ -904,7 +904,7 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
 var SLUG  = 'pdf-split';
 var CAT   = 'pdf-tools';
 var ITYPE = 'pdf-split';
-var MAX   = 20971520; // 20MB
+var MAX = 52428800; // 50MB // 20MB
 
 /* ── DOM ── */
 function $$(id){return document.getElementById(id);}
@@ -1052,37 +1052,30 @@ function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,parseFloat(v)||0)
 /* ── FILE HANDLING ── */
 function handleFile(f){
   if(!f)return;
-  if(f.size>MAX){toast('File too large — max 20 MB','er',4000);return;}
-  // Accept if MIME says image/, OR if extension matches (Android often sends empty MIME)
+  var MAX_PDF=52428800; // 50MB
+  if(f.size>MAX_PDF){toast('File too large — max 50 MB for PDFs','er',4000);return;}
   var ext=(f.name||'').split('.').pop().toLowerCase();
-  var knownExt=/^(jpg|jpeg|png|webp|gif|bmp|tiff|tif|avif|heic|heif|svg)$/i.test(ext);
-  var isMimeOk=f.type&&f.type.startsWith('image/');
-  if(!isMimeOk&&!knownExt){
-    toast('Please select an image (JPG, PNG, WebP, HEIC, GIF, BMP)','er',4000);return;
+  var isPdf=(f.type==='application/pdf')||(f.type===''&&ext==='pdf')||ext==='pdf';
+  if(!isPdf){
+    toast('Please select a PDF file (.pdf)','er',4000);
+    return;
   }
   curFile=f;resBlob=null;
-  if(origURL)URL.revokeObjectURL(origURL);
-  origURL=URL.createObjectURL(f);
-
-  // Show original
-  pob.innerHTML='';
-  var img=document.createElement('img');img.src=origURL;img.alt='Original';pob.appendChild(img);
-
-  // Reset result
+  fn.textContent=f.name;
+  // Show file info in original preview
+  pob.innerHTML='<div class="pe" style="flex-direction:column;gap:.75rem"><svg viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="1.5" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><div style="text-align:center"><div style="font-weight:700;font-size:.9375rem">'+f.name+'</div><div style="color:var(--mu);font-size:.8125rem;margin-top:.25rem">'+fmt(f.size)+' · PDF</div></div></div>';
   prb.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Result appears here</p></div>';
-  so.innerHTML=ck(fmt(f.size))+ck(f.name.split('.').pop().toUpperCase(),'ca');
+  so.innerHTML=ck(fmt(f.size),'cd')+ck('PDF','ca');
   sr.innerHTML='';
   if(sv)sv.classList.remove('V');
   if(op)op.classList.remove('V');
   bd.classList.remove('V');
-  fn.textContent=f.name;
-  // Hide dropzone, show tool area
   dz.style.display='none';
   prs.classList.add('V');
   if(sp)sp.classList.add('V');
   ab.classList.add('V');
   bp.disabled=false;
-  toast('Image loaded — tap Process to continue','ok',2500);
+  toast('PDF loaded — tap Process to continue','ok',2500);
 }
 
 // Drag-and-drop (label handles click natively via for="fi")
@@ -1093,10 +1086,10 @@ fi.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];
   if(f){
     handleFile(f);
-    // Delay clearing so mobile browsers complete the file read
-    setTimeout(function(){try{fi.value='';}catch(x){}},500);
+    setTimeout(function(){try{fi.value='';}catch(ex){}},800);
   }
 });
+fi.addEventListener('click',function(){this.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
   var img=items.find(function(i){return i.type.startsWith('image/');});
@@ -1168,7 +1161,7 @@ function showResult(r){
 /* ── DOWNLOAD ── */
 bd&&bd.addEventListener('click',function(){
   if(!resBlob)return;
-  var EXT={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif','text/plain':'txt','application/zip':'zip'};
+  var EXT={'application/pdf':'pdf','image/jpeg':'jpg','image/png':'png','image/webp':'webp','application/zip':'zip','image/gif':'gif','image/avif':'avif','text/plain':'txt','application/zip':'zip'};
   var ext=EXT[resBlob.type]||'jpg';
   var a=document.createElement('a');
   a.href=URL.createObjectURL(resBlob);
@@ -1264,8 +1257,67 @@ function runWorker(path,payload){
 ══════════════════════════════════════════════════════════ */
 async function process(file,itype,ctrl){
   if(!itype||itype==='auto')itype=guessItype(SLUG);
-  var mime=file.type||'image/jpeg';
+  var mime=file.type||(file.name&&file.name.endsWith('.pdf')?'application/pdf':'image/jpeg');
   var buf=await readBuf(file);
+
+  // PDF Worker routes
+  if(itype==='pdf-compress'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-compress',buffer:buf,mime:'application/pdf',origSize:file.size,
+      quality:clamp(ctrl.quality||72,1,100),dpi:parseInt(ctrl.dpi)||72,
+    });
+  }
+  if(itype==='pdf-extract'||itype==='pdf-to-jpg'||itype==='pdf-to-png'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-extract',buffer:buf,mime:'application/pdf',origSize:file.size,
+      format:ctrl.format||'jpeg',dpi:parseInt(ctrl.dpi)||150,
+      page:parseInt(ctrl.page)||0,
+    });
+  }
+  if(itype==='pdf-merge'){
+    // Merge: collect all files
+    var fi2=document.getElementById('fi');
+    var files2=fi2&&fi2.files&&fi2.files.length>1?fi2.files:[fi2&&fi2.files&&fi2.files[0]].filter(Boolean);
+    var bufs=await Promise.all(Array.from(files2).map(function(f2){return readBuf(f2);}));
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-merge',buffers:bufs,origSize:file.size,
+    });
+  }
+  if(itype==='pdf-split'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-split',buffer:buf,mime:'application/pdf',origSize:file.size,
+      pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-rotate'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-rotate',buffer:buf,mime:'application/pdf',origSize:file.size,
+      angle:parseInt(ctrl.angle)||90,pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-watermark'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-watermark',buffer:buf,mime:'application/pdf',origSize:file.size,
+      text:ctrl.text||'Confidential',fontSize:parseInt(ctrl.fontSize)||48,
+      color:ctrl.color||'#FF0000',opacity:clamp(ctrl.opacity||30,5,100),
+      angle:parseInt(ctrl.angle)||45,pages:ctrl.pages||'all',
+    });
+  }
+  if(itype==='pdf-ocr'){
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-ocr',buffer:buf,mime:'application/pdf',origSize:file.size,
+      language:ctrl.language||'eng',
+    });
+  }
+  if(itype==='pdf-create'){
+    // image → PDF (jpg-to-pdf, png-to-pdf)
+    var mime2=file.type||'image/jpeg';
+    return runWorker('/workers/pdf.worker.js',{
+      op:'pdf-create',buffer:buf,mime:mime2,origSize:file.size,
+      pageSize:ctrl.pageSize||'A4',fit:ctrl.fit||'contain',
+    });
+  }
+
 
   if(itype==='compress'){
     return runWorker('/workers/compress.worker.js',{
@@ -1520,6 +1572,25 @@ if('ontouchstart' in window){
   if(dzEl){dzEl.style.webkitTapHighlightColor='transparent';}
   document.addEventListener('touchstart',function(){},{passive:true});
 }
+
+// Mobile dropzone fix - explicit click triggers file picker
+(function(){
+  var dz2=document.getElementById('dz');
+  var fi2=document.getElementById('fi');
+  if(!dz2||!fi2)return;
+  // On mobile, label click may not trigger file input - add backup
+  dz2.addEventListener('click',function(e){
+    if(e.target===dz2||e.target.closest('label')===dz2){
+      e.preventDefault();
+      fi2.click();
+    }
+  });
+  // Touch: prevent double-tap zoom and ensure tap opens picker
+  dz2.addEventListener('touchend',function(e){
+    e.preventDefault();
+    fi2.click();
+  },{passive:false});
+})();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();
