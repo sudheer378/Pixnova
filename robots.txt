@@ -1,21 +1,39 @@
 # ============================================================
 #  Pixaroid — robots.txt
-#  https://pixaroid.vercel.app
-#  Updated: 2026-03-27
+#  Domain: https://pixaroid.vercel.app
+#  Last updated: 2026-03-20
 # ============================================================
 
-# ── Allow all crawlers ──────────────────────────────────────
+# ── Default: allow all crawlers ─────────────────────────────
 User-agent: *
 Allow: /
+Allow: /tools/
+Allow: /tools/compression/
+Allow: /tools/conversion/
+Allow: /tools/resize/
+Allow: /tools/editor/
+Allow: /tools/ai-tools/
+Allow: /tools/social-tools/
+Allow: /tools/utilities/
+Allow: /tools/bulk-tools/
+Allow: /tools/pdf-tools/
+Allow: /guides/
+Allow: /llms.txt
 
-# ── Disallow non-content paths ──────────────────────────────
+# Disallow build artefacts and private files
 Disallow: /build/
+Disallow: /workers/
+Disallow: /tests/
+Disallow: /datasets/
 Disallow: /node_modules/
-Disallow: /seo/
-Disallow: /templates/
+Disallow: /.git/
+Disallow: /dist/
 Disallow: /*.map$
-Disallow: /*?utm_
+Disallow: /seo/
+
+# Disallow low-value query parameters
 Disallow: /*?ref=
+Disallow: /*?utm_
 Disallow: /*?fbclid=
 Disallow: /*?gclid=
 
@@ -25,7 +43,11 @@ Allow: /
 Crawl-delay: 0
 
 User-agent: Googlebot-Image
-Allow: /
+Allow: /assets/
+Disallow: /assets/models/
+
+User-agent: Storebot-Google
+Disallow: /
 
 # ── Bing ────────────────────────────────────────────────────
 User-agent: Bingbot
@@ -35,12 +57,9 @@ Crawl-delay: 1
 # ── Other search engines ────────────────────────────────────
 User-agent: DuckDuckBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
@@ -48,43 +67,60 @@ User-agent: Baiduspider
 Allow: /
 Crawl-delay: 3
 
-# ── AI Crawlers ─────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# ── AI Crawlers — fully permitted + llms.txt ────────────────
 User-agent: GPTBot
 Allow: /
+Allow: /guides/
+Allow: /llms.txt
 
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
+Allow: /guides/
+Allow: /llms.txt
 
 User-agent: anthropic-ai
 Allow: /
+Allow: /guides/
+Allow: /llms.txt
 
 User-agent: PerplexityBot
 Allow: /
+Allow: /guides/
+Allow: /llms.txt
 
 User-agent: cohere-ai
 Allow: /
-
-User-agent: Applebot
-Allow: /
+Allow: /guides/
+Allow: /llms.txt
 
 User-agent: FacebookBot
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 User-agent: Bytespider
 Allow: /
 Crawl-delay: 2
 
-# ── Throttle aggressive crawlers ────────────────────────────
+User-agent: PetalBot
+Allow: /
+Crawl-delay: 2
+
+# ── Block scrapers and bad bots ─────────────────────────────
 User-agent: AhrefsBot
 Crawl-delay: 30
 
 User-agent: SemrushBot
 Crawl-delay: 30
 
-# ── Block spam bots ─────────────────────────────────────────
 User-agent: DotBot
 Disallow: /
 
@@ -94,15 +130,17 @@ Disallow: /
 User-agent: BLEXBot
 Disallow: /
 
+User-agent: SeznamBot
+Crawl-delay: 10
+
 User-agent: 80legs
 Disallow: /
 
-# ── Sitemaps ─────────────────────────────────────────────────
+User-agent: ia_archiver
+Crawl-delay: 5
+
+# ── Sitemaps ────────────────────────────────────────────────
 Sitemap: https://pixaroid.vercel.app/sitemap.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-core.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-categories.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-tools.xml
 Sitemap: https://pixaroid.vercel.app/sitemap-guides.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-tools-1.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-tools-2.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-tools-3.xml
-Sitemap: https://pixaroid.vercel.app/sitemap-tools-4.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-categories.xml

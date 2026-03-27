@@ -3,51 +3,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pixaroid.vercel.app/tools/compression/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/conversion/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/resize/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/editor/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/ai-tools/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/social-tools/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/utilities/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pixaroid.vercel.app/tools/bulk-tools/</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-  <url><loc>https://pixaroid.vercel.app/tools/pdf-tools/</loc><lastmod>2026-03-27</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://pixaroid.vercel.app/tools/pdf-tools/</loc><lastmod>2026-03-20</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
 </urlset>

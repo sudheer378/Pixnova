@@ -1,38 +1,21 @@
 {
-  "framework": null,
   "buildCommand": null,
   "outputDirectory": ".",
   "installCommand": null,
+  "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*\\.xml)",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "application/xml; charset=utf-8"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
     },
@@ -58,7 +41,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
+          "value": "no-cache, no-store"
         },
         {
           "key": "Service-Worker-Allowed",
@@ -94,19 +77,15 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/(.*\\.xml)",
       "headers": [
         {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
         },
         {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
         }
       ]
     }
@@ -151,6 +130,10 @@
     {
       "source": "/guides",
       "destination": "/guides/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/404.html"
     }
   ]
 }
