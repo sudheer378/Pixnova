@@ -80,21 +80,42 @@ function getControls(){
   return v;
 }
 function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,parseFloat(v)||0));}
+function getAcceptedKinds(){
+  var accept=((fi&&fi.getAttribute('accept'))||'').toLowerCase();
+  var wantsPdf=accept.indexOf('application/pdf')!==-1||accept.indexOf('.pdf')!==-1||ITYPE==='convert-pdf';
+  return { pdf:wantsPdf, image:!wantsPdf||accept.indexOf('image/')!==-1 };
+}
+function getFileKind(f){
+  var ext=((f&&f.name)||'').split('.').pop().toLowerCase();
+  var isPdf=(f.type==='application/pdf')||ext==='pdf';
+  var isImage=(f.type&&f.type.startsWith('image/'))||/^(jpg|jpeg|png|webp|gif|bmp|tiff|tif|avif|heic|heif|svg|ico)$/i.test(ext);
+  return {isPdf:isPdf,isImage:isImage,ext:ext};
+}
+function currentInputLabel(){
+  var kinds=getAcceptedKinds();
+  return kinds.pdf&&!kinds.image?'PDF':'image';
+}
 
 /* ── FILE HANDLING ── */
 function handleFile(f){
   if(!f)return;
-  if(f.size>MAX){toast('File too large — max 20 MB','er',4000);return;}
-  if(!f.type.startsWith('image/')&&!/\.(heic|heif)$/i.test(f.name)){
-    toast('Please select an image file (JPG, PNG, WebP, HEIC, GIF, BMP…)','er',4000);return;
+  var kinds=getAcceptedKinds();
+  var info=getFileKind(f);
+  var maxSize=(kinds.pdf&&!kinds.image)?52428800:MAX;
+  if(f.size>maxSize){toast('File too large — max '+(maxSize===52428800?'50 MB':'20 MB'),'er',4000);return;}
+  if((kinds.pdf&&!info.isPdf)||(!kinds.pdf&&!info.isImage)||(!kinds.image&&!kinds.pdf)){
+    toast(kinds.pdf&&!kinds.image?'Please select a PDF file (.pdf)':'Please select a valid image file (JPG, PNG, WebP, HEIC, GIF, BMP…)','er',4000);return;
   }
   curFile=f;resBlob=null;
   if(origURL)URL.revokeObjectURL(origURL);
-  origURL=URL.createObjectURL(f);
-
-  // Show original
+  origURL=null;
   pob.innerHTML='';
-  var img=document.createElement('img');img.src=origURL;img.alt='Original';pob.appendChild(img);
+  if(info.isPdf){
+    pob.innerHTML='<div class="pe" style="flex-direction:column;gap:.6rem"><svg viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="1.5" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>'+f.name+'</p><p style="font-size:.75rem;color:var(--mu)">'+fmt(f.size)+' · PDF</p></div>';
+  } else {
+    origURL=URL.createObjectURL(f);
+    var img=document.createElement('img');img.src=origURL;img.alt='Original';pob.appendChild(img);
+  }
 
   // Reset result
   prb.innerHTML='<div class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Result appears here</p></div>';
@@ -108,7 +129,7 @@ function handleFile(f){
   if(sp)sp.classList.add('V');
   ab.classList.add('V');
   bp.disabled=false;
-  toast('Image loaded — press '+('{{PROCESS_BUTTON_LABEL}}'||'Process'),'ok',2000);
+  toast((info.isPdf?'PDF':'File')+' loaded — press '+('{{PROCESS_BUTTON_LABEL}}'||'Process'),'ok',2000);
 }
 
 bb&&bb.addEventListener('click',function(e){e.stopPropagation();fi.click();});
@@ -120,13 +141,14 @@ dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('o
 fi.addEventListener('change',function(e){var f=e.target.files&&e.target.files[0];if(f)handleFile(f);fi.value='';});
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
-  var img=items.find(function(i){return i.type.startsWith('image/');});
-  if(img){e.preventDefault();handleFile(img.getAsFile());}
+  var accepted=getAcceptedKinds();
+  var picked=items.find(function(i){return accepted.pdf?i.type==='application/pdf':i.type.startsWith('image/');});
+  if(picked){e.preventDefault();handleFile(picked.getAsFile());}
 });
 
 /* ── PROCESS ── */
 bp&&bp.addEventListener('click',function(){
-  if(!curFile){toast('Upload an image first','in');return;}
+  if(!curFile){toast('Upload a '+currentInputLabel()+' first','in');return;}
   runProcess();
 });
 
@@ -138,7 +160,7 @@ async function runProcess(){
   clearTimeout(safeT);
   safeT=setTimeout(function(){
     pw.classList.remove('V');bp.disabled=false;
-    toast('Timed out — try a smaller image','er',7000);
+    toast('Timed out — try a smaller '+currentInputLabel(),'er',7000);
   },50000);
   try{
     var itype=ITYPE||guessItype(SLUG);

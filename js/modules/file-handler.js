@@ -11,6 +11,7 @@ const ACCEPTED_TYPES = [
   'image/jpeg','image/png','image/webp','image/heic','image/heif',
   'image/gif','image/bmp','image/tiff','image/avif',
 ];
+const PDF_MAX_SIZE_BYTES = 50 * 1024 * 1024;
 
 export class FileHandler {
   /**
@@ -30,7 +31,7 @@ export class FileHandler {
     this.onFiles   = onFiles  || (() => {});
     this.onError   = onError  || (msg => console.warn('[FileHandler]', msg));
     this.multiple  = multiple;
-    this.accept    = accept;
+    this.accept    = Array.isArray(accept) ? accept : String(accept||'').split(',').map(v => v.trim()).filter(Boolean);
     this._init();
   }
 
@@ -63,10 +64,13 @@ export class FileHandler {
     // Clipboard paste
     document.addEventListener('paste', e => {
       const items = Array.from(e.clipboardData?.items||[]);
-      const imageItems = items.filter(it => it.type.startsWith('image/'));
-      if (imageItems.length) {
+      const acceptsPdf = this.accept.some(t => t === 'application/pdf' || t === '.pdf');
+      const pickedItems = acceptsPdf
+        ? items.filter(it => it.type === 'application/pdf')
+        : items.filter(it => it.type.startsWith('image/'));
+      if (pickedItems.length) {
         e.preventDefault();
-        const files = imageItems.map(it => it.getAsFile()).filter(Boolean);
+        const files = pickedItems.map(it => it.getAsFile()).filter(Boolean);
         if (files.length) this._processFiles(files);
       }
     });
@@ -84,8 +88,29 @@ export class FileHandler {
 
   _processFiles(files) {
     const valid = [], errors = [];
+    const acceptsPdf = this.accept.some(t => t === 'application/pdf' || t === '.pdf');
+    const acceptsImage = this.accept.some(t => t.startsWith('image/'));
+    const maxBytes = acceptsPdf && !acceptsImage ? PDF_MAX_SIZE_BYTES : MAX_FILE_SIZE_BYTES;
     for (const f of files) {
-      const v = validateFile(f, { maxBytes: MAX_FILE_SIZE_BYTES });
+      const ext = (f.name || '').split('.').pop().toLowerCase();
+      const isPdf = f.type === 'application/pdf' || ext === 'pdf';
+      const isImage = (f.type || '').startsWith('image/');
+      if (acceptsPdf && !acceptsImage) {
+        if (!isPdf) { errors.push(`${f.name}: Unsupported format. Please choose a PDF file.`); continue; }
+        if (f.size > maxBytes) { errors.push(`${f.name}: File too large. Maximum: ${formatBytes(maxBytes)}.`); continue; }
+        if (f.size === 0) { errors.push(`${f.name}: File is empty.`); continue; }
+        valid.push(f);
+        continue;
+      }
+      if (isPdf && !acceptsPdf) {
+        errors.push(`${f.name}: Unsupported format. Please choose an image file.`);
+        continue;
+      }
+      if (!isImage && !isPdf) {
+        errors.push(`${f.name}: Unsupported format. Please choose a supported file type.`);
+        continue;
+      }
+      const v = validateFile(f, { maxBytes });
       if (v.ok) valid.push(f);
       else errors.push(`${f.name}: ${v.error}`);
     }
@@ -99,18 +124,20 @@ export class FileHandler {
     }
   }
 
-  /** Fetch an image from a remote URL (CORS-permitting) */
+  /** Fetch a file from a remote URL (CORS-permitting) */
   async fetchFromURL(url) {
     try {
       const resp = await fetch(url);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const blob = await resp.blob();
-      if (!blob.type.startsWith('image/')) throw new Error('URL does not point to an image.');
+      const acceptsPdf = this.accept.some(t => t === 'application/pdf' || t === '.pdf');
+      const validRemote = acceptsPdf ? blob.type === 'application/pdf' : blob.type.startsWith('image/');
+      if (!validRemote) throw new Error(acceptsPdf ? 'URL does not point to a PDF.' : 'URL does not point to an image.');
       const filename = url.split('/').pop().split('?')[0] || 'image.jpg';
       const file = new File([blob], filename, { type: blob.type });
       this._processFiles([file]);
     } catch(e) {
-      this.onError(`Could not fetch image from URL: ${e.message}`);
+      this.onError(`Could not fetch file from URL: ${e.message}`);
     }
   }
 
