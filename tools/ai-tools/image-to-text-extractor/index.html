@@ -519,7 +519,7 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
 <div class="fi"><button class="fq">How accurate is the AI processing?<span class="fqi"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="fa"><div class="fai">AI tools use state-of-the-art WebAssembly models. Results are excellent for standard photos with clear subjects.</div></div></div>
 </div>
 <footer class="footer"><p>© 2026 <a href="/">Pixaroid</a></p><div class="footer-links"><a href="/privacy-policy.html">Privacy</a><a href="/terms-of-service.html">Terms</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div></footer>
-<div class="toast-c" id="tc"></div>
+<div class="toast-c" id="tc2"></div>
 <script>
 (function(){
 'use strict';
@@ -974,24 +974,24 @@ if('ontouchstart' in window){
   document.addEventListener('touchstart',function(){},{passive:true});
 }
 
-// Mobile dropzone fix - explicit click triggers file picker
+// Mobile dropzone fix (safe - no preventDefault on click)
 (function(){
   var dz2=document.getElementById('dz');
   var fi2=document.getElementById('fi');
   if(!dz2||!fi2)return;
-  // On mobile, label click may not trigger file input - add backup
-  dz2.addEventListener('click',function(e){
-    if(e.target===dz2||e.target.closest('label')===dz2){
-      e.preventDefault();
-      fi2.click();
-    }
-  });
-  // Touch: prevent double-tap zoom and ensure tap opens picker
-  dz2.addEventListener('touchend',function(e){
-    e.preventDefault();
-    fi2.click();
-  },{passive:false});
+  // touchend: open picker on tap (passive:false needed to call fi.click())
+  var isTouchDevice=('ontouchstart' in window)||navigator.maxTouchPoints>0;
+  if(isTouchDevice){
+    dz2.addEventListener('touchend',function(e){
+      // Only fire if the touch ended on the dropzone itself (not a child button)
+      if(e.target===dz2||e.target.tagName==='H3'||e.target.tagName==='P'||e.target.tagName==='SPAN'){
+        e.preventDefault();
+        fi2.click();
+      }
+    },{passive:false});
+  }
 })();
+
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();

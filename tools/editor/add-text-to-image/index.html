@@ -1119,7 +1119,7 @@ fi.addEventListener('change',function(e){
     setTimeout(function(){try{fi.value='';}catch(ex){}},800);
   }
 });
-fi.addEventListener('click',function(){this.value='';});
+;
 document.addEventListener('paste',function(e){
   var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
   var img=items.find(function(i){return i.type.startsWith('image/');});
@@ -1544,24 +1544,24 @@ if('ontouchstart' in window){
   document.addEventListener('touchstart',function(){},{passive:true});
 }
 
-// Mobile dropzone fix - explicit click triggers file picker
+// Mobile dropzone fix (safe - no preventDefault on click)
 (function(){
   var dz2=document.getElementById('dz');
   var fi2=document.getElementById('fi');
   if(!dz2||!fi2)return;
-  // On mobile, label click may not trigger file input - add backup
-  dz2.addEventListener('click',function(e){
-    if(e.target===dz2||e.target.closest('label')===dz2){
-      e.preventDefault();
-      fi2.click();
-    }
-  });
-  // Touch: prevent double-tap zoom and ensure tap opens picker
-  dz2.addEventListener('touchend',function(e){
-    e.preventDefault();
-    fi2.click();
-  },{passive:false});
+  // touchend: open picker on tap (passive:false needed to call fi.click())
+  var isTouchDevice=('ontouchstart' in window)||navigator.maxTouchPoints>0;
+  if(isTouchDevice){
+    dz2.addEventListener('touchend',function(e){
+      // Only fire if the touch ended on the dropzone itself (not a child button)
+      if(e.target===dz2||e.target.tagName==='H3'||e.target.tagName==='P'||e.target.tagName==='SPAN'){
+        e.preventDefault();
+        fi2.click();
+      }
+    },{passive:false});
+  }
 })();
+
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
 })();
