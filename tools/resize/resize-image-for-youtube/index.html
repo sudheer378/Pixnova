@@ -727,7 +727,7 @@ select:focus,input[type=number]:focus,input[type=text]:focus{
         <div class="dring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
         <h3>Drop image here</h3>
         <p>or <span class="dbr">click to browse</span> &nbsp;·&nbsp; Paste with Ctrl+V</p>
-        <input type="file" id="fi" accept="image/*" style="display:none" tabindex="-1"/>
+        <input type="file" id="fi" accept="image/*" tabindex="-1" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;"/>
         <div class="dfmt"><span class="dc">JPG</span><span class="dc">PNG</span><span class="dc">WebP</span><span class="dc">HEIC</span><span class="dc">GIF</span><span class="dc">BMP</span></div>
         <p class="dh">Max 20 MB · Processed locally · Zero uploads</p>
       </label>
@@ -1074,21 +1074,36 @@ function handleFile(f){
   toast('Image loaded — tap Process to continue','ok',2500);
 }
 
-// Drag-and-drop (label handles click natively via for="fi")
+// ── BULLETPROOF FILE HANDLERS ─────────────────────────────
+// Reset input before opening picker (allows re-selecting same file)
+fi.addEventListener('mousedown',function(){try{this.value='';}catch(e){}});
+// Primary: fi change (all browsers, all methods)
+fi.addEventListener('change',function(){
+  var f=this.files&&this.files[0];
+  if(!f)return;
+  handleFile(f);
+  // Reset after read so same file can be selected again
+  var self=this;
+  setTimeout(function(){try{self.value='';}catch(e){}},1000);
+});
+// Drag & drop
 dz.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dz.classList.add('on');});
 dz.addEventListener('dragleave',function(e){if(!dz.contains(e.relatedTarget))dz.classList.remove('on');});
-dz.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dz.classList.remove('on');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)handleFile(f);});
-fi.addEventListener('change',function(e){
-  var f=e.target.files&&e.target.files[0];
-  if(f){
-    handleFile(f);
-    setTimeout(function(){try{fi.value='';}catch(ex){}},800);
+dz.addEventListener('drop',function(e){
+  e.preventDefault();e.stopPropagation();dz.classList.remove('on');
+  var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];
+  if(f)handleFile(f);
+});
+// Paste (Ctrl+V)
+document.addEventListener('paste',function(e){
+  var items=(e.clipboardData||window.clipboardData||{}).items||[];
+  for(var i=0;i<items.length;i++){
+    if(items[i].kind==='file'&&items[i].type.indexOf('image')>=0){
+      var blob=items[i].getAsFile();
+      if(blob){e.preventDefault();handleFile(blob);break;}
+    }
   }
 });
-;
-document.addEventListener('paste',function(e){
-  var items=Array.from((e.clipboardData&&e.clipboardData.items)||[]);
-  var img=items.find(function(i){return i.type.startsWith('image/');});
   if(img){e.preventDefault();handleFile(img.getAsFile());}
 });
 
@@ -1510,23 +1525,6 @@ if('ontouchstart' in window){
   document.addEventListener('touchstart',function(){},{passive:true});
 }
 
-// Mobile dropzone fix (safe - no preventDefault on click)
-(function(){
-  var dz2=document.getElementById('dz');
-  var fi2=document.getElementById('fi');
-  if(!dz2||!fi2)return;
-  // touchend: open picker on tap (passive:false needed to call fi.click())
-  var isTouchDevice=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-  if(isTouchDevice){
-    dz2.addEventListener('touchend',function(e){
-      // Only fire if the touch ended on the dropzone itself (not a child button)
-      if(e.target===dz2||e.target.tagName==='H3'||e.target.tagName==='P'||e.target.tagName==='SPAN'){
-        e.preventDefault();
-        fi2.click();
-      }
-    },{passive:false});
-  }
-})();
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(function(){});
 
