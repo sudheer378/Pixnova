@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Frequently asked questions about Pixaroid — the free browser-based image and PDF tools platform. Privacy, file types, formats, and usage questions answered."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://pixaroid.vercel.app/faq.html"/>
+<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing runs entirely in your browser using the Canvas API and Web Workers. Your files never leave your device."}},{"@type":"Question","name":"Is Pixaroid free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free. No account, no subscription, no watermarks, no file limits."}},{"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPEG, PNG, WebP, HEIC/HEIF, GIF, BMP, TIFF, AVIF, SVG, and ICO are all supported as input formats."}},{"@type":"Question","name":"Does Pixaroid work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes — Pixaroid works in all modern mobile browsers including Chrome for Android and Safari on iOS. No app required."}}]}</script>
+<title>FAQ — Frequently Asked Questions | Pixaroid</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#05040D;--s1:#0D0B1E;--s2:#131128;--bd:rgba(255,255,255,.065);--bd2:rgba(255,255,255,.1);--tx:#F0EFF8;--mu:#9494BB;--su:#38387A;--ac:#7B6FFF;--ac2:#A99FFF;--f:'Plus Jakarta Sans',sans-serif;}
+.L{--bg:#F2F1FB;--s1:#fff;--s2:#F2F1FB;--bd:rgba(0,0,0,.07);--bd2:rgba(0,0,0,.1);--tx:#07071A;--mu:#5454A0;--su:#C0C0E0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 40% at 50% -5%,rgba(123,111,255,.13),transparent 55%);}
+a{color:var(--ac2);}h1,h2{font-weight:800;letter-spacing:-.035em;}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,4,13,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);}
+.L nav{background:rgba(242,241,251,.9);}
+.ni{display:flex;align-items:center;gap:.875rem;height:56px;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.0625rem;letter-spacing:-.035em;text-decoration:none;color:var(--tx);}
+.lm{width:30px;height:30px;border-radius:8px;background:#0A0818;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(123,111,255,.4);}
+.logo-t{background:linear-gradient(90deg,#fff,#C4BFFF 45%,#A99FFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ns{flex:1;}.tbtn{width:32px;height:32px;border-radius:7px;border:1px solid var(--bd2);background:var(--s2);color:var(--mu);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.W{max-width:800px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+.hero{padding:3.5rem 0 2rem;text-align:center;}
+.hero h1{font-size:clamp(1.75rem,4vw,2.5rem);margin-bottom:.75rem;}
+.hero p{color:var(--mu);max-width:500px;margin:0 auto;}
+.faq-wrap{padding:2rem 0 5rem;}
+.faq-section{margin-bottom:2.5rem;}
+.faq-section h2{font-size:.9375rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ac2);margin-bottom:1rem;}
+.faq-item{border:1px solid var(--bd2);border-radius:13px;overflow:hidden;margin-bottom:.5rem;transition:border-color .2s;}
+.faq-item.open{border-color:rgba(123,111,255,.3);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:var(--s1);border:none;font-family:var(--f);font-size:.9375rem;font-weight:700;color:var(--tx);text-align:left;cursor:pointer;}
+.faq-ico{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:var(--s2);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .2s;color:var(--mu);}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:rgba(123,111,255,.12);color:var(--ac2);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-item.open .faq-a{max-height:500px;}
+.faq-a-inner{padding:.75rem 1.25rem 1.25rem;font-size:.9375rem;color:var(--mu);line-height:1.75;background:var(--s1);}
+footer{border-top:1px solid var(--bd);padding:2rem;text-align:center;font-size:.8125rem;color:var(--mu);}
+footer a{color:var(--mu);}.fl{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<nav><div class="ni">
+  <a href="/" class="logo"><div class="lm"><svg viewBox="0 0 20 20" fill="none" width="20" height="20"><defs><linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient><linearGradient id="b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient><linearGradient id="c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/></linearGradient><linearGradient id="d" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient><linearGradient id="e" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient></defs><rect x="1" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#a)"/><rect x="11.5" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#b)"/><rect x="1" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#c)"/><rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#d)"/><rect x="8" y="8" width="4" height="4" rx="1" fill="url(#e)"/></svg></div><span class="logo-t">Pixaroid</span></a>
+  <div class="ns"></div>
+  <a href="/" style="font-size:.875rem;color:var(--mu);padding:.375rem .625rem;border-radius:7px;font-family:var(--f);">← All Tools</a>
+  <button class="tbtn" onclick="var r=document.documentElement,l=!r.classList.contains('L');r.classList.toggle('L',l);localStorage.setItem('pxr',l?'l':'d')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+</div></nav>
+<div class="W">
+<div class="hero"><h1>Frequently Asked Questions</h1><p>Everything you need to know about using Pixaroid.</p></div>
+<div class="faq-wrap">
+
+<div class="faq-section">
+<h2>Privacy & Security</h2>
+<div class="faq-item open"><button class="faq-q">Are my images uploaded to a server?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">No. All processing runs entirely in your browser using the Canvas API and Web Workers. Your files never leave your device. Pixaroid has no backend server that receives files.</div></div></div>
+<div class="faq-item"><button class="faq-q">Does Pixaroid store my images?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Never. Images exist only in your browser's memory while you process them. When you close the tab, they are gone. No cookies, no database, no cloud storage.</div></div></div>
+<div class="faq-item"><button class="faq-q">Is Pixaroid GDPR compliant?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Yes. Because no personal data is ever collected or transmitted, Pixaroid is inherently GDPR-compliant. We have no data to delete, no cookies to consent to, no accounts to manage.</div></div></div>
+</div>
+
+<div class="faq-section">
+<h2>Usage & Formats</h2>
+<div class="faq-item"><button class="faq-q">What image formats are supported?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">JPEG, PNG, WebP, HEIC/HEIF, GIF, BMP, TIFF, AVIF, SVG, and ICO are all supported as input. Output can be JPEG, PNG, WebP, GIF, PDF, or plain text (for OCR).</div></div></div>
+<div class="faq-item"><button class="faq-q">What is the maximum file size?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Up to 20MB for images and up to 50MB for PDF files. Larger files can cause performance issues depending on your device. For bulk tools, up to 100 images per batch are supported.</div></div></div>
+<div class="faq-item"><button class="faq-q">Does Pixaroid work on mobile?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Yes — Pixaroid works in all modern mobile browsers including Chrome for Android and Safari on iOS. You can tap to browse files, or long-press to paste from clipboard. No app download required.</div></div></div>
+<div class="faq-item"><button class="faq-q">Can I use Pixaroid offline?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Yes — Pixaroid is a Progressive Web App (PWA). After your first visit, you can install it on your home screen and use all tools without an internet connection. The Service Worker caches all pages and workers.</div></div></div>
+</div>
+
+<div class="faq-section">
+<h2>PDF Tools</h2>
+<div class="faq-item"><button class="faq-q">Can I edit existing text in a PDF?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Browser-based PDF editing cannot re-flow existing text (this requires server-side rendering). You can cover existing text with a Whiteout block and add new text on top — the same approach used by Sejda and ilovepdf in browser mode.</div></div></div>
+<div class="faq-item"><button class="faq-q">How many PDF pages can I process?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Up to 50 pages for PDF to image conversion and OCR. For compress, merge, split, rotate and watermark, all pages are processed regardless of count.</div></div></div>
+</div>
+
+<div class="faq-section">
+<h2>Pricing & Limits</h2>
+<div class="faq-item"><button class="faq-q">Is Pixaroid really free?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Yes — completely free. No account, no credit card, no subscription, no watermarks, no file limits. All 95+ tools are free forever.</div></div></div>
+<div class="faq-item"><button class="faq-q">Will there always be a free version?<div class="faq-ico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><div class="faq-a-inner">Yes. The core tool set will always be free. If we ever introduce premium features, the free tier will remain fully functional with no watermarks or limits.</div></div></div>
+</div>
+
+</div>
+</div>
+<footer><p>© 2026 <a href="/">Pixaroid</a></p><div class="fl"><a href="/">Home</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy</a></div></footer>
+<script>
+var ts=localStorage.getItem('pxr');if(ts==='l'||(!ts&&!matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('L');
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=this.closest('.faq-item'),open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
+    if(!open)item.classList.add('open');
+  });
+});
+</script>
+</body></html>

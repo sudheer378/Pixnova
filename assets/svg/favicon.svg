@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Pixaroid">
+  <defs>
+    <linearGradient id="f-a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3CAC"/>
+      <stop offset="100%" stop-color="#FF6B35"/>
+    </linearGradient>
+    <linearGradient id="f-b" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/>
+      <stop offset="100%" stop-color="#2F80ED"/>
+    </linearGradient>
+    <linearGradient id="f-c" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF"/>
+      <stop offset="100%" stop-color="#00C853"/>
+    </linearGradient>
+    <linearGradient id="f-d" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB800"/>
+      <stop offset="100%" stop-color="#FF3CAC"/>
+    </linearGradient>
+    <linearGradient id="f-core" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/>
+      <stop offset="100%" stop-color="#FF3CAC"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7.5" fill="#0A0812"/>
+  <rect x="4.5" y="4.5" width="9.5" height="9.5" rx="2.2" fill="url(#f-a)"/>
+  <rect x="18" y="4.5" width="9.5" height="9.5" rx="2.2" fill="url(#f-b)"/>
+  <rect x="4.5" y="18" width="9.5" height="9.5" rx="2.2" fill="url(#f-c)"/>
+  <rect x="18" y="18" width="9.5" height="9.5" rx="2.2" fill="url(#f-d)"/>
+  <rect x="12.5" y="12.5" width="7" height="7" rx="1.8" fill="url(#f-core)"/>
+</svg>

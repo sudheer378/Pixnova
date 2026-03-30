@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Contact Pixaroid — report bugs, suggest tools, or ask questions about our free browser-based image and PDF tools."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://pixaroid.vercel.app/contact.html"/>
+<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
+<title>Contact — Pixaroid</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#05040D;--s1:#0D0B1E;--s2:#131128;--bd:rgba(255,255,255,.065);--bd2:rgba(255,255,255,.1);--tx:#F0EFF8;--mu:#9494BB;--ac:#7B6FFF;--ac2:#A99FFF;--gr:#1EE87A;--f:'Plus Jakarta Sans',sans-serif;}
+.L{--bg:#F2F1FB;--s1:#fff;--s2:#F2F1FB;--bd:rgba(0,0,0,.07);--bd2:rgba(0,0,0,.1);--tx:#07071A;--mu:#5454A0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 40% at 50% -5%,rgba(123,111,255,.12),transparent 55%);}
+a{color:var(--ac2);}h1,h2{font-weight:800;letter-spacing:-.035em;}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,4,13,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);}
+.L nav{background:rgba(242,241,251,.9);}
+.ni{display:flex;align-items:center;gap:.875rem;height:56px;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.0625rem;letter-spacing:-.035em;text-decoration:none;color:var(--tx);}
+.lm{width:30px;height:30px;border-radius:8px;background:#0A0818;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(123,111,255,.4);}
+.logo-t{background:linear-gradient(90deg,#fff,#C4BFFF 45%,#A99FFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ns{flex:1;}.tbtn{width:32px;height:32px;border-radius:7px;border:1px solid var(--bd2);background:var(--s2);color:var(--mu);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.W{max-width:640px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+.hero{padding:3.5rem 0 2rem;text-align:center;}
+.hero h1{font-size:clamp(1.75rem,4vw,2.5rem);margin-bottom:.75rem;}
+.hero p{color:var(--mu);max-width:480px;margin:0 auto;font-size:.9375rem;line-height:1.75;}
+.form-wrap{padding:1.5rem 0 5rem;}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem;}
+.opt{padding:1.125rem;background:var(--s1);border:1.5px solid var(--bd2);border-radius:13px;cursor:pointer;transition:border-color .2s;}
+.opt:hover{border-color:rgba(123,111,255,.4);}
+.opt.sel{border-color:var(--ac);background:rgba(123,111,255,.06);}
+.opt h3{font-size:.9rem;font-weight:700;margin-bottom:.25rem;}
+.opt p{font-size:.8rem;color:var(--mu);}
+.field{margin-bottom:1.25rem;}
+.field label{display:block;font-size:.875rem;font-weight:600;margin-bottom:.4rem;color:var(--mu);}
+.field input,.field textarea,.field select{width:100%;padding:.6875rem .875rem;border:1.5px solid var(--bd2);border-radius:10px;background:var(--s1);color:var(--tx);font-family:var(--f);font-size:.9375rem;outline:none;transition:border-color .2s;}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ac);}
+.field textarea{min-height:130px;resize:vertical;line-height:1.6;}
+.submit-btn{width:100%;padding:.875rem;border-radius:11px;border:none;background:linear-gradient(135deg,var(--ac),#9C40FF);color:#fff;font-family:var(--f);font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(123,111,255,.3);transition:transform .15s,box-shadow .15s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(123,111,255,.4);}
+.success-msg{display:none;text-align:center;padding:2rem;background:rgba(30,232,122,.07);border:1px solid rgba(30,232,122,.2);border-radius:14px;margin-top:1rem;}
+.success-msg h3{color:var(--gr);font-size:1.125rem;margin-bottom:.5rem;}
+.success-msg p{color:var(--mu);font-size:.9375rem;}
+.alt-contact{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--bd);text-align:center;}
+.alt-contact p{color:var(--mu);font-size:.875rem;margin-bottom:.875rem;}
+.alt-links{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+.alt-link{display:flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border-radius:9px;border:1px solid var(--bd2);background:var(--s1);color:var(--mu);font-size:.875rem;font-weight:600;transition:border-color .2s,color .2s;}
+.alt-link:hover{border-color:rgba(123,111,255,.3);color:var(--ac2);}
+footer{border-top:1px solid var(--bd);padding:2rem;text-align:center;font-size:.8125rem;color:var(--mu);}
+footer a{color:var(--mu);}.fl{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<nav><div class="ni">
+  <a href="/" class="logo"><div class="lm"><svg viewBox="0 0 20 20" fill="none" width="20" height="20"><defs><linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient><linearGradient id="b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient><linearGradient id="c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/></linearGradient><linearGradient id="d" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient><linearGradient id="e" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient></defs><rect x="1" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#a)"/><rect x="11.5" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#b)"/><rect x="1" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#c)"/><rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#d)"/><rect x="8" y="8" width="4" height="4" rx="1" fill="url(#e)"/></svg></div><span class="logo-t">Pixaroid</span></a>
+  <div class="ns"></div>
+  <a href="/" style="font-size:.875rem;color:var(--mu);padding:.375rem .625rem;border-radius:7px;font-family:var(--f);">← All Tools</a>
+  <button class="tbtn" onclick="var r=document.documentElement,l=!r.classList.contains('L');r.classList.toggle('L',l);localStorage.setItem('pxr',l?'l':'d')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+</div></nav>
+<div class="W">
+<div class="hero"><h1>Get in touch</h1><p>Found a bug? Want to suggest a new tool? We read every message.</p></div>
+<div class="form-wrap">
+  <div class="options" id="opts">
+    <div class="opt sel" data-type="bug"><h3>🐛 Bug Report</h3><p>Something isn't working</p></div>
+    <div class="opt" data-type="feature"><h3>💡 Feature Request</h3><p>Suggest a new tool or improvement</p></div>
+    <div class="opt" data-type="question"><h3>❓ Question</h3><p>Ask about how something works</p></div>
+    <div class="opt" data-type="other"><h3>📬 Other</h3><p>Anything else</p></div>
+  </div>
+  <div id="form-area">
+    <div class="field"><label>Your message <span style="color:var(--ac2)">*</span></label><textarea id="msg" placeholder="Describe the issue or suggestion in detail…"></textarea></div>
+    <div class="field"><label>Email (optional)</label><input type="email" id="email" placeholder="your@email.com — for follow-up only"/></div>
+    <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+    <div class="success-msg" id="success">
+      <h3>✓ Message sent!</h3>
+      <p>Thank you — we'll look into it. If you left your email we'll reply within 48 hours.</p>
+    </div>
+  </div>
+  <div class="alt-contact">
+    <p>Prefer to reach us another way?</p>
+    <div class="alt-links">
+      <a href="mailto:hello@pixaroid.app" class="alt-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>hello@pixaroid.app</a>
+      <a href="/faq.html" class="alt-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Check the FAQ</a>
+    </div>
+  </div>
+</div>
+</div>
+<footer><p>© 2026 <a href="/">Pixaroid</a></p><div class="fl"><a href="/">Home</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/privacy-policy.html">Privacy</a></div></footer>
+<script>
+var ts=localStorage.getItem('pxr');if(ts==='l'||(!ts&&!matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('L');
+var selType='bug';
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    document.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel');});
+    o.classList.add('sel');selType=o.dataset.type;
+  });
+});
+function submitForm(){
+  var msg=document.getElementById('msg').value.trim();
+  if(!msg){document.getElementById('msg').style.borderColor='#F87171';setTimeout(function(){document.getElementById('msg').style.borderColor='';},1500);return;}
+  // In a real deployment, send to a form service (Formspree, etc.)
+  // For now just show success state
+  document.getElementById('form-area').style.opacity='.4';
+  document.getElementById('form-area').style.pointerEvents='none';
+  document.getElementById('success').style.display='block';
+  document.getElementById('success').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body></html>

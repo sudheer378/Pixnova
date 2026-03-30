@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex"/>
+<link rel="canonical" href="https://pixaroid.vercel.app/404.html"/>
+<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
+<title>404 — Page Not Found | Pixaroid</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#05040D;--s1:#0D0B1E;--s2:#131128;--bd:rgba(255,255,255,.065);--bd2:rgba(255,255,255,.1);--tx:#F0EFF8;--mu:#9494BB;--ac:#7B6FFF;--ac2:#A99FFF;--f:'Plus Jakarta Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% 30%,rgba(123,111,255,.14),transparent 60%);}
+.err-num{font-size:clamp(6rem,20vw,12rem);font-weight:800;letter-spacing:-.05em;line-height:1;background:linear-gradient(135deg,#fff,#A99FFF 40%,#FF3C9D 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;position:relative;z-index:1;}
+h1{font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;margin-bottom:.75rem;position:relative;z-index:1;}
+p{color:var(--mu);max-width:400px;font-size:.9375rem;line-height:1.7;margin-bottom:2rem;position:relative;z-index:1;}
+.links{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6875rem 1.375rem;border-radius:10px;font-weight:700;font-size:.9375rem;text-decoration:none;transition:transform .15s;}
+.btn-p{background:linear-gradient(135deg,var(--ac),#9C40FF);color:#fff;box-shadow:0 4px 16px rgba(123,111,255,.3);}
+.btn-p:hover{transform:translateY(-2px);}
+.btn-s{border:1px solid var(--bd2);background:var(--s2);color:var(--mu);}
+.btn-s:hover{color:var(--tx);border-color:var(--bd2);}
+</style>
+</head>
+<body>
+<div class="err-num">404</div>
+<h1>Page not found</h1>
+<p>The page you're looking for doesn't exist or may have moved. Try one of these instead:</p>
+<div class="links">
+  <a href="/" class="btn btn-p"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Go Home</a>
+  <a href="/tools/compression/compress-image/" class="btn btn-s">Compress Image</a>
+  <a href="/tools/pdf-tools/pdf-editor/" class="btn btn-s">PDF Editor</a>
+  <a href="/tools/conversion/heic-to-jpg/" class="btn btn-s">HEIC to JPG</a>
+</div>
+</body>
+</html>

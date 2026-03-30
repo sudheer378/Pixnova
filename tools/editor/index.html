@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Online Image Editor — Crop, Rotate, Watermark &amp; More | Pixaroid</title>
+  <meta name="description"        content="10 free image editing tools. Crop, rotate, flip, adjust brightness, contrast, saturation, add watermarks and text." />
+  <meta name="robots"             content="index, follow" />
+  <link rel="canonical"           href="https://pixaroid.vercel.app/tools/editor/" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Pixaroid" />
+  <meta property="og:title"       content="Free Online Image Editor — Pixaroid" />
+  <meta property="og:description" content="Crop, rotate, adjust brightness, contrast, saturation, add watermarks and text to images." />
+  <meta property="og:url"         content="https://pixaroid.vercel.app/tools/editor/" />
+  <meta property="og:image"       content="https://pixaroid.vercel.app/assets/images/og-default.png" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@pixaroidapp" />
+  <meta name="twitter:title"       content="Free Online Image Editor — Pixaroid" />
+  <meta name="twitter:description" content="Crop, rotate, adjust brightness, contrast, saturation, add watermarks and text to images." />
+  <meta name="twitter:image"       content="https://pixaroid.vercel.app/assets/images/og-default.png" />
+
+  <link rel="icon"     href="/assets/svg/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#4F46E5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pixaroid.vercel.app/"},{"@type":"ListItem","position":2,"name":"Editor","item":"https://pixaroid.vercel.app/tools/editor/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Editor Tools","description":"10 free image editing tools. Crop, rotate, flip, adjust brightness, contrast, saturation, add watermarks and text.","url":"https://pixaroid.vercel.app/tools/editor/","numberOfItems":21,"itemListElement":[{"@type":"ListItem","position":1,"name":"Crop Image","description":"Crop images online free. Use the interactive crop tool to select any area, crop to an aspect ratio, or enter exact crop dimensions. No upload to server.","url":"https://pixaroid.vercel.app/tools/editor/crop-image/"},{"@type":"ListItem","position":2,"name":"Rotate Image","description":"Rotate images online free. Rotate 90°, 180°, 270° or to any custom angle. Supports JPEG, PNG, WebP, and GIF. Browser-based, no upload.","url":"https://pixaroid.vercel.app/tools/editor/rotate-image/"},{"@type":"ListItem","position":3,"name":"Flip Image","description":"Flip images horizontally or vertically online free. Mirror images for design, photography, and social media. Instant browser-based tool, no upload.","url":"https://pixaroid.vercel.app/tools/editor/flip-image/"},{"@type":"ListItem","position":4,"name":"Add Watermark to Image","description":"Add a text or image watermark online free. Customise position, opacity, font, colour, and size. Protect your photos from unauthorised use.","url":"https://pixaroid.vercel.app/tools/editor/add-watermark/"},{"@type":"ListItem","position":5,"name":"Add Text to Image","description":"Add text to photos online free. Choose font, size, colour, position, and style. Perfect for memes, quotes, social media, and announcements.","url":"https://pixaroid.vercel.app/tools/editor/add-text-to-image/"},{"@type":"ListItem","position":6,"name":"Blur Image","description":"Blur images online free. Apply Gaussian blur to entire images or specific areas. Great for privacy, backgrounds, and artistic effects. Browser-based.","url":"https://pixaroid.vercel.app/tools/editor/blur-image/"},{"@type":"ListItem","position":7,"name":"Sharpen Image","description":"Sharpen blurry images online free. Enhance image detail and clarity using unsharp masking. Great for fixing slightly out-of-focus photos. Browser-based.","url":"https://pixaroid.vercel.app/tools/editor/sharpen-image/"},{"@type":"ListItem","position":8,"name":"Adjust Brightness","description":"Adjust image brightness online free. Brighten dark photos or darken overexposed images. Real-time preview and one-click download. Browser-based.","url":"https://pixaroid.vercel.app/tools/editor/adjust-brightness/"},{"@type":"ListItem","position":9,"name":"Adjust Contrast","description":"Adjust image contrast online free. Increase or decrease the tonal range of photos to make them pop or look flatter. Real-time preview. Browser-based.","url":"https://pixaroid.vercel.app/tools/editor/adjust-contrast/"},{"@type":"ListItem","position":10,"name":"Adjust Saturation","description":"Adjust image colour saturation online free. Boost dull colours or desaturate to greyscale. Real-time canvas preview. Browser-based, no upload.","url":"https://pixaroid.vercel.app/tools/editor/adjust-saturation/"},{"@type":"ListItem","position":11,"name":"Meme Generator","description":"Create memes with Impact-font captions. Add top and bottom text, choose font size and colour. No watermark, instant download.","url":"https://pixaroid.vercel.app/tools/editor/meme-generator/"},{"@type":"ListItem","position":12,"name":"Add Border to Image","description":"Add a custom border to any image. Choose colour, width, and border style. Instant preview, free download.","url":"https://pixaroid.vercel.app/tools/editor/add-border-to-image/"},{"@type":"ListItem","position":13,"name":"Round Image Corners","description":"Round the corners of any image online free. Set border radius from 0 to 50% (circle). Download as PNG with transparency.","url":"https://pixaroid.vercel.app/tools/editor/round-image-corners/"},{"@type":"ListItem","position":14,"name":"Image to Grayscale","description":"Convert colour images to black and white online free. Uses ITU-R luma coefficients for accurate greyscale. Instant download.","url":"https://pixaroid.vercel.app/tools/editor/image-to-grayscale/"},{"@type":"ListItem","position":15,"name":"Sepia Filter","description":"Apply a warm vintage sepia filter to any photo. Adjust intensity from subtle warm tone to deep antique brown.","url":"https://pixaroid.vercel.app/tools/editor/sepia-filter/"},{"@type":"ListItem","position":16,"name":"Invert Image Colors","description":"Invert all colours in an image — creates a negative effect. Useful for dark mode conversions and artistic effects.","url":"https://pixaroid.vercel.app/tools/editor/invert-image-colors/"},{"@type":"ListItem","position":17,"name":"Image Noise Reducer","description":"Reduce noise and grain from photos online free. Gaussian smoothing removes sensor noise while preserving edges.","url":"https://pixaroid.vercel.app/tools/editor/image-noise-reducer/"},{"@type":"ListItem","position":18,"name":"Flip Image Horizontal","description":"Mirror flip any image horizontally (left to right) online free. Instant processing, no upload required.","url":"https://pixaroid.vercel.app/tools/editor/flip-image-horizontal/"},{"@type":"ListItem","position":19,"name":"Rotate Image 90 Degrees","description":"Rotate any image 90° clockwise online free. Fix portrait photos from landscape orientation instantly.","url":"https://pixaroid.vercel.app/tools/editor/rotate-image-90/"},{"@type":"ListItem","position":20,"name":"Add Text to Photo","description":"Add custom text overlays to photos online. Choose font size, colour, position and shadow. Perfect for quotes, captions and ads.","url":"https://pixaroid.vercel.app/tools/editor/add-text-overlay/"},{"@type":"ListItem","position":21,"name":"Add Vignette to Photo","description":"Add a professional vignette effect to photos — darkens the edges to draw focus to the centre. Cinema-style results.","url":"https://pixaroid.vercel.app/tools/editor/image-vignette/"}]}</script>
+
+  <style>
+    :root{--brand:#4F46E5;--bg:#F9FAFB;--surface:#fff;--text:#111827;--muted:#6B7280;--border:#E5E7EB;}
+    .dark{--bg:#0B0E1A;--surface:#131726;--text:#F3F4F6;--muted:#9CA3AF;--border:#1F2533;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .25s,color .25s;}
+    h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.25;}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+    .navbar{position:sticky;top:0;z-index:100;background:rgba(249,250,251,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .dark .navbar{background:rgba(11,14,26,.85);}
+    .navbar-inner{display:flex;align-items:center;gap:1.25rem;height:60px;max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.125rem;}
+    .nav-logo-text{background:linear-gradient(135deg,#4F46E5,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-spacer{flex:1;}
+    .btn-nav{padding:.5rem 1.25rem;border-radius:.75rem;font-size:.875rem;font-weight:600;background:linear-gradient(135deg,#4F46E5,#8B5CF6);color:#fff;cursor:pointer;border:none;}
+    #theme-toggle{width:36px;height:36px;border-radius:.625rem;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .hero{padding:3.5rem 1.5rem 2.5rem;border-bottom:1px solid var(--border);}
+    .hero-badge{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .75rem;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:1rem;}
+    .page-layout{display:grid;grid-template-columns:1fr 264px;gap:2rem;padding:2.5rem 0 4rem;}
+    @media(max-width:900px){.page-layout{grid-template-columns:1fr;}}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
+    @media(max-width:500px){.tools-grid{grid-template-columns:1fr;}}
+    .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;margin-bottom:1rem;}
+    .sidebar-title{font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.875rem;}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8125rem;color:var(--muted);padding:.875rem 0 0;}
+    .breadcrumb a:hover{color:var(--brand);}
+    .bc-sep{color:var(--border);}
+    .reveal-on-scroll{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;}
+    .reveal-on-scroll.is-visible{opacity:1;transform:none;}
+    .js-ready .reveal-on-scroll{/* transitions only after JS ready */}
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.8125rem;color:var(--muted);}
+    footer a{color:var(--brand);}
+  </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>body,h1,h2,h3,h4,.card-name,.card-desc,.stat-n,.stat-l{font-family:'Plus Jakarta Sans',sans-serif !important;}</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="t-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="t-convert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="t-resize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></symbol>
+  <symbol id="t-editor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+  <symbol id="t-ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13l.75 2.25L22 16l-2.25.75L19 19l-.75-2.25L16 16l2.25-.75z"/></symbol>
+  <symbol id="t-bulk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+  <symbol id="t-social" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></symbol>
+</defs></svg>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#ng)"/><rect x="5" y="5" width="9" height="9" rx="2" fill="white" opacity=".95"/><rect x="18" y="5" width="9" height="9" rx="2" fill="white" opacity=".6"/><rect x="5" y="18" width="9" height="9" rx="2" fill="white" opacity=".6"/><rect x="18" y="18" width="9" height="9" rx="2" fill="white" opacity=".3"/></svg>
+      <span class="nav-logo-text">Pixaroid</span>
+    </a>
+    <nav style="display:flex;gap:.25rem;margin-left:1rem;">
+      <a href="/tools/compression/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Compression</a><a href="/tools/conversion/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Conversion</a><a href="/tools/resize/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Resize</a><a href="/tools/editor/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:#F59E0B;">Editor</a><a href="/tools/ai-tools/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">AI Tools</a><a href="/tools/social-tools/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Social Media</a><a href="/tools/utilities/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Utilities</a><a href="/tools/bulk-tools/" style="padding:.375rem .625rem;border-radius:.5rem;font-size:.8rem;font-weight:500;color:var(--muted);">Bulk Tools</a>
+    </nav>
+    <div class="nav-spacer"></div>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg width="17" height="17"><use href="#i-moon" class="icon-moon"/><use href="#i-sun" class="icon-sun" style="display:none"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero" style="background:rgba(245,158,11,.08)">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/">Home</a><span class="bc-sep">›</span><span>Editor</span></nav>
+    <div style="max-width:680px;margin-top:1.5rem;">
+      <div class="hero-badge" style="background:rgba(245,158,11,.08);color:#F59E0B;border:1px solid #F59E0B30;">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><use href="#t-editor"/></svg>
+        21 Tools
+      </div>
+      <h1 style="font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;margin-bottom:.75rem;">Online Image Editor</h1>
+      <p style="font-size:1.0625rem;color:var(--muted);line-height:1.7;max-width:560px;">Crop, rotate, flip, adjust brightness, contrast and saturation. Add watermarks and text overlays. All in your browser.</p>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="page-layout">
+
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;">
+        <h2 style="font-size:1.125rem;font-weight:600;">21 Editor Tools</h2>
+        <span style="font-size:.8125rem;color:var(--muted);">All free · No upload · Browser-based</span>
+      </div>
+      <div class="tools-grid">
+        <a href="/tools/editor/crop-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Crop Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Crop images online free. Use the interactive crop tool to select any area, crop to an aspect ratio, </div>
+          </div>
+        </a>
+        <a href="/tools/editor/rotate-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Rotate Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Rotate images online free. Rotate 90°, 180°, 270° or to any custom angle. Supports JPEG, PNG, WebP, </div>
+          </div>
+        </a>
+        <a href="/tools/editor/flip-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Flip Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Flip images horizontally or vertically online free. Mirror images for design, photography, and socia</div>
+          </div>
+        </a>
+        <a href="/tools/editor/add-watermark/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Add Watermark to Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Add a text or image watermark online free. Customise position, opacity, font, colour, and size. Prot</div>
+          </div>
+        </a>
+        <a href="/tools/editor/add-text-to-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Add Text to Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Add text to photos online free. Choose font, size, colour, position, and style. Perfect for memes, q</div>
+          </div>
+        </a>
+        <a href="/tools/editor/blur-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Blur Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Blur images online free. Apply Gaussian blur to entire images or specific areas. Great for privacy, </div>
+          </div>
+        </a>
+        <a href="/tools/editor/sharpen-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Sharpen Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Sharpen blurry images online free. Enhance image detail and clarity using unsharp masking. Great for</div>
+          </div>
+        </a>
+        <a href="/tools/editor/adjust-brightness/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Adjust Brightness</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Adjust image brightness online free. Brighten dark photos or darken overexposed images. Real-time pr</div>
+          </div>
+        </a>
+        <a href="/tools/editor/adjust-contrast/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Adjust Contrast</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Adjust image contrast online free. Increase or decrease the tonal range of photos to make them pop o</div>
+          </div>
+        </a>
+        <a href="/tools/editor/adjust-saturation/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Adjust Saturation</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Adjust image colour saturation online free. Boost dull colours or desaturate to greyscale. Real-time</div>
+          </div>
+        </a>
+        <a href="/tools/editor/meme-generator/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Meme Generator</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Create memes with Impact-font captions. Add top and bottom text, choose font size and colour. No wat</div>
+          </div>
+        </a>
+        <a href="/tools/editor/add-border-to-image/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Add Border to Image</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Add a custom border to any image. Choose colour, width, and border style. Instant preview, free down</div>
+          </div>
+        </a>
+        <a href="/tools/editor/round-image-corners/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Round Image Corners</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Round the corners of any image online free. Set border radius from 0 to 50% (circle). Download as PN</div>
+          </div>
+        </a>
+        <a href="/tools/editor/image-to-grayscale/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Image to Grayscale</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Convert colour images to black and white online free. Uses ITU-R luma coefficients for accurate grey</div>
+          </div>
+        </a>
+        <a href="/tools/editor/sepia-filter/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Sepia Filter</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Apply a warm vintage sepia filter to any photo. Adjust intensity from subtle warm tone to deep antiq</div>
+          </div>
+        </a>
+        <a href="/tools/editor/invert-image-colors/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Invert Image Colors</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Invert all colours in an image — creates a negative effect. Useful for dark mode conversions and art</div>
+          </div>
+        </a>
+        <a href="/tools/editor/image-noise-reducer/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Image Noise Reducer</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Reduce noise and grain from photos online free. Gaussian smoothing removes sensor noise while preser</div>
+          </div>
+        </a>
+        <a href="/tools/editor/flip-image-horizontal/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Flip Image Horizontal</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Mirror flip any image horizontally (left to right) online free. Instant processing, no upload requir</div>
+          </div>
+        </a>
+        <a href="/tools/editor/rotate-image-90/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Rotate Image 90 Degrees</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Rotate any image 90° clockwise online free. Fix portrait photos from landscape orientation instantly</div>
+          </div>
+        </a>
+        <a href="/tools/editor/add-text-overlay/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Add Text to Photo</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Add custom text overlays to photos online. Choose font size, colour, position and shadow. Perfect fo</div>
+          </div>
+        </a>
+        <a href="/tools/editor/image-vignette/"
+           class="tool-card reveal-on-scroll"
+           style="display:flex;align-items:flex-start;gap:.875rem;padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#F59E0B40'"
+           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+          <div style="width:40px;height:40px;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.08);">
+            <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#t-editor"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9375rem;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Add Vignette to Photo</div>
+            <div style="font-size:.8125rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Add a professional vignette effect to photos — darkens the edges to draw focus to the centre. Cinema</div>
+          </div>
+        </a></div>
+    </div>
+
+    <aside>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Popular Tools</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.25rem;"><li><a href="/tools/compression/compress-image/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">Compress Image</a></li><li><a href="/tools/conversion/jpg-to-png/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">JPG to PNG</a></li><li><a href="/tools/ai-tools/background-remover/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">Background Remover</a></li><li><a href="/tools/resize/resize-image/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">Resize Image</a></li><li><a href="/tools/conversion/webp-to-jpg/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">WebP to JPG</a></li><li><a href="/tools/ai-tools/image-upscaler/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">AI Upscaler</a></li><li><a href="/tools/conversion/heic-to-jpg/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">HEIC to JPG</a></li><li><a href="/tools/social-tools/youtube-thumbnail-maker/" style="display:block;padding:.5rem .625rem;border-radius:.5rem;font-size:.8125rem;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;"
+      onmouseover="this.style.background='rgba(79,70,229,.06)';this.style.color='#4F46E5'"
+      onmouseout="this.style.background='';this.style.color='var(--muted)'">YouTube Thumbnail</a></li></ul>
+        <a href="/" style="display:block;margin-top:.75rem;text-align:center;font-size:.8125rem;color:#4F46E5;font-weight:600;">All 67 tools →</a>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">All Categories</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+      <a href="/tools/compression/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#4F46E5'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#4F46E5;flex-shrink:0;"></span>
+        Compression
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">10</span>
+      </a>
+      <a href="/tools/conversion/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#8B5CF6'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#8B5CF6;flex-shrink:0;"></span>
+        Conversion
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">15</span>
+      </a>
+      <a href="/tools/resize/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#10B981'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#10B981;flex-shrink:0;"></span>
+        Resize
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">12</span>
+      </a>
+      <a href="/tools/ai-tools/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#F43F5E'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#F43F5E;flex-shrink:0;"></span>
+        AI Tools
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">6</span>
+      </a>
+      <a href="/tools/social-tools/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#0EA5E9'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#0EA5E9;flex-shrink:0;"></span>
+        Social Media
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">6</span>
+      </a>
+      <a href="/tools/utilities/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#06B6D4'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#06B6D4;flex-shrink:0;"></span>
+        Utilities
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">8</span>
+      </a>
+      <a href="/tools/bulk-tools/"
+         style="display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:.75rem;border:1px solid var(--border);font-size:.875rem;font-weight:500;color:var(--text);text-decoration:none;background:var(--surface);transition:border-color .2s;"
+         onmouseover="this.style.borderColor='#14B8A6'"
+         onmouseout="this.style.borderColor='var(--border)'">
+        <span style="width:8px;height:8px;border-radius:50%;background:#14B8A6;flex-shrink:0;"></span>
+        Bulk Tools
+        <span style="margin-left:auto;font-size:.75rem;color:var(--muted);">6</span>
+      </a></div>
+      </div>
+
+      <div class="sidebar-card" style="background:rgba(245,158,11,.08);border-color:#F59E0B30;">
+        <div style="display:flex;gap:.625rem;align-items:flex-start;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.875rem;margin-bottom:.25rem;color:#F59E0B;">100% Private</div>
+            <p style="font-size:.8rem;color:var(--muted);line-height:1.6;">Your images never leave your device. All processing runs locally in your browser.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 <a href="/">Pixaroid</a> · <a href="/privacy-policy.html">Privacy</a> · <a href="/terms-of-service.html">Terms</a> · <a href="/contact.html">Contact</a></p>
+</footer>
+
+<script>
+(function(){
+  const root=document.documentElement,btn=document.getElementById('theme-toggle');
+  const moon=btn.querySelector('.icon-moon'),sun=btn.querySelector('.icon-sun');
+  function apply(dark){root.classList.toggle('dark',dark);moon.style.display=dark?'none':'';sun.style.display=dark?'':'none';}
+  const s=localStorage.getItem('pxn-theme');
+  apply(s==='dark'||(!s&&matchMedia('(prefers-color-scheme:dark)').matches));
+  btn.addEventListener('click',()=>{const d=!root.classList.contains('dark');apply(d);localStorage.setItem('pxn-theme',d?'dark':'light');});
+  root.classList.add('js-ready');
+  if(IntersectionObserver){
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal-on-scroll').forEach(el=>io.observe(el));
+  }
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>

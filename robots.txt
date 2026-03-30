@@ -1,0 +1,108 @@
+# ============================================================
+#  Pixaroid — robots.txt
+#  https://pixaroid.vercel.app
+#  Updated: 2026-03-27
+# ============================================================
+
+# ── Allow all crawlers ──────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── Disallow non-content paths ──────────────────────────────
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /seo/
+Disallow: /templates/
+Disallow: /*.map$
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# ── Google ──────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+
+# ── Bing ────────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# ── Other search engines ────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+# ── AI Crawlers ─────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+Crawl-delay: 2
+
+# ── Throttle aggressive crawlers ────────────────────────────
+User-agent: AhrefsBot
+Crawl-delay: 30
+
+User-agent: SemrushBot
+Crawl-delay: 30
+
+# ── Block spam bots ─────────────────────────────────────────
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: 80legs
+Disallow: /
+
+# ── Sitemaps ─────────────────────────────────────────────────
+Sitemap: https://pixaroid.vercel.app/sitemap.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-core.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-categories.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-guides.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-tools-1.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-tools-2.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-tools-3.xml
+Sitemap: https://pixaroid.vercel.app/sitemap-tools-4.xml

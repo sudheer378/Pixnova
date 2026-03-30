@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" fill="none">
+  <defs>
+    <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5" stop-opacity=".15"/><stop offset="100%" stop-color="#06B6D4" stop-opacity=".08"/></linearGradient>
+    <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+    <linearGradient id="hg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient>
+    <filter id="blur1"><feGaussianBlur stdDeviation="20"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#4F46E5" flood-opacity="0.2"/></filter>
+  </defs>
+
+  <!-- Background blobs -->
+  <ellipse cx="480" cy="80"  rx="180" ry="140" fill="#4F46E5" opacity=".07" filter="url(#blur1)"/>
+  <ellipse cx="120" cy="360" rx="140" ry="100" fill="#06B6D4" opacity=".08" filter="url(#blur1)"/>
+
+  <!-- Main card: image editor mockup -->
+  <rect x="90" y="60" width="420" height="340" rx="24" fill="white" filter="url(#shadow)"/>
+  <rect x="90" y="60" width="420" height="340" rx="24" fill="url(#hg1)"/>
+
+  <!-- Card header bar -->
+  <rect x="90" y="60" width="420" height="52" rx="24" fill="white"/>
+  <rect x="90" y="88" width="420" height="24" fill="white"/>
+  <!-- Traffic lights -->
+  <circle cx="120" cy="86" r="7" fill="#FF5F57"/>
+  <circle cx="142" cy="86" r="7" fill="#FEBC2E"/>
+  <circle cx="164" cy="86" r="7" fill="#28C840"/>
+  <!-- Tab label -->
+  <rect x="188" y="74" width="120" height="24" rx="8" fill="#F3F4F6"/>
+  <rect x="200" y="81" width="80" height="10" rx="5" fill="#9CA3AF"/>
+
+  <!-- Sidebar -->
+  <rect x="90" y="112" width="60" height="288" fill="#F9FAFB"/>
+  <!-- Sidebar icons -->
+  <rect x="107" y="130" width="26" height="26" rx="8" fill="#4F46E5" opacity=".15"/>
+  <rect x="107" y="165" width="26" height="26" rx="8" fill="#E5E7EB"/>
+  <rect x="107" y="200" width="26" height="26" rx="8" fill="#E5E7EB"/>
+  <rect x="107" y="235" width="26" height="26" rx="8" fill="#E5E7EB"/>
+  <rect x="107" y="270" width="26" height="26" rx="8" fill="#E5E7EB"/>
+
+  <!-- Canvas area -->
+  <rect x="162" y="120" width="256" height="204" rx="12" fill="#F0F1FF"/>
+  <!-- Mock image: landscape -->
+  <rect x="162" y="120" width="256" height="120" rx="12" fill="url(#hg3)" opacity=".35"/>
+  <ellipse cx="215" cy="175" rx="30" ry="30" fill="#06B6D4" opacity=".3"/>
+  <polygon points="340,140 390,200 290,200" fill="#4F46E5" opacity=".2"/>
+  <!-- Image details -->
+  <rect x="162" y="240" width="256" height="84" rx="0" fill="white" opacity=".8"/>
+  <rect x="162" y="312" width="256" height="12" rx="0" fill="white"/>
+
+  <!-- Dimension labels -->
+  <rect x="175" y="252" width="60" height="14" rx="7" fill="#E5E7EB"/>
+  <rect x="175" y="272" width="90" height="10" rx="5" fill="#F3F4F6"/>
+
+  <!-- Right panel: controls -->
+  <rect x="430" y="112" width="80" height="288" fill="#FAFAFA"/>
+  <rect x="440" y="130" width="60" height="8" rx="4" fill="#D1D5DB"/>
+  <rect x="440" y="145" width="60" height="6" rx="3" fill="#E5E7EB"/>
+  <rect x="440" y="165" width="60" height="8" rx="4" fill="#D1D5DB"/>
+  <rect x="440" y="180" width="40" height="6" rx="3" fill="#E5E7EB"/>
+  <rect x="440" y="200" width="60" height="8" rx="4" fill="#D1D5DB"/>
+  <rect x="440" y="215" width="55" height="6" rx="3" fill="#E5E7EB"/>
+  <!-- Slider -->
+  <rect x="440" y="240" width="60" height="4" rx="2" fill="#E5E7EB"/>
+  <circle cx="462" cy="242" r="7" fill="url(#hg2)"/>
+  <rect x="440" y="260" width="60" height="4" rx="2" fill="#E5E7EB"/>
+  <circle cx="480" cy="262" r="7" fill="#06B6D4"/>
+  <!-- Download button -->
+  <rect x="440" y="360" width="60" height="24" rx="8" fill="url(#hg2)"/>
+  <rect x="455" y="369" width="30" height="6" rx="3" fill="white" opacity=".9"/>
+
+  <!-- Floating badge: AI -->
+  <rect x="340" y="48" width="80" height="32" rx="16" fill="url(#hg2)" filter="url(#shadow)"/>
+  <circle cx="360" cy="64" r="8" fill="white" opacity=".3"/>
+  <rect x="373" y="58" width="36" height="6" rx="3" fill="white" opacity=".9"/>
+  <rect x="373" y="68" width="26" height="4" rx="2" fill="white" opacity=".6"/>
+
+  <!-- Floating badge: 90% smaller -->
+  <rect x="100" y="44" width="100" height="32" rx="16" fill="white" filter="url(#shadow)"/>
+  <rect x="113" y="56" width="50" height="8" rx="4" fill="#4F46E5" opacity=".8"/>
+  <rect x="113" y="68" width="70" height="5" rx="2.5" fill="#9CA3AF"/>
+
+  <!-- Progress bar floating -->
+  <rect x="174" y="434" width="252" height="10" rx="5" fill="#E5E7EB"/>
+  <rect x="174" y="434" width="180" height="10" rx="5" fill="url(#hg3)"/>
+</svg>

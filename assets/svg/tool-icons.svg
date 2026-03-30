@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- compress — archive / zip -->
+  <symbol id="tool-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="17 8 12 3 7 8"/>
+    <line x1="12" y1="3" x2="12" y2="15"/>
+    <line x1="9" y1="12" x2="15" y2="12"/>
+  </symbol>
+
+  <!-- convert — refresh / swap -->
+  <symbol id="tool-convert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="17 1 21 5 17 9"/>
+    <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+    <polyline points="7 23 3 19 7 15"/>
+    <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+  </symbol>
+
+  <!-- resize — expand / arrows-out -->
+  <symbol id="tool-resize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+  </symbol>
+
+  <!-- editor — edit / pen -->
+  <symbol id="tool-editor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+  </symbol>
+
+  <!-- ai — cpu / sparkle -->
+  <symbol id="tool-ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="4" width="16" height="16" rx="2"/>
+    <rect x="9" y="9" width="6" height="6"/>
+    <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+    <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+    <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+    <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+  </symbol>
+
+  <!-- bulk — layers / stack -->
+  <symbol id="tool-bulk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+    <polyline points="2 17 12 22 22 17"/>
+    <polyline points="2 12 12 17 22 12"/>
+  </symbol>
+
+  <!-- social — share -->
+  <symbol id="tool-social" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+  </symbol>
+
+  <!-- individual tool icons -->
+
+  <!-- jpg-to-png -->
+  <symbol id="tool-jpg-png" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="8" height="11" rx="1.5"/>
+    <rect x="13" y="10" width="8" height="11" rx="1.5"/>
+    <path d="M11 8.5h2M11 8.5 13 10" stroke-width="1.5"/>
+  </symbol>
+
+  <!-- background remover -->
+  <symbol id="tool-bg-remove" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 6l4-3 4 3 4-3 4 3"/>
+    <path d="M3 12l4-3 4 3 4-3 4 3"/>
+    <path d="M3 18l4-3 4 3 4-3 4 3"/>
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 2"/>
+  </symbol>
+
+  <!-- watermark -->
+  <symbol id="tool-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <text x="5" y="16" font-size="8" stroke-width="1" font-family="sans-serif" opacity="0.5">©</text>
+    <circle cx="15" cy="10" r="3"/>
+    <line x1="18" y1="7" x2="20" y2="5"/>
+  </symbol>
+
+  <!-- crop -->
+  <symbol id="tool-crop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2v14a2 2 0 0 0 2 2h14"/>
+    <path d="M18 22V8a2 2 0 0 0-2-2H2"/>
+  </symbol>
+
+  <!-- rotate -->
+  <symbol id="tool-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 4 23 10 17 10"/>
+    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+  </symbol>
+
+  <!-- thumbnail -->
+  <symbol id="tool-thumbnail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <circle cx="8" cy="10" r="2"/>
+    <path d="M14 8l4 4-6 4H6l4-4"/>
+  </symbol>
+
+  <!-- upscale -->
+  <symbol id="tool-upscale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="10" width="8" height="8" rx="1"/>
+    <rect x="12" y="4" width="10" height="10" rx="1"/>
+    <path d="M7 10V8M7 8l2-2M7 8 5 6" stroke-width="1.5"/>
+  </symbol>
+
+</svg>

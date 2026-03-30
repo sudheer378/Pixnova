@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 36" role="img" aria-label="Pixaroid">
+  <defs>
+    <linearGradient id="n-a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/>
+    </linearGradient>
+    <linearGradient id="n-b" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/>
+    </linearGradient>
+    <linearGradient id="n-c" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/>
+    </linearGradient>
+    <linearGradient id="n-d" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/>
+    </linearGradient>
+    <linearGradient id="n-core" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/>
+    </linearGradient>
+    <linearGradient id="n-word" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#E2D9FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon mark -->
+  <rect x="0" y="0" width="36" height="36" rx="8.5" fill="#0A0812"/>
+  <rect x="4.5" y="4.5" width="11" height="11" rx="2.5" fill="url(#n-a)"/>
+  <rect x="20.5" y="4.5" width="11" height="11" rx="2.5" fill="url(#n-b)"/>
+  <rect x="4.5" y="20.5" width="11" height="11" rx="2.5" fill="url(#n-c)"/>
+  <rect x="20.5" y="20.5" width="11" height="11" rx="2.5" fill="url(#n-d)"/>
+  <rect x="14" y="14" width="8" height="8" rx="2" fill="url(#n-core)"/>
+  <!-- Wordmark -->
+  <text x="46" y="24.5"
+    font-family="'Sora','Space Grotesk',system-ui,sans-serif"
+    font-weight="800" font-size="19" letter-spacing="-0.6"
+    fill="url(#n-word)">Pixaroid</text>
+</svg>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="About Pixaroid — 95+ free browser-based image and PDF tools. No upload, no account, 100% private. Learn how we built a privacy-first tool platform."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://pixaroid.vercel.app/about.html"/>
+<meta property="og:title" content="About Pixaroid — Free Image & PDF Tools"/><meta property="og:url" content="https://pixaroid.vercel.app/about.html"/>
+<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
+<title>About Pixaroid — Free Browser-Based Image & PDF Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#05040D;--s1:#0D0B1E;--s2:#131128;--bd:rgba(255,255,255,.065);--bd2:rgba(255,255,255,.1);--tx:#F0EFF8;--mu:#9494BB;--ac:#7B6FFF;--ac2:#A99FFF;--gr:#1EE87A;--f:'Plus Jakarta Sans',sans-serif;}
+.L{--bg:#F2F1FB;--s1:#fff;--s2:#F2F1FB;--bd:rgba(0,0,0,.07);--bd2:rgba(0,0,0,.1);--tx:#07071A;--mu:#5454A0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 45% at 50% -5%,rgba(123,111,255,.14),transparent 55%);}
+a{color:var(--ac2);} h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:1.15;}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,4,13,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);}
+.L nav{background:rgba(242,241,251,.9);}
+.ni{display:flex;align-items:center;gap:.875rem;height:56px;max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.0625rem;letter-spacing:-.035em;text-decoration:none;color:var(--tx);}
+.lm{width:30px;height:30px;border-radius:8px;background:#0A0818;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(123,111,255,.4);}
+.logo-t{background:linear-gradient(90deg,#fff,#C4BFFF 45%,#A99FFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ns{flex:1;} .tbtn{width:32px;height:32px;border-radius:7px;border:1px solid var(--bd2);background:var(--s2);color:var(--mu);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.W{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+.hero{padding:4rem 0 2.5rem;text-align:center;}
+.hero h1{font-size:clamp(1.875rem,4vw,2.75rem);margin-bottom:.875rem;}
+.hero p{font-size:1.0625rem;color:var(--mu);max-width:560px;margin:0 auto;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:2.5rem 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin:2rem 0;}
+@media(max-width:580px){.stats-row{grid-template-columns:1fr 1fr;}}
+.stat-box{background:var(--s1);border:1px solid var(--bd2);border-radius:14px;padding:1.25rem;text-align:center;}
+.stat-n{font-size:1.875rem;font-weight:800;letter-spacing:-.04em;background:linear-gradient(135deg,#fff,var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-l{font-size:.75rem;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-top:.3rem;}
+.prose{padding:2rem 0 5rem;}
+.prose h2{font-size:1.25rem;font-weight:800;margin:2.5rem 0 .875rem;color:var(--tx);}
+.prose p{color:var(--mu);margin-bottom:1rem;line-height:1.8;}
+.prose ul{margin:0 0 1.25rem 1.5rem;color:var(--mu);}
+.prose li{margin-bottom:.5rem;line-height:1.7;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.5rem 0 2rem;}
+.card{background:var(--s1);border:1px solid var(--bd2);border-radius:14px;padding:1.5rem;}
+.card-ico{width:42px;height:42px;border-radius:11px;border:1px solid var(--bd2);background:var(--s2);display:flex;align-items:center;justify-content:center;margin-bottom:.875rem;}
+.card-ico svg{width:20px;height:20px;color:var(--ac2);}
+.card h3{font-size:.9375rem;font-weight:700;margin-bottom:.4rem;}
+.card p{font-size:.8125rem;color:var(--mu);line-height:1.6;}
+.cta-block{background:linear-gradient(135deg,rgba(123,111,255,.1),rgba(16,212,190,.07));border:1px solid rgba(123,111,255,.2);border-radius:16px;padding:2.5rem;text-align:center;margin:2rem 0;}
+.cta-block h2{font-size:1.375rem;margin-bottom:.625rem;}
+.cta-block p{color:var(--mu);margin-bottom:1.5rem;font-size:.9375rem;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.875rem;border-radius:10px;background:linear-gradient(135deg,var(--ac),#9C40FF);color:#fff;font-weight:700;font-size:.9375rem;text-decoration:none;box-shadow:0 4px 16px rgba(123,111,255,.3);}
+footer{border-top:1px solid var(--bd);padding:2rem;text-align:center;font-size:.8125rem;color:var(--mu);}
+footer a{color:var(--mu);}
+.fl{display:flex;justify-content:center;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<nav><div class="ni">
+  <a href="/" class="logo"><div class="lm"><svg viewBox="0 0 20 20" fill="none" width="20" height="20"><defs><linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF3CAC"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient><linearGradient id="b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient><linearGradient id="c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#00C853"/></linearGradient><linearGradient id="d" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient><linearGradient id="e" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7B2FFF"/><stop offset="100%" stop-color="#FF3CAC"/></linearGradient></defs><rect x="1" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#a)"/><rect x="11.5" y="1" width="7.5" height="7.5" rx="1.8" fill="url(#b)"/><rect x="1" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#c)"/><rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.8" fill="url(#d)"/><rect x="8" y="8" width="4" height="4" rx="1" fill="url(#e)"/></svg></div><span class="logo-t">Pixaroid</span></a>
+  <div class="ns"></div>
+  <a href="/" style="font-size:.875rem;color:var(--mu);padding:.375rem .625rem;border-radius:7px;font-family:var(--f);">← All Tools</a>
+  <button class="tbtn" onclick="var r=document.documentElement,l=!r.classList.contains('L');r.classList.toggle('L',l);localStorage.setItem('pxr',l?'l':'d')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+</div></nav>
+
+<div class="W">
+  <div class="hero">
+    <h1>Built for privacy.<br/>Built for speed.</h1>
+    <p>Pixaroid is a free platform of 95+ image and PDF tools that runs entirely in your browser. No uploads. No accounts. No limits. Ever.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-n">95+</div><div class="stat-l">Free Tools</div></div>
+    <div class="stat-box"><div class="stat-n">7</div><div class="stat-l">Web Workers</div></div>
+    <div class="stat-box"><div class="stat-n">0 KB</div><div class="stat-l">Uploaded</div></div>
+    <div class="stat-box"><div class="stat-n">∞</div><div class="stat-l">Free Forever</div></div>
+  </div>
+
+  <div class="prose">
+    <h2>What is Pixaroid?</h2>
+    <p>Pixaroid is a collection of 95+ browser-based tools for images and PDFs. Every tool runs entirely client-side using the <strong>Canvas API</strong>, <strong>Web Workers</strong>, and modern browser APIs. Your files are processed locally on your device — they are never sent to any server.</p>
+    <p>We cover compression, format conversion, resizing, image editing, AI-powered processing, social media sizing, PDF editing, and bulk processing. All free. No account needed. No watermarks.</p>
+
+    <h2>Why no server uploads?</h2>
+    <p>Server-based tools create privacy risks — your images pass through third-party infrastructure. Browser-based processing eliminates this entirely. As a bonus, it is faster (no network round-trip), works offline, and costs nothing to scale.</p>
+
+    <h2>What can Pixaroid do?</h2>
+    <div class="cards">
+      <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><h3>Compress Images</h3><p>Reduce JPEG, PNG, WebP, HEIC files to exact KB targets. Up to 90% size reduction.</p></div>
+      <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3>Convert Formats</h3><p>Convert between JPG, PNG, WebP, HEIC, BMP, GIF, TIFF, ICO, SVG — every combination.</p></div>
+      <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>Edit PDFs</h3><p>Add text, images, shapes, whiteout, signatures. Compress, merge, split, rotate PDFs.</p></div>
+      <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg></div><h3>AI Tools</h3><p>Remove backgrounds, upscale images 4×, enhance photos, colorize B&W, extract text.</p></div>
+    </div>
+
+    <h2>Technology</h2>
+    <p>Pixaroid is built with HTML, CSS, Vanilla JavaScript, the Canvas API, and 7 dedicated Web Workers. No frameworks, no dependencies, no build tools. Just the raw power of the modern browser.</p>
+    <ul>
+      <li><strong>compress.worker.js</strong> — Binary-search quality algorithm for exact KB targets</li>
+      <li><strong>convert.worker.js</strong> — 9 format conversions including lossless WebP</li>
+      <li><strong>resize.worker.js</strong> — 20 social media presets + custom dimensions</li>
+      <li><strong>filter.worker.js</strong> — 22 image operations including meme, vignette, noise</li>
+      <li><strong>bulk.worker.js</strong> — Parallel batch processing up to 100 files</li>
+      <li><strong>ai.worker.js</strong> — Background removal, upscaling, OCR</li>
+      <li><strong>pdf.worker.js</strong> — PDF creation, extraction, editing via PDF-lib + PDF.js</li>
+    </ul>
+
+    <div class="cta-block">
+      <h2>Ready to try it?</h2>
+      <p>All 95+ tools are free, instant, and private. No account needed.</p>
+      <a href="/" class="btn">Explore All Tools →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Pixaroid — Free Image & PDF Tools</p>
+  <div class="fl"><a href="/">Home</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy</a><a href="/sitemap.xml">Sitemap</a></div>
+</footer>
+<script>var ts=localStorage.getItem('pxr');if(ts==='l'||(!ts&&!matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('L');</script>
+</body>
+</html>
